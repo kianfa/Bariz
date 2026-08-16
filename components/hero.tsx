@@ -42,10 +42,6 @@ export function Hero() {
         />
       </div>
 
-      {/* Cinematic overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/10 to-background" />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-transparent" />
-
       {/* Desktop / tablet branding rail */}
       <aside
         className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
@@ -74,13 +70,13 @@ export function Hero() {
       </aside>
 
       {/* Main copy */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 md:translate-y-10 md:pl-[18vw] md:pr-8 lg:translate-x-14 lg:translate-y-12 lg:pl-[18.5vw]">
+      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 md:translate-y-10 md:pl-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw]">
         <div
           className="max-w-[42rem]"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
         >
           <h1
-            className={`font-display text-[clamp(3.2rem,16vw,4rem)] font-light leading-[0.9] tracking-[0.12em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out md:text-[clamp(4.5rem,7.5vw,8.25rem)] ${
+            className={`font-display text-[clamp(3.2rem,16vw,4rem)] font-light leading-[0.9] tracking-[0.12em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out md:text-[clamp(5.85rem,9.75vw,10.725rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -88,7 +84,7 @@ export function Hero() {
           </h1>
 
           <p
-            className={`mt-3 font-display text-[clamp(1.15rem,4.8vw,1.5rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out md:text-[clamp(1.2rem,1.7vw,1.75rem)] ${
+            className={`mt-3 font-display text-[clamp(1.15rem,4.8vw,1.5rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out md:text-[clamp(1.56rem,2.21vw,2.275rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -108,7 +104,7 @@ export function Hero() {
           </div>
 
           <p
-            className={`mt-6 text-sm font-light uppercase tracking-wide-luxe text-ivory/80 transition-all delay-700 duration-[1600ms] ease-out sm:text-base ${
+            className={`mt-6 text-sm font-light uppercase tracking-wide-luxe text-ivory/80 transition-all delay-700 duration-[1600ms] ease-out sm:text-base md:text-[1.3rem] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -117,7 +113,7 @@ export function Hero() {
 
           <a
             href="#story"
-            className={`group mt-11 inline-flex items-center gap-4 text-xs font-light uppercase tracking-luxe text-gold transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory ${
+            className={`group mt-11 inline-flex items-center gap-4 text-xs font-light uppercase tracking-luxe text-gold md:text-[0.975rem] transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >

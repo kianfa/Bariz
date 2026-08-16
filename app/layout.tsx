@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Bariz — Nature, Distilled.',
     description: 'Persian botanical distilled waters. Nature, distilled. Time perfected.',
-    images: ['/bariz-hero.png'],
+    images: ['/bariz-hero.webp'],
   },
 }
 
