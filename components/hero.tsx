@@ -46,28 +46,41 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/10 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-transparent" />
 
-      {/* Vertical tagline rail */}
-      <div
-        className="absolute left-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-6 md:flex"
+      {/* Desktop / tablet branding rail */}
+      <aside
+        className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
         style={{ opacity: fade }}
+        aria-hidden="true"
       >
-        <span className="text-gold/70" aria-hidden>
-          &#10022;
+        <span className="flex size-7 rotate-45 items-center justify-center border border-gold/55 text-gold/80">
+          <span className="-rotate-45 text-[0.7rem] leading-none">&#10022;</span>
         </span>
-        <p className="font-display text-xs uppercase leading-[2.2] tracking-luxe text-gold [writing-mode:vertical-rl]">
-          Nature, Distilled. Time Perfected.
+
+        <p className="mt-5 text-center font-display text-[0.68rem] font-medium uppercase leading-[1.95] tracking-[0.12em] text-gold/85">
+          <span className="block">Nature,</span>
+          <span className="block">Distilled.</span>
+          <span className="block">Time</span>
+          <span className="block">Perfected.</span>
         </p>
-        <span className="h-24 w-px bg-gradient-to-b from-gold/60 to-transparent" />
-      </div>
+
+        <div className="relative mt-8 min-h-24 w-px flex-1 bg-gradient-to-b from-gold/45 via-gold/25 to-gold/10">
+          <span className="absolute left-0 top-0 block h-5 w-px animate-scroll-hint bg-gold/70" />
+          <span className="absolute -left-[3px] bottom-8 size-[7px] rounded-full border border-gold/70 bg-background/40" />
+        </div>
+
+        <span className="mt-3 font-display text-[0.66rem] font-medium uppercase tracking-[0.08em] text-gold/80">
+          Scroll
+        </span>
+      </aside>
 
       {/* Main copy */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 md:px-20 lg:px-28">
+      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 md:translate-y-10 md:pl-[18vw] md:pr-8 lg:translate-x-14 lg:translate-y-12 lg:pl-[18.5vw]">
         <div
-          className="max-w-3xl"
+          className="max-w-[42rem]"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
         >
           <h1
-            className={`font-display text-[clamp(3.5rem,13vw,11rem)] font-light leading-[0.92] tracking-[0.12em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out ${
+            className={`font-display text-[clamp(3.2rem,16vw,4rem)] font-light leading-[0.9] tracking-[0.12em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out md:text-[clamp(4.5rem,7.5vw,8.25rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -75,7 +88,7 @@ export function Hero() {
           </h1>
 
           <p
-            className={`mt-4 font-display text-[clamp(1.25rem,3.5vw,2.4rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out ${
+            className={`mt-3 font-display text-[clamp(1.15rem,4.8vw,1.5rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out md:text-[clamp(1.2rem,1.7vw,1.75rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -83,14 +96,15 @@ export function Hero() {
           </p>
 
           <div
-            className={`mt-8 flex items-center gap-4 transition-all delay-500 duration-[1600ms] ease-out ${
+            className={`mt-7 flex w-full max-w-[24rem] items-center transition-all delay-500 duration-[1600ms] ease-out ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            <span className="h-px w-16 gold-line md:w-28" />
-            <span className="text-gold/60" aria-hidden>
+            <span className="h-px flex-1 bg-gradient-to-r from-gold/10 via-gold/45 to-gold/55" />
+            <span className="mx-4 text-[0.55rem] text-gold/65" aria-hidden>
               &#9670;
             </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-gold/55 via-gold/35 to-gold/10" />
           </div>
 
           <p
@@ -103,21 +117,21 @@ export function Hero() {
 
           <a
             href="#story"
-            className={`group mt-12 inline-flex items-center gap-4 text-xs font-light uppercase tracking-luxe text-gold transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory ${
+            className={`group mt-11 inline-flex items-center gap-4 text-xs font-light uppercase tracking-luxe text-gold transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
             Discover Our World
-            <span className="flex size-11 items-center justify-center rounded-full border border-gold/50 transition-all group-hover:border-ivory group-hover:bg-gold/10">
+            <span className="flex size-10 items-center justify-center rounded-full border border-gold/50 transition-all group-hover:border-ivory group-hover:bg-gold/10 md:size-11">
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </span>
           </a>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Mobile scroll indicator */}
       <div
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:left-auto md:right-14 md:translate-x-0"
+        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:hidden"
         style={{ opacity: fade }}
       >
         <span className="text-[0.65rem] font-light uppercase tracking-luxe text-ivory/70">

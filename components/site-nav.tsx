@@ -33,16 +33,20 @@ export function SiteNav() {
           : 'bg-transparent py-5',
       )}
     >
-      <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-5 md:px-10">
+      <nav className="relative mx-auto flex w-full items-center justify-between px-6 md:px-10 lg:px-12">
         <a
           href="#top"
-          className="font-display text-2xl font-medium tracking-wide text-ivory"
+          className="block w-[5rem] shrink-0 md:w-[5.75rem]"
           aria-label="Bariz home"
         >
-          Bar<span className="text-gold">i</span>z
+          <img
+            src="/bariz-logo.svg"
+            alt=""
+            className="block h-auto w-full"
+          />
         </a>
 
-        <ul className="hidden items-center gap-9 lg:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex xl:gap-9">
           {LINKS.map((link) => (
             <li key={link.href}>
               <a
