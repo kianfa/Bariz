@@ -44,7 +44,10 @@ export function Hero() {
           tabIndex={-1}
           className="size-full object-cover object-[70%_center] md:object-center"
         >
-          <source src="/bariz-hero.mp4" type="video/mp4" />
+          <source src="/bariz-hero-hevc.mp4" type='video/mp4; codecs="hvc1"' />
+          <source src="/bariz-hero-av1.webm" type='video/webm; codecs="av01"' />
+          <source src="/bariz-hero-vp9.webm" type='video/webm; codecs="vp9"' />
+          <source src="/bariz-hero-h264.mp4" type='video/mp4; codecs="avc1"' />
         </video>
       </div>
 
