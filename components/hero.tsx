@@ -1,14 +1,21 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null)
   const [offset, setOffset] = useState(0)
+  const [videoReady, setVideoReady] = useState(false)
+  const [videoFailed, setVideoFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    setLoaded(true)
+    const video = videoRef.current
+    if (video && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      setVideoReady(true)
+    }
+
     let raf = 0
     const onScroll = () => {
       cancelAnimationFrame(raf)
@@ -20,6 +27,23 @@ export function Hero() {
       cancelAnimationFrame(raf)
     }
   }, [])
+
+  useEffect(() => {
+    if (!videoReady && !videoFailed) return
+
+    // Let the ready video frame paint first, then start the original Hero animation.
+    const raf = requestAnimationFrame(() => setLoaded(true))
+    return () => cancelAnimationFrame(raf)
+  }, [videoReady, videoFailed])
+
+  const handleVideoReady = () => {
+    setVideoFailed(false)
+    setVideoReady(true)
+  }
+
+  const handleVideoError = () => {
+    setVideoFailed(true)
+  }
 
   const fade = Math.max(0, 1 - offset / 620)
 
@@ -35,6 +59,7 @@ export function Hero() {
         style={{ transform: `translate3d(0, ${offset * 0.35}px, 0)` }}
       >
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop
@@ -42,7 +67,12 @@ export function Hero() {
           preload="auto"
           aria-hidden="true"
           tabIndex={-1}
-          className="size-full object-cover object-[70%_center] md:object-center"
+          onLoadedData={handleVideoReady}
+          onCanPlay={handleVideoReady}
+          onError={handleVideoError}
+          className={`size-full object-cover object-[70%_center] md:object-center ${
+            videoReady ? 'opacity-100' : 'opacity-0'
+          }`}
         >
           <source src="/bariz-hero-hevc.mp4" type='video/mp4; codecs="hvc1"' />
           <source src="/bariz-hero-av1.webm" type='video/webm; codecs="av01"' />
@@ -54,7 +84,7 @@ export function Hero() {
       {/* Desktop / tablet branding rail */}
       <aside
         className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
-        style={{ opacity: fade }}
+        style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
         aria-hidden="true"
       >
         <span className="flex size-7 rotate-45 items-center justify-center border border-gold/55 text-gold/80">
@@ -69,7 +99,11 @@ export function Hero() {
         </p>
 
         <div className="relative mt-8 min-h-24 w-px flex-1 bg-gradient-to-b from-gold/45 via-gold/25 to-gold/10">
-          <span className="absolute left-0 top-0 block h-5 w-px animate-scroll-hint bg-gold/70" />
+          <span
+            className={`absolute left-0 top-0 block h-5 w-px bg-gold/70 ${
+              loaded ? 'animate-scroll-hint' : ''
+            }`}
+          />
           <span className="absolute -left-[3px] bottom-8 size-[7px] rounded-full border border-gold/70 bg-background/40" />
         </div>
 
@@ -137,13 +171,13 @@ export function Hero() {
       {/* Mobile scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:hidden"
-        style={{ opacity: fade }}
+        style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
       >
         <span className="text-[0.65rem] font-light uppercase tracking-luxe text-ivory/70">
           Scroll
         </span>
         <span className="h-14 w-px overflow-hidden bg-ivory/15">
-          <span className="block h-4 w-px animate-scroll-hint bg-gold" />
+          <span className={`block h-4 w-px bg-gold ${loaded ? 'animate-scroll-hint' : ''}`} />
         </span>
       </div>
     </section>
