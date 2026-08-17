@@ -31,15 +31,21 @@ export function Hero() {
     >
       {/* Parallax background */}
       <div
-        className="absolute inset-0 scale-110"
-        style={{ transform: `translate3d(0, ${offset * 0.35}px, 0) scale(1.1)` }}
+        className="absolute inset-0"
+        style={{ transform: `translate3d(0, ${offset * 0.35}px, 0)` }}
       >
-        <img
-          src="/bariz-hero.webp"
-          alt="A bottle of Bariz pure chicory water beside a crystal glass on a stone ledge overlooking a Persian garden at sunset"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          tabIndex={-1}
           className="size-full object-cover object-[70%_center] md:object-center"
-          fetchPriority="high"
-        />
+        >
+          <source src="/bariz-hero.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* Desktop / tablet branding rail */}
