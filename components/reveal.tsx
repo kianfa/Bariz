@@ -18,16 +18,22 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
     const node = ref.current
     if (!node) return
 
+    // Immediate check if element is already in or near viewport
+    const rect = node.getBoundingClientRect()
+    if (rect.top < window.innerHeight + 100 && rect.bottom > -100) {
+      node.classList.add('is-visible')
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting || entry.intersectionRatio > 0) {
             entry.target.classList.add('is-visible')
             observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.01, rootMargin: '100px 0px 100px 0px' },
     )
 
     observer.observe(node)

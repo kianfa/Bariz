@@ -236,3 +236,40 @@
 .animate-scroll-hint {
   animation: bariz-float 2.4s ease-in-out infinite;
 }
+
+@keyframes products-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes products-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.products-panel {
+  animation: products-panel-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.products-panel-text {
+  animation: products-text-in 750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .products-panel,
+  .products-panel-text {
+    animation: none;
+  }
+}
