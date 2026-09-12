@@ -3,19 +3,13 @@
 import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
+import { useLanguage } from '@/lib/i18n/context'
 import { cn } from '@/lib/utils'
-
-const LINKS = [
-  { label: 'Our Story', href: '#story' },
-  { label: 'Botanicals', href: '#botanicals' },
-  { label: 'Craft', href: '#craft' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Journal', href: '#products' },
-]
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const { language, toggleLanguage, t } = useLanguage()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -23,6 +17,14 @@ export function SiteNav() {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  const links = [
+    { label: t.nav.links.story, href: '#story' },
+    { label: t.nav.links.botanicals, href: '#botanicals' },
+    { label: t.nav.links.craft, href: '#craft' },
+    { label: t.nav.links.experience, href: '#experience' },
+    { label: t.nav.links.journal, href: '#products' },
+  ]
 
   return (
     <header
@@ -37,7 +39,7 @@ export function SiteNav() {
         <a
           href="#top"
           className="block w-[5rem] shrink-0 md:w-[5.75rem]"
-          aria-label="Bariz home"
+          aria-label={t.nav.homeAria}
         >
           <img
             src="/bariz-logo.svg"
@@ -47,7 +49,7 @@ export function SiteNav() {
         </a>
 
         <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex xl:gap-9">
-          {LINKS.map((link) => (
+          {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -63,12 +65,17 @@ export function SiteNav() {
         </ul>
 
         <div className="flex items-center gap-5">
-          <button className="hidden text-[0.7rem] font-light uppercase tracking-luxe text-ivory/80 transition-colors hover:text-gold sm:block">
-            EN
+          <button
+            onClick={toggleLanguage}
+            aria-label={t.nav.langBtnAria}
+            className="px-2 py-1 text-[0.775rem] font-light uppercase tracking-luxe text-ivory/90 transition-colors hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 rounded-md"
+          >
+            {language === 'en' ? 'EN' : 'FA'}
           </button>
+
           <button
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-label={open ? t.nav.menuCloseAria : t.nav.menuOpenAria}
             className="flex size-10 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors hover:bg-gold/10 lg:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
@@ -84,7 +91,7 @@ export function SiteNav() {
         )}
       >
         <ul className="flex flex-col gap-1 px-6 pb-6 pt-4">
-          {LINKS.map((link) => (
+          {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}

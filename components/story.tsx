@@ -1,6 +1,11 @@
+'use client'
+
 import { Reveal } from '@/components/reveal'
+import { useLanguage } from '@/lib/i18n/context'
 
 export function Story() {
+  const { t } = useLanguage()
+
   return (
     <section
       id="story"
@@ -14,15 +19,14 @@ export function Story() {
 
       <Reveal delay={120}>
         <p className="mt-8 font-display text-[clamp(1.6rem,4.5vw,3.4rem)] font-light leading-[1.35] text-balance text-ivory">
-          For centuries, the gardens of Persia have surrendered their essence to
-          patient hands and slow fire — <span className="text-gold">a single, luminous drop</span> at a time.
+          {t.story.quote}
+          <span className="text-gold">{t.story.quoteHighlight}</span>
         </p>
       </Reveal>
 
       <Reveal delay={260}>
         <p className="mx-auto mt-10 max-w-xl text-sm font-light leading-relaxed tracking-wide text-ivory/60">
-          Bariz continues that unhurried tradition of araghiyat — capturing the
-          living soul of each botanical in its purest, most graceful form.
+          {t.story.paragraph}
         </p>
       </Reveal>
 

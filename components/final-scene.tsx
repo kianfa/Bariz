@@ -1,12 +1,17 @@
+'use client'
+
 import { Reveal } from '@/components/reveal'
+import { useLanguage } from '@/lib/i18n/context'
 
 export function FinalScene() {
+  const { t } = useLanguage()
+
   return (
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-32">
       <div className="absolute inset-0">
         <img
           src="/final-nature.png"
-          alt="A lush Persian garden with cypress trees and a reflecting pool at golden hour"
+          alt={t.finalScene.imgAlt}
           className="size-full object-cover"
         />
         <div className="absolute inset-0 bg-background/50" />
@@ -21,7 +26,7 @@ export function FinalScene() {
         </Reveal>
         <Reveal delay={140}>
           <h2 className="mt-8 font-display text-[clamp(2.6rem,8vw,7rem)] font-light leading-[1] text-balance text-ivory text-shadow-cinema">
-            Bring Nature Closer.
+            {t.finalScene.heading}
           </h2>
         </Reveal>
         <Reveal delay={300}>

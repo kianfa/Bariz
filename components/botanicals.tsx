@@ -1,47 +1,37 @@
-import { Reveal } from '@/components/reveal'
+'use client'
 
-const BOTANICALS = [
-  {
-    name: 'Rose',
-    latin: 'Rosa damascena',
-    note: 'Velvet, honeyed, endlessly romantic — the crown of the Persian garden.',
-    image: '/botanical-rose.png',
-  },
-  {
-    name: 'Mint',
-    latin: 'Mentha spicata',
-    note: 'Cool, bright, verdant — a clean breath drawn from the riverbank.',
-    image: '/botanical-mint.png',
-  },
-  {
-    name: 'Chicory',
-    latin: 'Cichorium intybus',
-    note: 'Bittersweet and quietly cleansing — the wild blue bloom of the fields.',
-    image: '/botanical-chicory.png',
-  },
+import { Reveal } from '@/components/reveal'
+import { useLanguage } from '@/lib/i18n/context'
+
+const BOTANICAL_IMAGES = [
+  '/botanical-rose.png',
+  '/botanical-mint.png',
+  '/botanical-chicory.png',
 ]
 
 export function Botanicals() {
+  const { t } = useLanguage()
+
   return (
     <section id="botanicals" className="relative px-6 py-24 md:px-10 md:py-36">
       <div className="mx-auto max-w-[1500px]">
         <Reveal className="mx-auto mb-16 max-w-2xl text-center md:mb-24">
           <p className="text-xs font-light uppercase tracking-luxe text-gold">
-            The Botanicals
+            {t.botanicals.tag}
           </p>
           <h2 className="mt-6 font-display text-[clamp(2rem,5vw,4rem)] font-light leading-tight text-balance text-ivory">
-            Three living essences
+            {t.botanicals.heading}
           </h2>
         </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3 md:gap-8">
-          {BOTANICALS.map((item, i) => (
-            <Reveal key={item.name} delay={i * 140}>
+          {t.botanicals.items.map((item, i) => (
+            <Reveal key={item.latin} delay={i * 140}>
               <figure className="group relative overflow-hidden">
                 <div className="relative aspect-[3/4] overflow-hidden">
                   <img
-                    src={item.image || '/placeholder.svg'}
-                    alt={`Macro photograph of ${item.name.toLowerCase()} — ${item.latin}`}
+                    src={BOTANICAL_IMAGES[i] || '/placeholder.svg'}
+                    alt={item.alt}
                     className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />

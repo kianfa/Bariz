@@ -1,6 +1,8 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Jost } from 'next/font/google'
+import { Cormorant_Garamond, Jost, Vazirmatn } from 'next/font/google'
+
+import { LanguageProvider } from '@/lib/i18n/context'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -14,6 +16,13 @@ const jost = Jost({
   subsets: ['latin'],
   weight: ['300', '400', '500'],
   variable: '--font-jost',
+  display: 'swap',
+})
+
+const vazirmatn = Vazirmatn({
+  subsets: ['arabic'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-vazirmatn',
   display: 'swap',
 })
 
@@ -40,10 +49,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark ${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" dir="ltr" className={`dark ${cormorant.variable} ${jost.variable} ${vazirmatn.variable}`}>
       <body className="bg-background antialiased">
-        {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        <LanguageProvider>
+          {children}
+          {process.env.NODE_ENV === 'production' && <Analytics />}
+        </LanguageProvider>
       </body>
     </html>
   )

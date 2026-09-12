@@ -3,12 +3,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 
+import { useLanguage } from '@/lib/i18n/context'
+
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [offset, setOffset] = useState(0)
   const [videoReady, setVideoReady] = useState(false)
   const [videoFailed, setVideoFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const video = videoRef.current
@@ -51,7 +54,7 @@ export function Hero() {
     <section
       id="top"
       className="relative h-[100svh] w-full overflow-hidden"
-      aria-label="Bariz — Nature, distilled"
+      aria-label={t.hero.sectionAria}
     >
       {/* Parallax background */}
       <div
@@ -83,7 +86,7 @@ export function Hero() {
 
       {/* Desktop / tablet branding rail */}
       <aside
-        className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
+        className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] rtl:left-auto rtl:right-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
         style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
         aria-hidden="true"
       >
@@ -92,10 +95,10 @@ export function Hero() {
         </span>
 
         <p className="mt-5 text-center font-display text-[0.68rem] font-medium uppercase leading-[1.95] tracking-[0.12em] text-gold/85">
-          <span className="block">Nature,</span>
-          <span className="block">Distilled.</span>
-          <span className="block">Time</span>
-          <span className="block">Perfected.</span>
+          <span className="block">{t.hero.brandRail.nature}</span>
+          <span className="block">{t.hero.brandRail.distilled}</span>
+          <span className="block">{t.hero.brandRail.time}</span>
+          <span className="block">{t.hero.brandRail.perfected}</span>
         </p>
 
         <div className="relative mt-8 min-h-24 w-px flex-1 bg-gradient-to-b from-gold/45 via-gold/25 to-gold/10">
@@ -108,12 +111,12 @@ export function Hero() {
         </div>
 
         <span className="mt-3 font-display text-[0.66rem] font-medium uppercase tracking-[0.08em] text-gold/80">
-          Scroll
+          {t.hero.brandRail.scroll}
         </span>
       </aside>
 
       {/* Main copy */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 md:translate-y-10 md:pl-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw]">
+      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 rtl:md:-translate-x-12 md:translate-y-10 md:pl-[18vw] rtl:md:pl-8 rtl:md:pr-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] rtl:lg:-translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw] rtl:lg:pl-8 rtl:lg:pr-[18.5vw]">
         <div
           className="max-w-[42rem]"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
@@ -123,7 +126,7 @@ export function Hero() {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            BARIZ
+            {t.hero.title}
           </h1>
 
           <p
@@ -131,7 +134,7 @@ export function Hero() {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            Nature, Distilled.
+            {t.hero.subtitle}
           </p>
 
           <div
@@ -151,7 +154,7 @@ export function Hero() {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            Persian Botanical Distilled Waters
+            {t.hero.tagline}
           </p>
 
           <a
@@ -160,9 +163,9 @@ export function Hero() {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            Discover Our World
+            {t.hero.cta}
             <span className="flex size-10 items-center justify-center rounded-full border border-gold/50 transition-all group-hover:border-ivory group-hover:bg-gold/10 md:size-11">
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
             </span>
           </a>
         </div>
@@ -174,7 +177,7 @@ export function Hero() {
         style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
       >
         <span className="text-[0.65rem] font-light uppercase tracking-luxe text-ivory/70">
-          Scroll
+          {t.hero.brandRail.scroll}
         </span>
         <span className="h-14 w-px overflow-hidden bg-ivory/15">
           <span className={`block h-4 w-px bg-gold ${loaded ? 'animate-scroll-hint' : ''}`} />
