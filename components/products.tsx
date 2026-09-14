@@ -185,7 +185,7 @@ export function Products() {
       </div>
 
       <div
-        className="relative z-20 mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-12 xl:px-16"
+        className="relative z-20 mx-auto w-full max-w-[1800px] px-4 sm:px-6 md:px-10 lg:px-12 xl:px-14"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocusCapture={() => setIsPaused(true)}
@@ -198,19 +198,19 @@ export function Products() {
         <div className="relative z-10 grid items-stretch gap-10 lg:grid-cols-2 lg:min-h-[82vh] xl:min-h-[86vh]">
           {/* Editorial navigation block */}
           <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-4 text-start me-auto">
-            <div className="w-full max-w-2xl lg:max-w-3xl me-auto">
+            <div className="w-full text-start me-auto">
               <p className="text-xs lg:text-sm font-medium uppercase tracking-luxe text-gold text-start">
                 {t.products.tag}
               </p>
               <h2 className="mt-3.5 font-display text-[clamp(2.4rem,4.5vw,4.5rem)] font-light leading-[1.05] text-ivory text-start lg:mt-4">
                 {t.products.heading}
               </h2>
-              <p className="mt-4 w-full max-w-2xl text-base lg:text-[1.1rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-4.5">
+              <p className="mt-4 w-full max-w-3xl text-base lg:text-[1.1rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-4.5">
                 {t.products.description}
               </p>
             </div>
 
-            <ul className="mt-7 flex gap-2.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-8 lg:flex-1 lg:flex-col lg:justify-center lg:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full max-w-2xl lg:max-w-3xl me-auto">
+            <ul className="mt-7 flex gap-2.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-8 lg:flex-1 lg:flex-col lg:justify-center lg:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
