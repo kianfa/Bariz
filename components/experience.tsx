@@ -15,7 +15,7 @@ export function Experience() {
         <img
           src="/experience-glass.png"
           alt={t.experience.imgAlt}
-          className="size-full object-cover"
+          className="size-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-background/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
