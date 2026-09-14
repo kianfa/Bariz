@@ -1,18 +1,21 @@
-﻿export type PaletteSource = 'curated' | 'ai'
+export type PaletteSource = 'curated' | 'ai' | 'curated-dark'
 export type PaletteMode = 'light' | 'dark'
 
 export interface ColorPaletteTokens {
   background: string
   surface: string
+  surfaceElevated?: string
   text: string
   textMuted: string
   accent: string
   accentMuted: string
+  specialAccent?: string
   border: string
   invertedBackground: string
   invertedText: string
   buttonBackground: string
   buttonText: string
+  buttonHover?: string
   focus: string
   plum?: string
 }
@@ -135,6 +138,36 @@ export const colorPalettes: ColorPalette[] = [
       buttonText: '#F4F6F1',
       focus: '#6C826D',
       plum: '#5A6E64',
+    },
+  },
+
+  // Curated Dark: Obsidian Herbarium
+  {
+    id: 'obsidian-herbarium',
+    name: 'Obsidian Herbarium',
+    faName: 'هرباریوم آبسیدین',
+    source: 'curated-dark',
+    mode: 'dark',
+    description: 'A deep botanical dark theme with moss and muted amber accents.',
+    faDescription: 'فضایی عمیق، رازآلود و گیاه‌شناسی از سنگ آبسیدین، خزه و رگه‌های کهربا.',
+    swatches: ['#101714', '#19231F', '#E8E2D5', '#879B78', '#C39A62'],
+    colors: {
+      background: '#101714',
+      surface: '#19231F',
+      surfaceElevated: '#26332C',
+      text: '#E8E2D5',
+      textMuted: '#A5AEA3',
+      accent: '#879B78',
+      accentMuted: '#806B4D',
+      specialAccent: '#C39A62',
+      border: '#354239',
+      invertedBackground: '#E8E2D5',
+      invertedText: '#19231F',
+      buttonBackground: '#C39A62',
+      buttonText: '#101714',
+      buttonHover: '#D3B17D',
+      focus: '#A7B995',
+      plum: '#806B4D',
     },
   },
 

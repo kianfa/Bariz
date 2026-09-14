@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useRef, useState } from 'react'
 import { Check, ChevronDown, Palette, Sparkles, Sliders } from 'lucide-react'
@@ -34,8 +34,11 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
     }
   }, [open])
 
+  const curatedCount = colorPalettes.filter((p) => p.source !== 'ai').length
+  const aiCount = colorPalettes.filter((p) => p.source === 'ai').length
+
   const filteredPalettes = colorPalettes.filter((p) => {
-    if (activeTab === 'curated') return p.source === 'curated'
+    if (activeTab === 'curated') return p.source !== 'ai'
     if (activeTab === 'ai') return p.source === 'ai'
     return true
   })
@@ -103,7 +106,7 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
               </span>
             </div>
             <span className="text-[0.65rem] text-gold/80 font-mono">
-              {isRtl ? '۸ تم زنده' : '8 Live Themes'}
+              {isRtl ? `${colorPalettes.length} تم زنده` : `${colorPalettes.length} Live Themes`}
             </span>
           </div>
 
@@ -119,7 +122,7 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
                   : 'text-muted-foreground hover:text-foreground'
               )}
             >
-              {isRtl ? 'همه (۸)' : 'All (8)'}
+              {isRtl ? `همه (${colorPalettes.length})` : `All (${colorPalettes.length})`}
             </button>
             <button
               type="button"
@@ -132,7 +135,7 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
               )}
             >
               <Sliders className="size-2.5" />
-              {isRtl ? 'طراحی شده (۴)' : 'Curated (4)'}
+              {isRtl ? `طراحی شده (${curatedCount})` : `Curated (${curatedCount})`}
             </button>
             <button
               type="button"
@@ -145,7 +148,7 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
               )}
             >
               <Sparkles className="size-2.5" />
-              {isRtl ? 'پیشنهاد هوش مصنوعی (۴)' : 'AI Created (4)'}
+              {isRtl ? `پیشنهاد هوش مصنوعی (${aiCount})` : `AI Created (${aiCount})`}
             </button>
           </div>
 
@@ -153,6 +156,12 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
           <div className="mt-2.5 flex flex-col gap-2 max-h-[22rem] overflow-y-auto pr-1">
             {filteredPalettes.map((palette) => {
               const isSelected = colorPalette.id === palette.id
+              const sourceLabel =
+                palette.source === 'curated-dark'
+                  ? isRtl ? 'طراحی تاریک' : 'Curated Dark'
+                  : palette.source === 'ai'
+                    ? isRtl ? 'هوش مصنوعی' : 'AI'
+                    : isRtl ? 'طراحی شده' : 'Curated'
 
               return (
                 <button
@@ -198,10 +207,12 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
                           'text-[0.6rem] uppercase tracking-wider px-1.5 py-0.5 rounded-md font-mono border',
                           palette.source === 'ai'
                             ? 'border-gold/40 bg-gold/10 text-gold'
-                            : 'border-border/80 bg-background/50 text-muted-foreground'
+                            : palette.source === 'curated-dark'
+                              ? 'border-emerald-700/50 bg-emerald-950/40 text-emerald-300'
+                              : 'border-border/80 bg-background/50 text-muted-foreground'
                         )}
                       >
-                        {palette.source === 'ai' ? 'AI' : 'Curated'}
+                        {sourceLabel}
                       </span>
                       <span className="text-[0.6rem] uppercase px-1 py-0.5 rounded-md bg-background/40 text-muted-foreground/75 font-mono">
                         {palette.mode}

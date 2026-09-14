@@ -400,6 +400,43 @@ html[data-palette="mineral-bloom"] {
   --color-focus: #A85E76;
 }
 
+html[data-palette="obsidian-herbarium"] {
+  color-scheme: dark;
+  --background: #101714;
+  --foreground: #E8E2D5;
+  --card: #19231F;
+  --card-foreground: #E8E2D5;
+  --popover: #19231F;
+  --popover-foreground: #E8E2D5;
+  --primary: #879B78;
+  --primary-foreground: #101714;
+  --secondary: #19231F;
+  --secondary-foreground: #E8E2D5;
+  --muted: #19231F;
+  --muted-foreground: #A5AEA3;
+  --accent: #879B78;
+  --accent-foreground: #101714;
+  --border: #354239;
+  --input: #354239;
+  --ring: #A7B995;
+  --gold: #C39A62;
+  --gold-muted: #806B4D;
+  --ivory: #E8E2D5;
+  --plum: #806B4D;
+  --color-background: #101714;
+  --color-surface: #19231F;
+  --color-text: #E8E2D5;
+  --color-text-muted: #A5AEA3;
+  --color-accent: #879B78;
+  --color-accent-muted: #806B4D;
+  --color-border: #354239;
+  --color-inverted-background: #E8E2D5;
+  --color-inverted-text: #19231F;
+  --color-button-background: #C39A62;
+  --color-button-text: #101714;
+  --color-focus: #A7B995;
+}
+
 .dark {
   color-scheme: dark;
   --background: oklch(0.16 0.012 60);
