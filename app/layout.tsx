@@ -28,12 +28,12 @@ const vazirmatn = Vazirmatn({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  title: 'Bariz — Nature, Distilled.',
+  title: 'Bariz · Nature, Distilled.',
   description:
-    'Bariz — Persian botanical distilled waters. A luxury collection of natural araghiyat crafted from rose, mint and chicory. Nature, distilled. Time perfected.',
+    'Bariz: Persian botanical distilled waters. A luxury collection of natural araghiyat crafted from rose, mint and chicory. Nature, distilled. Time perfected.',
   generator: 'v0.app',
   openGraph: {
-    title: 'Bariz — Nature, Distilled.',
+    title: 'Bariz · Nature, Distilled.',
     description: 'Persian botanical distilled waters. Nature, distilled. Time perfected.',
     images: ['/bariz-hero.webp'],
   },

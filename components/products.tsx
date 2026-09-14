@@ -291,7 +291,7 @@ export function Products() {
             </ul>
           </Reveal>
 
-          {/* Right — mobile photo view & desktop controls positioning */}
+          {/* Right - mobile photo view & desktop controls positioning */}
           <Reveal delay={120} className="order-1 flex min-h-0 h-full flex-col justify-end lg:order-2">
             {/* Mobile-only image card */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[20px] lg:hidden">
