@@ -195,17 +195,17 @@ export function Products() {
           }
         }}
       >
-        <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-[48%_52%] xl:grid-cols-[44%_56%] 2xl:grid-cols-[42%_58%] lg:min-h-[78vh] xl:min-h-[82vh]">
+        <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-2 lg:min-h-[78vh] xl:min-h-[82vh]">
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-left rtl:text-right">
-            <div>
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-left rtl:text-right">
+            <div className="w-full">
               <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold text-left rtl:text-right">
                 {t.products.tag}
               </p>
               <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-ivory text-left rtl:text-right lg:mt-3.5">
                 {t.products.heading}
               </h2>
-              <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-ivory/65 text-left rtl:text-right lg:mt-3.5 lg:text-[0.95rem]">
+              <p className="mt-3 w-full max-w-2xl text-sm font-light leading-relaxed text-ivory/65 text-left rtl:text-right lg:mt-3.5 lg:text-[0.95rem]">
                 {t.products.description}
               </p>
             </div>

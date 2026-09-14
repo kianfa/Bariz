@@ -50,8 +50,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" dir="ltr" className={`dark ${cormorant.variable} ${jost.variable} ${vazirmatn.variable}`}>
-      <body className="bg-background antialiased">
+    <html lang="en" dir="ltr" suppressHydrationWarning className={`dark ${cormorant.variable} ${jost.variable} ${vazirmatn.variable}`}>
+      <body className="bg-background antialiased" suppressHydrationWarning>
         <LanguageProvider>
           {children}
           {process.env.NODE_ENV === 'production' && <Analytics />}
