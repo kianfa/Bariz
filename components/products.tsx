@@ -195,49 +195,49 @@ export function Products() {
           }
         }}
       >
-        <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-2 lg:min-h-[78vh] xl:min-h-[82vh]">
+        <div className="relative z-10 grid items-stretch gap-10 lg:grid-cols-2 lg:min-h-[82vh] xl:min-h-[86vh]">
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-start me-auto">
-            <div className="w-full max-w-xl me-auto">
-              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold text-start">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-4 text-start me-auto">
+            <div className="w-full max-w-2xl lg:max-w-3xl me-auto">
+              <p className="text-xs lg:text-sm font-medium uppercase tracking-luxe text-gold text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-ivory text-start lg:mt-3.5">
+              <h2 className="mt-3.5 font-display text-[clamp(2.4rem,4.5vw,4.5rem)] font-light leading-[1.05] text-ivory text-start lg:mt-4">
                 {t.products.heading}
               </h2>
-              <p className="mt-3 w-full text-sm font-light leading-relaxed text-ivory/65 text-start lg:mt-3.5 lg:text-[0.95rem]">
+              <p className="mt-4 w-full max-w-2xl text-base lg:text-[1.1rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-4.5">
                 {t.products.description}
               </p>
             </div>
 
-            <ul className="mt-6 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full max-w-xl me-auto">
+            <ul className="mt-7 flex gap-2.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-8 lg:flex-1 lg:flex-col lg:justify-center lg:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full max-w-2xl lg:max-w-3xl me-auto">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
                 return (
-                  <li key={item.name} className="min-w-[17rem] shrink-0 lg:min-w-0 lg:shrink w-full">
+                  <li key={item.name} className="min-w-[18.5rem] shrink-0 lg:min-w-0 lg:shrink w-full">
                     <button
                       type="button"
                       aria-pressed={isActive}
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-start transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-[14px] lg:px-3.5 lg:py-2',
+                        'group flex w-full items-center gap-3.5 rounded-2xl border px-4 py-2.5 text-start transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-2xl lg:px-5 lg:py-3.5',
                         isActive
-                          ? 'border-gold/30 bg-[rgba(18,22,18,0.55)] opacity-100 backdrop-blur-sm shadow-sm'
-                          : 'border-transparent bg-[rgba(12,14,12,0.3)] opacity-50 hover:border-white/5 hover:bg-[rgba(18,20,18,0.45)] hover:opacity-80',
+                          ? 'border-gold/40 bg-[rgba(26,19,14,0.7)] opacity-100 backdrop-blur-md shadow-md'
+                          : 'border-white/5 bg-[rgba(18,14,10,0.35)] opacity-55 hover:border-gold/25 hover:bg-[rgba(26,19,14,0.5)] hover:opacity-90',
                       )}
                     >
                       <span
                         className={cn(
-                          'font-sans text-[0.68rem] tracking-[0.22em] transition-colors duration-500 motion-reduce:transition-none',
-                          isActive ? 'text-gold' : 'text-ivory/35',
+                          'font-sans text-xs lg:text-sm tracking-[0.22em] transition-colors duration-500 motion-reduce:transition-none',
+                          isActive ? 'text-gold font-medium' : 'text-ivory/35',
                         )}
                       >
                         {formatIndex(i)}
                       </span>
 
-                      <span className="relative size-8 shrink-0 lg:size-9">
+                      <span className="relative size-9 shrink-0 lg:size-11">
                         <img
                           src={PRODUCT_IMAGES[i]}
                           alt=""
@@ -245,7 +245,7 @@ export function Products() {
                           draggable={false}
                           className={cn(
                             'size-full object-contain transition-opacity duration-500 motion-reduce:transition-none',
-                            isActive ? 'opacity-100' : 'opacity-45 group-hover:opacity-65',
+                            isActive ? 'opacity-100' : 'opacity-45 group-hover:opacity-70',
                           )}
                         />
                       </span>
@@ -253,16 +253,16 @@ export function Products() {
                       <span className="min-w-0 flex-1 text-start">
                         <span
                           className={cn(
-                            'block truncate font-display text-[0.95rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[1.02rem]',
-                            isActive ? 'text-ivory' : 'text-ivory/70',
+                            'block truncate font-display text-[1.05rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[1.2rem]',
+                            isActive ? 'text-ivory font-medium' : 'text-ivory/75',
                           )}
                         >
                           {item.name}
                         </span>
                         <span
                           className={cn(
-                            'mt-0.5 block truncate font-display text-[0.6rem] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
-                            isActive ? 'text-gold' : 'text-ivory/30',
+                            'mt-0.5 block truncate font-display text-[0.68rem] lg:text-[0.75rem] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
+                            isActive ? 'text-gold' : 'text-ivory/35',
                           )}
                         >
                           {item.tag}
@@ -271,8 +271,8 @@ export function Products() {
 
                       <span
                         className={cn(
-                          'hidden shrink-0 text-start text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
-                          isActive ? 'text-gold/80' : 'text-ivory/25',
+                          'hidden shrink-0 text-start text-[0.68rem] lg:text-[0.75rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
+                          isActive ? 'text-gold/90 font-medium' : 'text-ivory/30',
                         )}
                       >
                         {item.note}
@@ -285,7 +285,7 @@ export function Products() {
                         stroke="currentColor"
                         strokeWidth="1.25"
                         className={cn(
-                          'size-3.5 shrink-0 transition-all duration-500 motion-reduce:transition-none rtl:rotate-180',
+                          'size-4 shrink-0 transition-all duration-500 motion-reduce:transition-none rtl:rotate-180',
                           isActive
                             ? 'translate-x-0 text-gold opacity-100'
                             : 'translate-x-0 text-ivory/20 opacity-0 group-hover:opacity-40',
@@ -320,14 +320,14 @@ export function Products() {
             </div>
 
             {/* Navigation & progress controls positioned in bottom corner */}
-            <div className="mt-4 flex items-center justify-end gap-3.5 sm:mt-6 lg:mt-0 lg:pb-4 lg:pr-4 xl:pb-6 xl:pr-8 rtl:lg:pr-0 rtl:lg:pl-4 rtl:xl:pr-0 rtl:xl:pl-8">
-              <span className="text-[0.65rem] font-light uppercase tracking-[0.22em] text-ivory/50">
+            <div className="mt-6 flex items-center justify-end gap-4 sm:mt-8 lg:mt-0 lg:pb-6 lg:pr-6 xl:pb-8 xl:pr-10 rtl:lg:pr-0 rtl:lg:pl-6 rtl:xl:pr-0 rtl:xl:pl-10">
+              <span className="text-xs lg:text-sm font-light uppercase tracking-[0.22em] text-ivory/60 font-mono">
                 {formatIndex(activeIndex)} / {String(total).padStart(2, '0')}
               </span>
 
-              <div className="h-px w-14 overflow-hidden bg-white/15 sm:w-24">
+              <div className="h-px w-16 overflow-hidden bg-white/20 sm:w-28 lg:w-32">
                 <div
-                  className="h-full bg-gold/80 transition-none motion-reduce:transition-none"
+                  className="h-full bg-gold/90 transition-none motion-reduce:transition-none"
                   style={{ width: `${progress * 100}%` }}
                 />
               </div>
