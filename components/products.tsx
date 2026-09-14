@@ -9,14 +9,14 @@ import { cn } from '@/lib/utils'
 const SLIDE_INTERVAL_MS = 6500
 
 const PRODUCT_IMAGES = [
-  '/webp/عرق بهارنارنج.webp',
-  '/webp/عرق بیدمشک.webp',
-  '/webp/عرق طارونه.webp',
-  '/webp/عرق کاسنی.webp',
-  '/webp/عرق نسترن.webp',
-  '/webp/عرق نعنا.webp',
-  '/webp/گلاب زعفران.webp',
-  '/webp/گلاب.webp',
+  '/webp/aragh-baharnarenj.webp',
+  '/webp/aragh-bidmeshk.webp',
+  '/webp/aragh-tarooneh.webp',
+  '/webp/aragh-kasni.webp',
+  '/webp/aragh-nastaran.webp',
+  '/webp/aragh-nana.webp',
+  '/webp/golab-zaferan.webp',
+  '/webp/golab.webp',
 ]
 
 function formatIndex(index: number) {

@@ -199,17 +199,233 @@
   }
 }
 
+/* ===== Persian Web Fonts ===== */
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/estedad/Estedad-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/estedad/Estedad-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/estedad/Estedad-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/estedad/Estedad-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/estedad/Estedad-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazirmatn/Vazirmatn-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazirmatn/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazirmatn/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazirmatn/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazirmatn/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Peyda';
+  src: url('/fonts/peyda/peydaWeb-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Peyda';
+  src: url('/fonts/peyda/PeydaWeb-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Peyda';
+  src: url('/fonts/peyda/PeydaWeb-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Peyda';
+  src: url('/fonts/peyda/PeydaWeb-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Peyda';
+  src: url('/fonts/peyda/PeydaWeb-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/dana/DanaFaNum-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/dana/DanaFaNum-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/dana/DanaFaNum-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/dana/DanaFaNum-DemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dana';
+  src: url('/fonts/dana/DanaFaNum-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mikhak';
+  src: url('/fonts/mikhak/Mikhak-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mikhak';
+  src: url('/fonts/mikhak/Mikhak-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mikhak';
+  src: url('/fonts/mikhak/Mikhak-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mikhak';
+  src: url('/fonts/mikhak/Mikhak-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Mikhak';
+  src: url('/fonts/mikhak/Mikhak-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-estedad: 'Estedad', sans-serif;
+  --font-vazirmatn: 'Vazirmatn', sans-serif;
+  --font-peyda: 'Peyda', sans-serif;
+  --font-dana: 'Dana', sans-serif;
+  --font-mikhak: 'Mikhak', sans-serif;
+  --font-persian-current: 'Estedad', sans-serif;
+}
+
+/* Specific Font Preview Classes for Menu & Testing */
+.font-preview-estedad {
+  font-family: 'Estedad', sans-serif !important;
+}
+.font-preview-vazirmatn {
+  font-family: 'Vazirmatn', sans-serif !important;
+}
+.font-preview-peyda {
+  font-family: 'Peyda', sans-serif !important;
+}
+.font-preview-dana {
+  font-family: 'Dana', sans-serif !important;
+}
+.font-preview-mikhak {
+  font-family: 'Mikhak', sans-serif !important;
+}
+
 /* Persian / RTL Font & Letter Spacing Overrides */
 html[dir='rtl'],
 html[lang='fa'],
-.lang-fa body {
-  font-family: var(--font-vazirmatn), var(--font-sans), system-ui, sans-serif;
+.lang-fa,
+.lang-fa body,
+html[dir='rtl'] body,
+html[lang='fa'] body {
+  font-family: var(--font-persian-current, 'Estedad'), var(--font-sans), system-ui, sans-serif;
 }
 
 html[dir='rtl'] .font-display,
 html[lang='fa'] .font-display,
 .lang-fa .font-display {
-  font-family: var(--font-vazirmatn), var(--font-serif), Georgia, serif;
+  font-family: var(--font-persian-current, 'Estedad'), var(--font-serif), Georgia, serif;
+}
+
+html[dir='rtl'] .font-sans,
+html[lang='fa'] .font-sans,
+.lang-fa .font-sans {
+  font-family: var(--font-persian-current, 'Estedad'), var(--font-sans), system-ui, sans-serif;
 }
 
 html[dir='rtl'] .tracking-luxe,

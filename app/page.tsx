@@ -7,6 +7,7 @@ import { Experience } from '@/components/experience'
 import { Products } from '@/components/products'
 import { FinalScene } from '@/components/final-scene'
 import { SiteFooter } from '@/components/site-footer'
+import { ScrollSequence } from '@/components/scroll-sequence'
 
 export default function Page() {
   return (
@@ -19,6 +20,7 @@ export default function Page() {
       <Experience />
       <Products />
       <FinalScene />
+      <ScrollSequence />
       <SiteFooter />
     </main>
   )

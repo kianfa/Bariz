@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 import { useLanguage } from '@/lib/i18n/context'
+import { PersianFontSelector } from '@/components/font-selector'
 import { cn } from '@/lib/utils'
 
 export function SiteNav() {
@@ -35,10 +36,10 @@ export function SiteNav() {
           : 'bg-transparent py-5',
       )}
     >
-      <nav className="relative mx-auto flex w-full items-center justify-between px-6 md:px-10 lg:px-12">
+      <nav className="relative mx-auto flex w-full items-center justify-between px-4 sm:px-6 md:px-10 lg:px-12">
         <a
           href="#top"
-          className="block w-[5rem] shrink-0 md:w-[5.75rem]"
+          className="block w-[4.75rem] shrink-0 md:w-[5.75rem]"
           aria-label={t.nav.homeAria}
         >
           <img
@@ -64,7 +65,9 @@ export function SiteNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2.5 sm:gap-4">
+          <PersianFontSelector />
+
           <button
             onClick={toggleLanguage}
             aria-label={t.nav.langBtnAria}
@@ -76,7 +79,7 @@ export function SiteNav() {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? t.nav.menuCloseAria : t.nav.menuOpenAria}
-            className="flex size-10 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors hover:bg-gold/10 lg:hidden"
+            className="flex size-9 sm:size-10 items-center justify-center rounded-full border border-gold/40 text-gold transition-colors hover:bg-gold/10 lg:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
