@@ -125,7 +125,7 @@ export function Products() {
   return (
     <section
       id="products"
-      className="relative min-h-[100svh] w-full flex flex-col justify-center overflow-hidden py-16 md:py-20 lg:py-24"
+      className="relative min-h-[100svh] w-full flex flex-col justify-center overflow-hidden py-16 md:py-20 lg:py-24 bg-[rgb(26,19,14)] text-ivory"
     >
       {/* Background full-bleed photography canvas spanning entire full-screen section */}
       <div
@@ -153,35 +153,35 @@ export function Products() {
           />
         ))}
 
-        {/* Multi-stage warm brownish atmospheric edge gradients */}
+        {/* Coordinated warm brownish transition overlay using exact shared rgb(26,19,14) tone */}
         <div
           className={cn(
-            'absolute inset-y-0 z-10 w-[45%]',
+            'absolute inset-y-0 z-10 w-[50%]',
             isRtl
-              ? 'right-0 bg-gradient-to-l from-background via-[rgba(32,24,18,0.92)] via-45% via-[rgba(44,32,23,0.55)] via-70% via-[rgba(36,26,19,0.2)] via-88% to-transparent'
-              : 'left-0 bg-gradient-to-r from-background via-[rgba(32,24,18,0.92)] via-45% via-[rgba(44,32,23,0.55)] via-70% via-[rgba(36,26,19,0.2)] via-88% to-transparent',
+              ? 'right-0 bg-gradient-to-l from-[rgb(26,19,14)] via-[rgb(26,19,14)]/95 via-35% via-[rgb(26,19,14)]/65 via-65% via-[rgb(26,19,14)]/20 via-88% to-transparent'
+              : 'left-0 bg-gradient-to-r from-[rgb(26,19,14)] via-[rgb(26,19,14)]/95 via-35% via-[rgb(26,19,14)]/65 via-65% via-[rgb(26,19,14)]/20 via-88% to-transparent',
           )}
         />
         <div
           className={cn(
-            'absolute inset-y-0 z-10 w-[30%]',
+            'absolute inset-y-0 z-10 w-[32%]',
             isRtl
-              ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,rgba(38,28,21,0.9)_0%,rgba(28,20,15,0.5)_50%,transparent_95%)]'
-              : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,rgba(38,28,21,0.9)_0%,rgba(28,20,15,0.5)_50%,transparent_95%)]',
+              ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,rgb(26,19,14)_0%,rgba(26,19,14,0.6)_50%,transparent_95%)]'
+              : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,rgb(26,19,14)_0%,rgba(26,19,14,0.6)_50%,transparent_95%)]',
           )}
         />
         <div
           className={cn(
             'absolute inset-y-0 z-10 w-[18%]',
             isRtl
-              ? 'right-0 backdrop-blur-[5px] [mask-image:linear-gradient(to_left,rgba(0,0,0,0.85)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_left,rgba(0,0,0,0.85)_0%,transparent_100%)]'
-              : 'left-0 backdrop-blur-[5px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.85)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,0.85)_0%,transparent_100%)]',
+              ? 'right-0 backdrop-blur-[4px] [mask-image:linear-gradient(to_left,rgba(0,0,0,0.85)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_left,rgba(0,0,0,0.85)_0%,transparent_100%)]'
+              : 'left-0 backdrop-blur-[4px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.85)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,0.85)_0%,transparent_100%)]',
           )}
         />
 
-        {/* Top & bottom subtle transitions */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background via-background/35 to-transparent z-10" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background via-background/35 to-transparent z-10" />
+        {/* Top & bottom subtle transitions into neighboring section background */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
       </div>
 
       <div
