@@ -157,11 +157,13 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
             {filteredPalettes.map((palette) => {
               const isSelected = colorPalette.id === palette.id
               const sourceLabel =
-                palette.source === 'curated-dark'
-                  ? isRtl ? 'طراحی تاریک' : 'Curated Dark'
-                  : palette.source === 'ai'
-                    ? isRtl ? 'هوش مصنوعی' : 'AI'
-                    : isRtl ? 'طراحی شده' : 'Curated'
+                palette.source === 'true-black'
+                  ? isRtl ? 'دارک مشکی' : 'True Black'
+                  : palette.source === 'curated-dark'
+                    ? isRtl ? 'طراحی تاریک' : 'Curated Dark'
+                    : palette.source === 'ai'
+                      ? isRtl ? 'هوش مصنوعی' : 'AI'
+                      : isRtl ? 'طراحی شده' : 'Curated'
 
               return (
                 <button
@@ -205,11 +207,13 @@ export function ColorPaletteSelector({ className }: { className?: string }) {
                       <span
                         className={cn(
                           'text-[0.6rem] uppercase tracking-wider px-1.5 py-0.5 rounded-md font-mono border',
-                          palette.source === 'ai'
-                            ? 'border-gold/40 bg-gold/10 text-gold'
-                            : palette.source === 'curated-dark'
-                              ? 'border-emerald-700/50 bg-emerald-950/40 text-emerald-300'
-                              : 'border-border/80 bg-background/50 text-muted-foreground'
+                          palette.source === 'true-black'
+                            ? 'border-neutral-700 bg-neutral-900 text-neutral-200'
+                            : palette.source === 'ai'
+                              ? 'border-gold/40 bg-gold/10 text-gold'
+                              : palette.source === 'curated-dark'
+                                ? 'border-emerald-700/50 bg-emerald-950/40 text-emerald-300'
+                                : 'border-border/80 bg-background/50 text-muted-foreground'
                         )}
                       >
                         {sourceLabel}

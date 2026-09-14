@@ -1,4 +1,4 @@
-export type PaletteSource = 'curated' | 'ai' | 'curated-dark'
+export type PaletteSource = 'curated' | 'ai' | 'curated-dark' | 'true-black'
 export type PaletteMode = 'light' | 'dark'
 
 export interface ColorPaletteTokens {
@@ -7,6 +7,7 @@ export interface ColorPaletteTokens {
   surfaceElevated?: string
   text: string
   textMuted: string
+  textSubtle?: string
   accent: string
   accentMuted: string
   specialAccent?: string
@@ -16,6 +17,8 @@ export interface ColorPaletteTokens {
   buttonBackground: string
   buttonText: string
   buttonHover?: string
+  specialButtonBackground?: string
+  specialButtonText?: string
   focus: string
   plum?: string
 }
@@ -138,6 +141,39 @@ export const colorPalettes: ColorPalette[] = [
       buttonText: '#F4F6F1',
       focus: '#6C826D',
       plum: '#5A6E64',
+    },
+  },
+
+  // True Black: Noir Botanica
+  {
+    id: 'noir-botanica',
+    name: 'Noir Botanica',
+    faName: 'بوتانیکای نوآر',
+    source: 'true-black',
+    mode: 'dark',
+    description: 'A true-black botanical theme with ivory typography, muted botanical green, and restrained matte gold.',
+    faDescription: 'فضای مشکی مطلق با تایپوگرافی عاجی، سبز ملایم گیاهی و طلاکاری مات.',
+    swatches: ['#000000', '#0B0B0B', '#F1EEE7', '#A6B58A', '#C8A96B'],
+    colors: {
+      background: '#000000',
+      surface: '#0B0B0B',
+      surfaceElevated: '#151515',
+      text: '#F1EEE7',
+      textMuted: '#A6A6A1',
+      textSubtle: '#73736F',
+      accent: '#A6B58A',
+      accentMuted: '#737F5D',
+      specialAccent: '#C8A96B',
+      border: '#292929',
+      invertedBackground: '#F1EEE7',
+      invertedText: '#000000',
+      buttonBackground: '#F1EEE7',
+      buttonText: '#000000',
+      buttonHover: '#D8D5CE',
+      specialButtonBackground: '#C8A96B',
+      specialButtonText: '#000000',
+      focus: '#B8C99A',
+      plum: '#737F5D',
     },
   },
 

@@ -437,6 +437,50 @@ html[data-palette="obsidian-herbarium"] {
   --color-focus: #A7B995;
 }
 
+html[data-palette="noir-botanica"] {
+  color-scheme: dark;
+  --background: #000000;
+  --foreground: #F1EEE7;
+  --card: #0B0B0B;
+  --card-foreground: #F1EEE7;
+  --popover: #0B0B0B;
+  --popover-foreground: #F1EEE7;
+  --primary: #A6B58A;
+  --primary-foreground: #000000;
+  --secondary: #0B0B0B;
+  --secondary-foreground: #F1EEE7;
+  --muted: #0B0B0B;
+  --muted-foreground: #A6A6A1;
+  --accent: #A6B58A;
+  --accent-foreground: #000000;
+  --border: #292929;
+  --input: #292929;
+  --ring: #B8C99A;
+  --gold: #C8A96B;
+  --gold-muted: #737F5D;
+  --ivory: #F1EEE7;
+  --plum: #737F5D;
+  --color-background: #000000;
+  --color-surface: #0B0B0B;
+  --color-surface-elevated: #151515;
+  --color-text: #F1EEE7;
+  --color-text-muted: #A6A6A1;
+  --color-text-subtle: #73736F;
+  --color-accent: #A6B58A;
+  --color-accent-muted: #737F5D;
+  --color-special-accent: #C8A96B;
+  --color-border: #292929;
+  --color-inverted-background: #F1EEE7;
+  --color-inverted-text: #000000;
+  --color-button-background: #F1EEE7;
+  --color-button-text: #000000;
+  --color-button-hover: #D8D5CE;
+  --color-special-button-background: #C8A96B;
+  --color-special-button-text: #000000;
+  --color-focus: #B8C99A;
+}
+
+
 .dark {
   color-scheme: dark;
   --background: oklch(0.16 0.012 60);
