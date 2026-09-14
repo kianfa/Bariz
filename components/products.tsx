@@ -123,9 +123,69 @@ export function Products() {
   const isLast = activeIndex === collectionItems.length - 1
 
   return (
-    <section id="products" className="relative w-full overflow-hidden py-16 md:py-24 lg:py-28">
+    <section
+      id="products"
+      className="relative min-h-[100svh] w-full flex flex-col justify-center overflow-hidden py-16 md:py-20 lg:py-24"
+    >
+      {/* Background full-bleed photography canvas spanning entire full-screen section */}
       <div
-        className="relative z-20 mx-auto w-full px-6 md:px-10 lg:px-12"
+        className={cn(
+          'pointer-events-none absolute inset-y-0 z-0 hidden overflow-hidden lg:block',
+          isRtl
+            ? 'left-0 right-[42%] xl:right-[40%] 2xl:right-[38%]'
+            : 'left-[42%] xl:left-[40%] 2xl:left-[38%] right-0',
+        )}
+        aria-hidden="true"
+      >
+        {collectionItems.map((_, index) => (
+          <img
+            key={PRODUCT_IMAGES[index]}
+            src={PRODUCT_IMAGES[index]}
+            alt=""
+            draggable={false}
+            className={cn(
+              'absolute inset-0 size-full object-cover transition-[opacity,transform] duration-[700ms] ease-out motion-reduce:transition-none',
+              isRtl
+                ? 'object-[center_top] [mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.15)_4%,rgba(0,0,0,0.85)_16%,black_32%)] [-webkit-mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.15)_4%,rgba(0,0,0,0.85)_16%,black_32%)]'
+                : 'object-[center_top] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_4%,rgba(0,0,0,0.85)_16%,black_32%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_4%,rgba(0,0,0,0.85)_16%,black_32%)]',
+              activeIndex === index ? 'scale-100 opacity-100' : 'scale-[1.01] opacity-0',
+            )}
+          />
+        ))}
+
+        {/* Multi-stage atmospheric edge gradients */}
+        <div
+          className={cn(
+            'absolute inset-y-0 z-10 w-[30%]',
+            isRtl
+              ? 'right-0 bg-gradient-to-l from-background via-background/80 via-35% to-transparent'
+              : 'left-0 bg-gradient-to-r from-background via-background/80 via-35% to-transparent',
+          )}
+        />
+        <div
+          className={cn(
+            'absolute inset-y-0 z-10 w-[22%]',
+            isRtl
+              ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,rgba(8,10,8,0.95)_0%,rgba(8,10,8,0.5)_40%,transparent_95%)]'
+              : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,rgba(8,10,8,0.95)_0%,rgba(8,10,8,0.5)_40%,transparent_95%)]',
+          )}
+        />
+        <div
+          className={cn(
+            'absolute inset-y-0 z-10 w-[15%]',
+            isRtl
+              ? 'right-0 backdrop-blur-[6px] [mask-image:linear-gradient(to_left,rgba(0,0,0,0.9)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_left,rgba(0,0,0,0.9)_0%,transparent_100%)]'
+              : 'left-0 backdrop-blur-[6px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.9)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,0.9)_0%,transparent_100%)]',
+          )}
+        />
+
+        {/* Top & bottom subtle transitions */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-background via-background/35 to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background via-background/35 to-transparent z-10" />
+      </div>
+
+      <div
+        className="relative z-20 mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-12 xl:px-16"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocusCapture={() => setIsPaused(true)}
@@ -135,73 +195,22 @@ export function Products() {
           }
         }}
       >
-        {/* Background full-bleed photography canvas constrained to EXACT Collection content height */}
-        <div
-          className={cn(
-            'pointer-events-none absolute inset-y-0 z-0 hidden overflow-hidden lg:block',
-            isRtl
-              ? 'left-[calc(50%-50vw)] right-[38%] xl:right-[36%]'
-              : 'right-[calc(50%-50vw)] left-[38%] xl:left-[36%]',
-          )}
-          aria-hidden="true"
-        >
-          {collectionItems.map((_, index) => (
-            <img
-              key={PRODUCT_IMAGES[index]}
-              src={PRODUCT_IMAGES[index]}
-              alt=""
-              draggable={false}
-              className={cn(
-                'absolute inset-0 size-full object-cover transition-[opacity,transform] duration-[700ms] ease-out motion-reduce:transition-none',
-                isRtl
-                  ? 'object-[15%_top] [mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.15)_5%,rgba(0,0,0,0.75)_15%,black_30%)] [-webkit-mask-image:linear-gradient(to_left,transparent_0%,rgba(0,0,0,0.15)_5%,rgba(0,0,0,0.75)_15%,black_30%)]'
-                  : 'object-[85%_top] [mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_5%,rgba(0,0,0,0.75)_15%,black_30%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.15)_5%,rgba(0,0,0,0.75)_15%,black_30%)]',
-                activeIndex === index ? 'scale-100 opacity-100' : 'scale-[1.00] opacity-0',
-              )}
-            />
-          ))}
-
-          {/* Narrow multi-stage atmospheric dark gradient transition */}
-          <div
-            className={cn(
-              'absolute inset-y-0 z-10 w-[30%]',
-              isRtl
-                ? 'right-0 bg-gradient-to-l from-background via-background/80 via-35% to-transparent'
-                : 'left-0 bg-gradient-to-r from-background via-background/80 via-35% to-transparent',
-            )}
-          />
-          <div
-            className={cn(
-              'absolute inset-y-0 z-10 w-[22%]',
-              isRtl
-                ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,rgba(8,10,8,0.95)_0%,rgba(8,10,8,0.5)_40%,transparent_95%)]'
-                : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,rgba(8,10,8,0.95)_0%,rgba(8,10,8,0.5)_40%,transparent_95%)]',
-            )}
-          />
-          <div
-            className={cn(
-              'absolute inset-y-0 z-10 w-[15%]',
-              isRtl
-                ? 'right-0 backdrop-blur-[6px] [mask-image:linear-gradient(to_left,rgba(0,0,0,0.9)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_left,rgba(0,0,0,0.9)_0%,transparent_100%)]'
-                : 'left-0 backdrop-blur-[6px] [mask-image:linear-gradient(to_right,rgba(0,0,0,0.9)_0%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,rgba(0,0,0,0.9)_0%,transparent_100%)]',
-            )}
-          />
-        </div>
-
-        <div className="relative z-10 grid items-start gap-10 lg:grid-cols-[44%_56%] lg:items-stretch lg:gap-8 xl:grid-cols-[40%_60%] xl:gap-12">
+        <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-[48%_52%] xl:grid-cols-[44%_56%] 2xl:grid-cols-[42%_58%] lg:min-h-[78vh] xl:min-h-[82vh]">
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex min-h-0 flex-col lg:order-1 lg:h-full lg:py-1 relative z-30">
-            <p className="text-[0.65rem] font-light uppercase tracking-luxe text-gold">
-              {t.products.tag}
-            </p>
-            <h2 className="mt-3 font-display text-[clamp(1.85rem,4vw,3.25rem)] font-light leading-[1.05] text-balance text-ivory lg:mt-4">
-              {t.products.heading}
-            </h2>
-            <p className="mt-3 max-w-md text-sm font-light leading-snug text-ivory/60 lg:mt-4 lg:max-w-none lg:text-[0.95rem]">
-              {t.products.description}
-            </p>
+          <Reveal className="order-2 flex flex-col justify-between lg:order-1 relative z-30 lg:py-2">
+            <div>
+              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold">
+                {t.products.tag}
+              </p>
+              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-balance text-ivory lg:mt-3.5">
+                {t.products.heading}
+              </h2>
+              <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-ivory/65 lg:mt-3.5 lg:text-[0.95rem]">
+                {t.products.description}
+              </p>
+            </div>
 
-            <ul className="mt-5 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:gap-1 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            <ul className="mt-6 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
@@ -213,15 +222,15 @@ export function Products() {
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left rtl:text-right transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-[14px] lg:px-3.5 lg:py-1.5',
+                        'group flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left rtl:text-right transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-[14px] lg:px-3.5 lg:py-2',
                         isActive
-                          ? 'border-gold/30 bg-[rgba(18,22,18,0.55)] opacity-100 backdrop-blur-sm'
+                          ? 'border-gold/30 bg-[rgba(18,22,18,0.55)] opacity-100 backdrop-blur-sm shadow-sm'
                           : 'border-transparent bg-[rgba(12,14,12,0.3)] opacity-50 hover:border-white/5 hover:bg-[rgba(18,20,18,0.45)] hover:opacity-80',
                       )}
                     >
                       <span
                         className={cn(
-                          'font-sans text-[0.65rem] tracking-[0.22em] transition-colors duration-500 motion-reduce:transition-none',
+                          'font-sans text-[0.68rem] tracking-[0.22em] transition-colors duration-500 motion-reduce:transition-none',
                           isActive ? 'text-gold' : 'text-ivory/35',
                         )}
                       >
@@ -244,7 +253,7 @@ export function Products() {
                       <span className="min-w-0 flex-1">
                         <span
                           className={cn(
-                            'block truncate font-display text-[0.95rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-base',
+                            'block truncate font-display text-[0.95rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[1.02rem]',
                             isActive ? 'text-ivory' : 'text-ivory/70',
                           )}
                         >
@@ -252,7 +261,7 @@ export function Products() {
                         </span>
                         <span
                           className={cn(
-                            'mt-0.5 block truncate font-display text-[0.58rem] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
+                            'mt-0.5 block truncate font-display text-[0.6rem] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
                             isActive ? 'text-gold' : 'text-ivory/30',
                           )}
                         >
@@ -262,7 +271,7 @@ export function Products() {
 
                       <span
                         className={cn(
-                          'hidden shrink-0 text-right rtl:text-left text-[0.58rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
+                          'hidden shrink-0 text-right rtl:text-left text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
                           isActive ? 'text-gold/80' : 'text-ivory/25',
                         )}
                       >
@@ -311,12 +320,12 @@ export function Products() {
             </div>
 
             {/* Navigation & progress controls positioned in bottom corner */}
-            <div className="mt-4 flex items-center justify-end gap-3 sm:mt-6 lg:mt-0 lg:pb-4 lg:pr-4 xl:pb-6 xl:pr-8 rtl:lg:pr-0 rtl:lg:pl-4 rtl:xl:pr-0 rtl:xl:pl-8">
-              <span className="text-[0.62rem] font-light uppercase tracking-[0.22em] text-ivory/50">
+            <div className="mt-4 flex items-center justify-end gap-3.5 sm:mt-6 lg:mt-0 lg:pb-4 lg:pr-4 xl:pb-6 xl:pr-8 rtl:lg:pr-0 rtl:lg:pl-4 rtl:xl:pr-0 rtl:xl:pl-8">
+              <span className="text-[0.65rem] font-light uppercase tracking-[0.22em] text-ivory/50">
                 {formatIndex(activeIndex)} / {String(total).padStart(2, '0')}
               </span>
 
-              <div className="h-px w-14 overflow-hidden bg-white/15 sm:w-20">
+              <div className="h-px w-14 overflow-hidden bg-white/15 sm:w-24">
                 <div
                   className="h-full bg-gold/80 transition-none motion-reduce:transition-none"
                   style={{ width: `${progress * 100}%` }}
