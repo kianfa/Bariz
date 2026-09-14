@@ -197,32 +197,32 @@ export function Products() {
       >
         <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-2 lg:min-h-[78vh] xl:min-h-[82vh]">
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-left rtl:text-right">
-            <div className="w-full">
-              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold text-left rtl:text-right">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-start me-auto">
+            <div className="w-full max-w-xl me-auto">
+              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-ivory text-left rtl:text-right lg:mt-3.5">
+              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-ivory text-start lg:mt-3.5">
                 {t.products.heading}
               </h2>
-              <p className="mt-3 w-full max-w-2xl text-sm font-light leading-relaxed text-ivory/65 text-left rtl:text-right lg:mt-3.5 lg:text-[0.95rem]">
+              <p className="mt-3 w-full text-sm font-light leading-relaxed text-ivory/65 text-start lg:mt-3.5 lg:text-[0.95rem]">
                 {t.products.description}
               </p>
             </div>
 
-            <ul className="mt-6 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            <ul className="mt-6 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full max-w-xl me-auto">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
                 return (
-                  <li key={item.name} className="min-w-[17rem] shrink-0 lg:min-w-0 lg:shrink">
+                  <li key={item.name} className="min-w-[17rem] shrink-0 lg:min-w-0 lg:shrink w-full">
                     <button
                       type="button"
                       aria-pressed={isActive}
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left rtl:text-right transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-[14px] lg:px-3.5 lg:py-2',
+                        'group flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-start transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-[14px] lg:px-3.5 lg:py-2',
                         isActive
                           ? 'border-gold/30 bg-[rgba(18,22,18,0.55)] opacity-100 backdrop-blur-sm shadow-sm'
                           : 'border-transparent bg-[rgba(12,14,12,0.3)] opacity-50 hover:border-white/5 hover:bg-[rgba(18,20,18,0.45)] hover:opacity-80',
@@ -250,7 +250,7 @@ export function Products() {
                         />
                       </span>
 
-                      <span className="min-w-0 flex-1 text-left rtl:text-right">
+                      <span className="min-w-0 flex-1 text-start">
                         <span
                           className={cn(
                             'block truncate font-display text-[0.95rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[1.02rem]',
@@ -271,7 +271,7 @@ export function Products() {
 
                       <span
                         className={cn(
-                          'hidden shrink-0 text-right rtl:text-right text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
+                          'hidden shrink-0 text-start text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
                           isActive ? 'text-gold/80' : 'text-ivory/25',
                         )}
                       >
