@@ -197,15 +197,15 @@ export function Products() {
       >
         <div className="relative z-10 grid items-stretch gap-8 lg:grid-cols-[48%_52%] xl:grid-cols-[44%_56%] 2xl:grid-cols-[42%_58%] lg:min-h-[78vh] xl:min-h-[82vh]">
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex flex-col justify-between lg:order-1 relative z-30 lg:py-2">
+          <Reveal className="order-2 flex flex-col justify-between lg:order-1 relative z-30 lg:py-2 text-left rtl:text-right">
             <div>
-              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold">
+              <p className="text-[0.68rem] font-light uppercase tracking-luxe text-gold text-left rtl:text-right">
                 {t.products.tag}
               </p>
-              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-balance text-ivory lg:mt-3.5">
+              <h2 className="mt-3 font-display text-[clamp(2rem,3.8vw,3.6rem)] font-light leading-[1.08] text-ivory text-left rtl:text-right lg:mt-3.5">
                 {t.products.heading}
               </h2>
-              <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-ivory/65 lg:mt-3.5 lg:text-[0.95rem]">
+              <p className="mt-3 max-w-xl text-sm font-light leading-relaxed text-ivory/65 text-left rtl:text-right lg:mt-3.5 lg:text-[0.95rem]">
                 {t.products.description}
               </p>
             </div>
@@ -250,7 +250,7 @@ export function Products() {
                         />
                       </span>
 
-                      <span className="min-w-0 flex-1">
+                      <span className="min-w-0 flex-1 text-left rtl:text-right">
                         <span
                           className={cn(
                             'block truncate font-display text-[0.95rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[1.02rem]',
@@ -271,7 +271,7 @@ export function Products() {
 
                       <span
                         className={cn(
-                          'hidden shrink-0 text-right rtl:text-left text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
+                          'hidden shrink-0 text-right rtl:text-right text-[0.6rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
                           isActive ? 'text-gold/80' : 'text-ivory/25',
                         )}
                       >
