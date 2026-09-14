@@ -66,16 +66,16 @@ export function PersianFontSelector({ className }: { className?: string }) {
           role="listbox"
           aria-label="Persian Fonts"
           className={cn(
-            'absolute z-50 mt-2 w-72 sm:w-80 rounded-2xl border border-gold/30 bg-[#14120f]/95 p-2 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200',
+            'absolute z-50 mt-2 w-72 sm:w-80 rounded-2xl border border-gold/30 bg-card/95 p-2 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200',
             isRtl ? 'left-0 sm:left-auto sm:right-0 origin-top-right' : 'right-0 origin-top-right'
           )}
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gold/15 px-3 py-2 text-[0.7rem] text-ivory/60">
+          <div className="flex items-center justify-between border-b border-border/60 px-3 py-2 text-[0.7rem] text-muted-foreground">
             <span className="font-mono uppercase tracking-wider">
               {isRtl ? 'انتخاب قلم فارسی' : 'Persian Typography'}
             </span>
-            <span className="text-[0.65rem] text-gold/70">
+            <span className="text-[0.65rem] text-gold/80">
               {isRtl ? 'پیش‌نمایش زنده' : 'Live Preview'}
             </span>
           </div>
@@ -99,8 +99,8 @@ export function PersianFontSelector({ className }: { className?: string }) {
                   className={cn(
                     'group/item relative flex flex-col gap-1 rounded-xl p-2.5 text-right transition-all duration-200 border',
                     isSelected
-                      ? 'border-gold/50 bg-gold/15 text-ivory shadow-inner shadow-gold/5'
-                      : 'border-transparent text-ivory/80 hover:border-gold/25 hover:bg-gold/5 hover:text-ivory'
+                      ? 'border-gold/50 bg-gold/15 text-foreground shadow-inner shadow-gold/5'
+                      : 'border-transparent text-foreground/80 hover:border-gold/25 hover:bg-gold/5 hover:text-foreground'
                   )}
                 >
                   {/* Top line: English name + Persian name + Check icon */}
@@ -111,7 +111,7 @@ export function PersianFontSelector({ className }: { className?: string }) {
                           <Check className="size-2.5 stroke-[3]" />
                         </span>
                       ) : (
-                        <span className="size-4 rounded-full border border-gold/30 group-hover/item:border-gold/60" />
+                        <span className="size-4 rounded-full border border-border/80 group-hover/item:border-gold/60" />
                       )}
                       <span className="font-sans text-[0.75rem] font-medium tracking-wide text-gold">
                         {font.name}
@@ -120,7 +120,7 @@ export function PersianFontSelector({ className }: { className?: string }) {
 
                     <span
                       className={cn(
-                        'text-[0.8rem] font-medium text-ivory/90',
+                        'text-[0.8rem] font-medium text-foreground/90',
                         previewClass
                       )}
                     >
@@ -132,8 +132,8 @@ export function PersianFontSelector({ className }: { className?: string }) {
                   <div
                     dir="rtl"
                     className={cn(
-                      'mt-0.5 rounded-lg bg-black/30 px-2.5 py-1.5 text-center text-sm font-normal text-ivory transition-colors',
-                      isSelected ? 'text-gold-100 bg-gold/10' : 'text-ivory/90',
+                      'mt-0.5 rounded-lg bg-background/50 px-2.5 py-1.5 text-center text-sm font-normal text-foreground transition-colors border border-border/40',
+                      isSelected ? 'bg-gold/10' : 'text-foreground/90',
                       previewClass
                     )}
                   >
@@ -144,7 +144,7 @@ export function PersianFontSelector({ className }: { className?: string }) {
                   {font.description && (
                     <div
                       dir="rtl"
-                      className="text-[0.65rem] text-ivory/50 px-1 text-right"
+                      className="text-[0.65rem] text-muted-foreground px-1 text-right"
                     >
                       {font.description}
                     </div>

@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react'
 
 import { useLanguage } from '@/lib/i18n/context'
 import { PersianFontSelector } from '@/components/font-selector'
+import { ColorPaletteSelector } from '@/components/color-palette-selector'
 import { cn } from '@/lib/utils'
 
 export function SiteNav() {
@@ -65,7 +66,8 @@ export function SiteNav() {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2.5 sm:gap-4">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+          <ColorPaletteSelector />
           <PersianFontSelector />
 
           <button
