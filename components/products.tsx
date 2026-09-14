@@ -185,7 +185,9 @@ export function Products() {
       </div>
 
       <div
-        className="relative z-20 mx-auto w-full max-w-[1800px] px-4 sm:px-6 md:px-10 lg:px-12 xl:px-14"
+        className={cn(
+          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 2xl:px-10',
+        )}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocusCapture={() => setIsPaused(true)}
@@ -195,17 +197,22 @@ export function Products() {
           }
         }}
       >
-        <div className="relative z-10 grid items-stretch gap-10 lg:grid-cols-2 lg:min-h-[82vh] xl:min-h-[86vh]">
+        <div
+          className={cn(
+            'relative z-10 grid items-stretch gap-8 lg:min-h-[82vh] xl:min-h-[86vh]',
+            isRtl ? 'lg:grid-cols-[1fr_1.2fr]' : 'lg:grid-cols-[1.2fr_1fr]',
+          )}
+        >
           {/* Editorial navigation block */}
           <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 lg:py-4 text-start me-auto">
             <div className="w-full text-start me-auto">
               <p className="text-xs lg:text-sm font-medium uppercase tracking-luxe text-gold text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-3.5 font-display text-[clamp(2.4rem,4.5vw,4.5rem)] font-light leading-[1.05] text-ivory text-start lg:mt-4">
+              <h2 className="mt-3.5 font-display text-[clamp(2.5rem,4.8vw,4.8rem)] font-light leading-[1.05] text-ivory text-start lg:mt-4">
                 {t.products.heading}
               </h2>
-              <p className="mt-4 w-full max-w-3xl text-base lg:text-[1.1rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-4.5">
+              <p className="mt-4 w-full max-w-4xl text-base lg:text-[1.1rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-4.5">
                 {t.products.description}
               </p>
             </div>
