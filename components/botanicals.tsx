@@ -13,13 +13,13 @@ export function Botanicals() {
   const { t } = useLanguage()
 
   return (
-    <section id="botanicals" className="relative px-6 py-24 md:px-10 md:py-36">
+    <section id="botanicals" className="relative px-6 py-12 md:px-10 md:py-16 lg:py-20 scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28">
       <div className="mx-auto max-w-[1500px]">
-        <Reveal className="mx-auto mb-16 max-w-2xl text-center md:mb-24">
+        <Reveal className="mx-auto mb-8 max-w-2xl text-center md:mb-10 lg:mb-12">
           <p className="text-xs font-light uppercase tracking-luxe text-gold">
             {t.botanicals.tag}
           </p>
-          <h2 className="mt-6 font-display text-[clamp(2rem,5vw,4rem)] font-light leading-tight text-balance text-ivory">
+          <h2 className="mt-2.5 font-display text-[clamp(2rem,4.5vw,3.5rem)] font-light leading-tight text-balance text-ivory md:mt-3">
             {t.botanicals.heading}
           </h2>
         </Reveal>
