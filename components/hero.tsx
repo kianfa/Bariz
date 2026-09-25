@@ -32,6 +32,11 @@ export function Hero() {
   }, [])
 
   useEffect(() => {
+    // Enable loaded state for image display animations
+    setLoaded(true)
+  }, [])
+
+  useEffect(() => {
     if (!videoReady && !videoFailed) return
 
     // Let the ready video frame paint first, then start the original Hero animation.
@@ -61,6 +66,15 @@ export function Hero() {
         className="absolute inset-0"
         style={{ transform: `translate3d(0, ${offset * 0.35}px, 0)` }}
       >
+        {/* Active Hero Background Image */}
+        <img
+          src="/Bariz_hero2.webp"
+          alt=""
+          className="size-full object-cover object-[70%_center] md:object-center"
+        />
+
+        {/* Video Background Implementation (Preserved for future use) */}
+        {/*
         <video
           ref={videoRef}
           autoPlay
@@ -82,6 +96,7 @@ export function Hero() {
           <source src="/bariz-hero-vp9.webm" type='video/webm; codecs="vp9"' />
           <source src="/bariz-hero-h264.mp4" type='video/mp4; codecs="avc1"' />
         </video>
+        */}
       </div>
 
       {/* Desktop / tablet branding rail */}
