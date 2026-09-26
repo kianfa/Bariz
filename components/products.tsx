@@ -132,8 +132,8 @@ export function Products() {
         className={cn(
           'pointer-events-none absolute inset-y-0 z-0 hidden overflow-hidden lg:block',
           isRtl
-            ? 'left-0 right-[26%] xl:right-[24%] 2xl:right-[23%]'
-            : 'left-[26%] xl:left-[24%] 2xl:left-[23%] right-0',
+            ? 'left-0 right-[22%] xl:right-[20%] 2xl:right-[19%]'
+            : 'left-[22%] xl:left-[20%] 2xl:left-[19%] right-0',
         )}
         aria-hidden="true"
       >
@@ -200,7 +200,7 @@ export function Products() {
         <div
           className={cn(
             'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
-            isRtl ? 'lg:grid-cols-[3.2fr_1fr]' : 'lg:grid-cols-[1fr_3.2fr]',
+            isRtl ? 'lg:grid-cols-[4fr_1fr]' : 'lg:grid-cols-[1fr_4fr]',
           )}
         >
           {/* Editorial navigation block (Right Panel in RTL) */}
