@@ -200,12 +200,12 @@ export function Products() {
         <div
           className={cn(
             'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
-            isRtl ? 'lg:grid-cols-[1fr_1.15fr]' : 'lg:grid-cols-[1.15fr_1fr]',
+            isRtl ? 'lg:grid-cols-[1.65fr_1fr]' : 'lg:grid-cols-[1fr_1.65fr]',
           )}
         >
-          {/* Editorial navigation block */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto h-full">
-            <div className="w-full text-start me-auto">
+          {/* Editorial navigation block (Right Panel in RTL) */}
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start ms-auto max-w-lg xl:max-w-xl h-full">
+            <div className="w-full text-start">
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
               </p>
@@ -214,44 +214,44 @@ export function Products() {
               </h2>
               {/* Reference-matching decorative gold accent line */}
               <div className="mt-3 mb-2.5 h-[1.5px] w-20 bg-gradient-to-r from-gold/80 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
-              <p className="mt-1.5 w-full max-w-2xl lg:max-w-3xl text-xs sm:text-sm lg:text-[0.95rem] xl:text-[1.02rem] font-light leading-relaxed text-ivory/70 text-start">
+              <p className="mt-1.5 w-full max-w-md lg:max-w-lg text-xs sm:text-sm lg:text-[0.95rem] xl:text-[1.02rem] font-light leading-relaxed text-ivory/70 text-start">
                 {t.products.description}
               </p>
             </div>
 
             {/* Editorial Product Selector List strictly matching Reference Specification */}
-            <ul className="mt-5 flex gap-1.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-5 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 xl:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto max-w-md lg:max-w-lg xl:max-w-xl">
+            <ul className="mt-6 flex flex-col gap-0 w-full me-auto divide-y divide-white/[0.06] border-t border-b border-white/[0.06] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
                 return (
-                  <li key={item.name} className="min-w-[16.5rem] shrink-0 lg:min-w-0 lg:shrink w-full">
+                  <li key={item.name} className="w-full">
                     <button
                       type="button"
                       aria-pressed={isActive}
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group relative flex w-full items-center gap-3.5 lg:gap-4 border-b py-2 px-1 lg:py-2.5 lg:px-2 text-start transition-all duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70',
+                        'group relative flex w-full items-center gap-3.5 lg:gap-4 py-2.5 lg:py-3 px-2 text-start transition-all duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 bg-transparent',
                         isActive
-                          ? 'border-gold/30 bg-transparent'
-                          : 'border-white/[0.05] bg-transparent hover:border-gold/20 hover:bg-white/[0.015]',
+                          ? 'text-ivory'
+                          : 'text-ivory/60 hover:text-ivory/90 hover:bg-white/[0.015]',
                       )}
                     >
                       {/* Active vertical gold indicator line (left edge facing visual canvas in RTL) */}
                       <span
                         className={cn(
-                          'absolute top-1/2 -translate-y-1/2 w-[2.5px] h-6 lg:h-7 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.6)] transition-all duration-300 motion-reduce:transition-none',
+                          'absolute top-1/2 -translate-y-1/2 w-[2.5px] h-7 lg:h-8 rounded-full bg-gold shadow-[0_0_10px_rgba(212,175,55,0.6)] transition-all duration-300 motion-reduce:transition-none',
                           isRtl ? 'left-0' : 'right-0',
                           isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0',
                         )}
                         aria-hidden="true"
                       />
 
-                      {/* 1. Product Number (01, 02...) */}
+                      {/* 1. Product Number (01, 02...) - Far Right in RTL */}
                       <span
                         className={cn(
-                          'font-display text-base lg:text-lg xl:text-xl font-light tracking-wider transition-all duration-300 motion-reduce:transition-none shrink-0 w-7 text-start',
+                          'font-serif text-xl lg:text-2xl xl:text-3xl font-light tracking-wider transition-all duration-300 shrink-0 w-9 text-start',
                           isActive
                             ? 'text-gold font-normal scale-105'
                             : 'text-ivory/20 group-hover:text-ivory/45',
@@ -270,8 +270,8 @@ export function Products() {
                           className={cn(
                             'size-full object-contain transition-all duration-300 motion-reduce:transition-none',
                             isActive
-                              ? 'opacity-100 scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]'
-                              : 'opacity-40 grayscale-[25%] group-hover:opacity-75 group-hover:grayscale-0',
+                              ? 'opacity-100 scale-105 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]'
+                              : 'opacity-40 grayscale-[30%] group-hover:opacity-75 group-hover:grayscale-0',
                           )}
                         />
                       </span>
@@ -301,7 +301,7 @@ export function Products() {
                       {/* 4. Secondary Note */}
                       <span
                         className={cn(
-                          'hidden shrink-0 text-start text-[0.62rem] lg:text-xs font-light uppercase leading-none tracking-wide-luxe transition-colors duration-300 motion-reduce:transition-none sm:block me-3',
+                          'hidden shrink-0 text-start text-[0.62rem] lg:text-xs font-light uppercase leading-none tracking-wide-luxe transition-colors duration-300 motion-reduce:transition-none sm:block me-2',
                           isActive ? 'text-gold/80 font-medium' : 'text-ivory/25',
                         )}
                       >
