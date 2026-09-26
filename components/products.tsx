@@ -200,7 +200,7 @@ export function Products() {
         <div
           className={cn(
             'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
-            isRtl ? 'lg:grid-cols-[1.9fr_1fr]' : 'lg:grid-cols-[1fr_1.9fr]',
+            isRtl ? 'lg:grid-cols-[2.4fr_1fr]' : 'lg:grid-cols-[1fr_2.4fr]',
           )}
         >
           {/* Editorial navigation block (Right Panel in RTL) */}
