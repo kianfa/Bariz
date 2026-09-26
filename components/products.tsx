@@ -186,7 +186,7 @@ export function Products() {
 
       <div
         className={cn(
-          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 2xl:px-16 rtl:lg:pr-3 rtl:xl:pr-4 rtl:2xl:pr-6 flex-1 flex flex-col justify-center',
+          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 2xl:px-16 rtl:pr-0 flex-1 flex flex-col justify-center',
         )}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
@@ -204,7 +204,7 @@ export function Products() {
           )}
         >
           {/* Editorial navigation block (Right Panel in RTL) */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-[22rem] xl:max-w-[25rem] h-full">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-[22rem] xl:max-w-[25rem] h-full translate-x-3 lg:translate-x-6 xl:translate-x-8">
             <div className="w-full text-start me-auto">
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
