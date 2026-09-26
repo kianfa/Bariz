@@ -206,21 +206,21 @@ export function Products() {
           {/* Editorial navigation block */}
           <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto h-full">
             <div className="w-full text-start me-auto">
-              <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold text-start">
+              <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
               </p>
               <h2 className="mt-1.5 font-display text-[clamp(2.1rem,3.6vw,4.2rem)] font-light leading-[1.05] text-ivory text-start lg:mt-2.5">
                 {t.products.heading}
               </h2>
-              {/* Subtle gold line accent under heading */}
-              <div className="mt-2.5 mb-2 h-px w-14 bg-gradient-to-r from-gold/70 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
+              {/* Reference-matching decorative gold accent line */}
+              <div className="mt-3 mb-2.5 h-[1.5px] w-20 bg-gradient-to-r from-gold/80 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
               <p className="mt-1.5 w-full max-w-2xl lg:max-w-3xl text-xs sm:text-sm lg:text-[0.95rem] xl:text-[1.02rem] font-light leading-relaxed text-ivory/70 text-start">
                 {t.products.description}
               </p>
             </div>
 
-            {/* Editorial Product List Selector */}
-            <ul className="mt-5 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-5 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 xl:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto max-w-md lg:max-w-lg xl:max-w-xl">
+            {/* Editorial Product Selector List strictly matching Reference Specification */}
+            <ul className="mt-5 flex gap-1.5 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-5 lg:flex-1 lg:flex-col lg:justify-center lg:gap-1.5 xl:gap-2 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto max-w-md lg:max-w-lg xl:max-w-xl">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
@@ -232,18 +232,18 @@ export function Products() {
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group relative flex w-full items-center gap-3.5 lg:gap-4 border-b py-2 px-3 lg:py-2.5 lg:px-4 text-start transition-all duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 rounded-lg',
+                        'group relative flex w-full items-center gap-3.5 lg:gap-4 border-b py-2 px-1 lg:py-2.5 lg:px-2 text-start transition-all duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70',
                         isActive
-                          ? 'border-gold/30 bg-gradient-to-r from-gold/[0.08] via-gold/[0.03] to-transparent rtl:bg-gradient-to-l shadow-sm'
-                          : 'border-white/[0.04] bg-transparent hover:border-gold/15 hover:bg-white/[0.02]',
+                          ? 'border-gold/30 bg-transparent'
+                          : 'border-white/[0.05] bg-transparent hover:border-gold/20 hover:bg-white/[0.015]',
                       )}
                     >
-                      {/* Active vertical gold indicator bar */}
+                      {/* Active vertical gold indicator line (left edge facing visual canvas in RTL) */}
                       <span
                         className={cn(
-                          'absolute top-1/2 -translate-y-1/2 w-[2.5px] h-6 lg:h-7 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.4)] transition-all duration-300 motion-reduce:transition-none',
-                          isRtl ? 'left-2' : 'right-2',
-                          isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-50',
+                          'absolute top-1/2 -translate-y-1/2 w-[2.5px] h-6 lg:h-7 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.6)] transition-all duration-300 motion-reduce:transition-none',
+                          isRtl ? 'left-0' : 'right-0',
+                          isActive ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0',
                         )}
                         aria-hidden="true"
                       />
@@ -251,17 +251,17 @@ export function Products() {
                       {/* 1. Product Number (01, 02...) */}
                       <span
                         className={cn(
-                          'font-display text-sm lg:text-base xl:text-lg font-light tracking-wider transition-all duration-300 motion-reduce:transition-none shrink-0 w-6 text-center',
+                          'font-display text-base lg:text-lg xl:text-xl font-light tracking-wider transition-all duration-300 motion-reduce:transition-none shrink-0 w-7 text-start',
                           isActive
-                            ? 'text-gold font-normal scale-110'
-                            : 'text-ivory/25 group-hover:text-ivory/50',
+                            ? 'text-gold font-normal scale-105'
+                            : 'text-ivory/20 group-hover:text-ivory/45',
                         )}
                       >
                         {formatIndex(i)}
                       </span>
 
                       {/* 2. Botanical Icon / Thumbnail */}
-                      <span className="relative size-7 shrink-0 lg:size-8 xl:size-9">
+                      <span className="relative size-6.5 shrink-0 lg:size-7.5 xl:size-8.5">
                         <img
                           src={PRODUCT_IMAGES[i]}
                           alt=""
@@ -276,13 +276,13 @@ export function Products() {
                         />
                       </span>
 
-                      {/* 3. Product Name & Tagline */}
+                      {/* 3. Product Name & Subtitle */}
                       <span className="min-w-0 flex-1 text-start">
                         <span
                           className={cn(
                             'block truncate font-display text-sm lg:text-[0.98rem] xl:text-[1.08rem] leading-tight transition-colors duration-300 motion-reduce:transition-none',
                             isActive
-                              ? 'text-ivory font-medium'
+                              ? 'text-ivory font-semibold'
                               : 'text-ivory/60 group-hover:text-ivory/90',
                           )}
                         >
@@ -333,7 +333,7 @@ export function Products() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background/70 to-transparent" />
             </div>
 
-            {/* Navigation & progress controls positioned in bottom corner */}
+            {/* Navigation & progress controls matching reference bottom left placement */}
             <div className="mt-3 flex items-center justify-end gap-3 sm:mt-4 lg:mt-0 lg:pb-2 lg:pr-3 xl:pb-4 xl:pr-4 rtl:lg:pr-0 rtl:lg:pl-3 rtl:xl:pr-0 rtl:xl:pl-4">
               <NavButton
                 direction="prev"
