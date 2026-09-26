@@ -125,7 +125,7 @@ export function Products() {
   return (
     <section
       id="products"
-      className="relative w-full flex flex-col justify-center overflow-hidden scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28 py-6 md:py-8 lg:py-[clamp(1rem,3.2vh,3.25rem)] bg-[rgb(26,19,14)] text-ivory"
+      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center overflow-hidden scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28 py-10 md:py-14 lg:py-12 xl:py-16 bg-[rgb(26,19,14)] text-ivory"
     >
       {/* Background full-bleed photography canvas */}
       <div
@@ -180,13 +180,13 @@ export function Products() {
         />
 
         {/* Top & bottom subtle transitions */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
       </div>
 
       <div
         className={cn(
-          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 2xl:px-10',
+          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-6 xl:px-8 2xl:px-10 flex-1 flex flex-col justify-center',
         )}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
@@ -199,25 +199,25 @@ export function Products() {
       >
         <div
           className={cn(
-            'relative z-10 grid items-stretch gap-4 lg:gap-[clamp(1rem,2.2vh,2rem)] [@media(max-height:780px)]:gap-4',
+            'relative z-10 grid items-stretch gap-6 lg:gap-8 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
             isRtl ? 'lg:grid-cols-[1fr_1.15fr]' : 'lg:grid-cols-[1.15fr_1fr]',
           )}
         >
           {/* Editorial navigation block */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto h-full">
             <div className="w-full text-start me-auto">
-              <p className="text-[0.65rem] lg:text-[clamp(0.68rem,0.9vh,0.75rem)] font-medium uppercase tracking-luxe text-gold text-start">
+              <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-1 font-display text-[clamp(1.7rem,2.5vw,2.85rem)] font-light leading-[1.05] text-ivory text-start lg:mt-[clamp(0.2rem,0.8vh,0.65rem)]">
+              <h2 className="mt-2 font-display text-[clamp(2.1rem,3.6vw,4.2rem)] font-light leading-[1.05] text-ivory text-start lg:mt-3">
                 {t.products.heading}
               </h2>
-              <p className="mt-1.5 w-full max-w-3xl text-xs sm:text-sm lg:text-[clamp(0.85rem,1.3vh,0.925rem)] font-light leading-relaxed text-ivory/70 text-start lg:mt-[clamp(0.2rem,0.8vh,0.65rem)]">
+              <p className="mt-2.5 w-full max-w-2xl lg:max-w-3xl text-xs sm:text-sm lg:text-[0.98rem] xl:text-[1.05rem] font-light leading-relaxed text-ivory/75 text-start lg:mt-3">
                 {t.products.description}
               </p>
             </div>
 
-            <ul className="mt-3 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-[clamp(0.4rem,1.6vh,1.15rem)] lg:flex-1 lg:flex-col lg:justify-center lg:gap-[clamp(0.175rem,0.7vh,0.45rem)] lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto">
+            <ul className="mt-5 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:flex-col lg:justify-center lg:gap-2.5 xl:gap-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden w-full me-auto">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 
@@ -229,7 +229,7 @@ export function Products() {
                       aria-label={t.products.showProductAria(item.name)}
                       onClick={() => selectProduct(i)}
                       className={cn(
-                        'group flex w-full items-center gap-2.5 rounded-xl border px-2.5 py-1.5 text-start transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-xl lg:px-3.5 lg:py-[clamp(0.25rem,0.8vh,0.55rem)]',
+                        'group flex w-full items-center gap-3 rounded-xl border px-3.5 py-2 text-start transition-all duration-500 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background lg:rounded-xl lg:px-4 lg:py-2.5 xl:px-5 xl:py-3',
                         isActive
                           ? 'border-gold/40 bg-[rgba(26,19,14,0.75)] opacity-100 backdrop-blur-md shadow-md'
                           : 'border-white/5 bg-[rgba(18,14,10,0.35)] opacity-55 hover:border-gold/25 hover:bg-[rgba(26,19,14,0.5)] hover:opacity-90',
@@ -237,14 +237,14 @@ export function Products() {
                     >
                       <span
                         className={cn(
-                          'font-sans text-[0.65rem] lg:text-[clamp(0.68rem,0.85vh,0.725rem)] tracking-[0.2em] transition-colors duration-500 motion-reduce:transition-none',
+                          'font-sans text-xs lg:text-xs xl:text-sm tracking-[0.2em] transition-colors duration-500 motion-reduce:transition-none',
                           isActive ? 'text-gold font-medium' : 'text-ivory/35',
                         )}
                       >
                         {formatIndex(i)}
                       </span>
 
-                      <span className="relative size-6.5 shrink-0 lg:size-[clamp(1.4rem,2.4vh,2.1rem)]">
+                      <span className="relative size-8 shrink-0 lg:size-9.5 xl:size-10.5">
                         <img
                           src={PRODUCT_IMAGES[i]}
                           alt=""
@@ -260,7 +260,7 @@ export function Products() {
                       <span className="min-w-0 flex-1 text-start">
                         <span
                           className={cn(
-                            'block truncate font-display text-[0.875rem] leading-tight transition-colors duration-500 motion-reduce:transition-none lg:text-[clamp(0.875rem,1.45vh,1.025rem)]',
+                            'block truncate font-display text-sm lg:text-[1.05rem] xl:text-[1.15rem] font-medium leading-tight transition-colors duration-500 motion-reduce:transition-none',
                             isActive ? 'text-ivory font-medium' : 'text-ivory/75',
                           )}
                         >
@@ -268,7 +268,7 @@ export function Products() {
                         </span>
                         <span
                           className={cn(
-                            'mt-0.5 block truncate font-display text-[0.6rem] lg:text-[clamp(0.62rem,0.85vh,0.68rem)] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
+                            'mt-0.5 block truncate font-display text-[0.65rem] lg:text-xs xl:text-[0.75rem] uppercase italic leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none',
                             isActive ? 'text-gold' : 'text-ivory/35',
                           )}
                         >
@@ -278,7 +278,7 @@ export function Products() {
 
                       <span
                         className={cn(
-                          'hidden shrink-0 text-start text-[0.6rem] lg:text-[clamp(0.62rem,0.85vh,0.68rem)] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
+                          'hidden shrink-0 text-start text-[0.65rem] lg:text-xs xl:text-[0.75rem] font-light uppercase leading-none tracking-wide-luxe transition-colors duration-500 motion-reduce:transition-none sm:block',
                           isActive ? 'text-gold/90 font-medium' : 'text-ivory/30',
                         )}
                       >
@@ -292,7 +292,7 @@ export function Products() {
                         stroke="currentColor"
                         strokeWidth="1.25"
                         className={cn(
-                          'size-3.5 shrink-0 transition-all duration-500 motion-reduce:transition-none rtl:rotate-180',
+                          'size-4 shrink-0 transition-all duration-500 motion-reduce:transition-none rtl:rotate-180',
                           isActive
                             ? 'translate-x-0 text-gold opacity-100'
                             : 'translate-x-0 text-ivory/20 opacity-0 group-hover:opacity-40',
