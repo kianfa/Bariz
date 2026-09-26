@@ -209,18 +209,18 @@ export function Products() {
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-1.5 font-display text-[clamp(1.5rem,2.3vw,3.2rem)] font-light leading-[1.05] text-ivory text-start lg:mt-2.5 whitespace-nowrap">
+              <h2 className="mt-1.5 lg:mt-2 font-display text-[clamp(1.5rem,2.3vw,3.2rem)] font-light leading-[1.05] text-ivory text-start whitespace-nowrap">
                 {t.products.heading}
               </h2>
-              {/* Reference-matching decorative gold accent line */}
-              <div className="mt-3 mb-2.5 h-[1.5px] w-20 bg-gradient-to-r from-gold/80 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
-              <p className="mt-1.5 w-full max-w-md lg:max-w-lg text-xs sm:text-sm lg:text-[0.95rem] xl:text-[1.02rem] font-light leading-relaxed text-ivory/70 text-start">
+              <p className="mt-2 lg:mt-2.5 w-full text-xs sm:text-sm lg:text-[0.92rem] xl:text-[0.98rem] font-light leading-relaxed text-gold/90 text-start tracking-wide">
                 {t.products.description}
               </p>
+              {/* Reference-matching decorative gold accent line */}
+              <div className="mt-3 mb-1 h-[1.5px] w-16 bg-gradient-to-r from-gold/80 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
             </div>
 
             {/* Editorial Product Selector List strictly matching Reference Specification */}
-            <ul className="mt-6 flex flex-col gap-0 w-full me-auto divide-y divide-white/[0.06] border-t border-b border-white/[0.06] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-6 lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            <ul className="mt-5 flex flex-col gap-0 w-full me-auto divide-y divide-white/[0.06] border-t border-b border-white/[0.06] pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:mt-5 lg:flex-1 lg:justify-center lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
               {collectionItems.map((item, i) => {
                 const isActive = activeIndex === i
 

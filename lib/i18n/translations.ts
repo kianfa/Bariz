@@ -352,7 +352,7 @@ export const translations: Record<Language, ComponentTranslations> = {
     products: {
       tag: 'مجموعه باریز',
       heading: 'مجموعه عرقیات باریز',
-      description: 'مجموعه کامل عرقیات طبیعی باریز؛ عصاره اصیل گیاهان در بطری‌های فاخر، جادوی خالص هر گیاه در هر قطره.',
+      description: 'عصاره اصیل گیاهان در هر قطره',
       ariaLabel: 'ویترین محصولات',
       prevProductAria: 'محصول قبلی',
       nextProductAria: 'محصول بعدی',
