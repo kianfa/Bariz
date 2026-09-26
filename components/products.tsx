@@ -200,12 +200,12 @@ export function Products() {
         <div
           className={cn(
             'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
-            isRtl ? 'lg:grid-cols-[1.65fr_1fr]' : 'lg:grid-cols-[1fr_1.65fr]',
+            isRtl ? 'lg:grid-cols-[1.9fr_1fr]' : 'lg:grid-cols-[1fr_1.9fr]',
           )}
         >
           {/* Editorial navigation block (Right Panel in RTL) */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start ms-auto max-w-lg xl:max-w-xl h-full">
-            <div className="w-full text-start">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-lg xl:max-w-xl h-full">
+            <div className="w-full text-start me-auto">
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
               </p>
@@ -248,10 +248,10 @@ export function Products() {
                         aria-hidden="true"
                       />
 
-                      {/* 1. Product Number (01, 02...) - Far Right in RTL */}
+                      {/* 1. Product Number (01, 02...) - Far Right in RTL (Increased by ~20%) */}
                       <span
                         className={cn(
-                          'font-serif text-xl lg:text-2xl xl:text-3xl font-light tracking-wider transition-all duration-300 shrink-0 w-9 text-start',
+                          'font-serif text-2xl lg:text-3xl xl:text-4xl font-light tracking-wider transition-all duration-300 shrink-0 w-10 lg:w-11 text-start',
                           isActive
                             ? 'text-gold font-normal scale-105'
                             : 'text-ivory/20 group-hover:text-ivory/45',
