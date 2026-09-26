@@ -200,11 +200,11 @@ export function Products() {
         <div
           className={cn(
             'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
-            isRtl ? 'lg:grid-cols-[2.4fr_1fr]' : 'lg:grid-cols-[1fr_2.4fr]',
+            isRtl ? 'lg:grid-cols-[3fr_1fr]' : 'lg:grid-cols-[1fr_3fr]',
           )}
         >
           {/* Editorial navigation block (Right Panel in RTL) */}
-          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-lg xl:max-w-xl h-full">
+          <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-md xl:max-w-lg h-full">
             <div className="w-full text-start me-auto">
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
