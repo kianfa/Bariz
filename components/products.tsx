@@ -186,7 +186,7 @@ export function Products() {
 
       <div
         className={cn(
-          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 2xl:px-16 rtl:lg:pr-5 rtl:xl:pr-7 rtl:2xl:pr-10 flex-1 flex flex-col justify-center',
+          'relative z-20 mx-auto w-full max-w-[1920px] px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 2xl:px-16 rtl:lg:pr-3 rtl:xl:pr-4 rtl:2xl:pr-6 flex-1 flex flex-col justify-center',
         )}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
