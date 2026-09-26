@@ -209,7 +209,7 @@ export function Products() {
               <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
                 {t.products.tag}
               </p>
-              <h2 className="mt-1.5 font-display text-[clamp(2.1rem,3.6vw,4.2rem)] font-light leading-[1.05] text-ivory text-start lg:mt-2.5">
+              <h2 className="mt-1.5 font-display text-[clamp(1.5rem,2.3vw,3.2rem)] font-light leading-[1.05] text-ivory text-start lg:mt-2.5 whitespace-nowrap">
                 {t.products.heading}
               </h2>
               {/* Reference-matching decorative gold accent line */}
