@@ -23,6 +23,56 @@ function formatIndex(index: number) {
   return String(index + 1).padStart(2, '0')
 }
 
+function ProductImage({
+  src,
+  alt = '',
+  className,
+  draggable = false,
+  'aria-hidden': ariaHidden,
+}: {
+  src: string
+  alt?: string
+  className?: string
+  draggable?: boolean
+  'aria-hidden'?: boolean | 'true' | 'false'
+}) {
+  const isDev = process.env.NODE_ENV === 'development'
+
+  // Candidates for development:
+  // 1. Same path with .png extension (e.g. /webp/aragh-baharnarenj.png)
+  // 2. /png/ directory with .png extension (e.g. /png/aragh-baharnarenj.png)
+  // 3. Fallback to original webp source
+  const pngSameDir = src.replace(/\.webp$/i, '.png')
+  const pngAltDir = src.replace(/^\/webp\//i, '/png/').replace(/\.webp$/i, '.png')
+
+  const sources = isDev
+    ? Array.from(new Set([pngSameDir, pngAltDir, src]))
+    : [src]
+
+  const [sourceIndex, setSourceIndex] = useState(0)
+
+  useEffect(() => {
+    setSourceIndex(0)
+  }, [src])
+
+  const currentSrc = sources[sourceIndex] || src
+
+  return (
+    <img
+      src={currentSrc}
+      alt={alt}
+      draggable={draggable}
+      aria-hidden={ariaHidden}
+      className={className}
+      onError={() => {
+        if (sourceIndex < sources.length - 1) {
+          setSourceIndex((prev) => prev + 1)
+        }
+      }}
+    />
+  )
+}
+
 function NavButton({
   direction,
   disabled,
@@ -138,7 +188,7 @@ export function Products() {
         aria-hidden="true"
       >
         {collectionItems.map((_, index) => (
-          <img
+          <ProductImage
             key={PRODUCT_IMAGES[index]}
             src={PRODUCT_IMAGES[index]}
             alt=""
@@ -262,7 +312,7 @@ export function Products() {
 
                       {/* 2. Botanical Icon / Thumbnail */}
                       <span className="relative size-6.5 shrink-0 lg:size-7.5 xl:size-8.5">
-                        <img
+                        <ProductImage
                           src={PRODUCT_IMAGES[i]}
                           alt=""
                           aria-hidden="true"
@@ -319,7 +369,7 @@ export function Products() {
             {/* Mobile-only image card */}
             <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl lg:hidden">
               {collectionItems.map((item, index) => (
-                <img
+                <ProductImage
                   key={PRODUCT_IMAGES[index]}
                   src={PRODUCT_IMAGES[index]}
                   alt={index === activeIndex ? item.alt : ''}
