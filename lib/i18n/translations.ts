@@ -351,7 +351,7 @@ export const translations: Record<Language, ComponentTranslations> = {
     },
     products: {
       tag: 'مجموعه باریز',
-      heading: 'مجموعه نوشیدنیهای باریز',
+      heading: 'مجموعه نوشیدنی‌های باریز',
       description: 'عصاره اصیل گیاهان در هر قطره',
       ariaLabel: 'ویترین محصولات',
       prevProductAria: 'محصول قبلی',
