@@ -269,7 +269,7 @@ export const translations: Record<Language, ComponentTranslations> = {
     footer: {
       brandTagline: 'Persian botanical distilled waters. Nature, distilled. Time perfected.',
       cols: [
-        { title: 'Explore', links: ['Our Story', 'Botanicals', 'Craft', 'Experience'] },
+        { title: 'Explore', links: ['Our Story', 'Botanicals', 'Experience'] },
         { title: 'Collection', links: ['Chicory Water', 'Rose Water', 'Mint Water'] },
         { title: 'Connect', links: ['Journal', 'Stockists', 'Contact', 'Instagram'] },
       ],
@@ -431,7 +431,7 @@ export const translations: Record<Language, ComponentTranslations> = {
     footer: {
       brandTagline: 'عرقیات گیاهی و اصیل ایرانی. عصاره خالص طبیعت.',
       cols: [
-        { title: 'کاوش', links: ['داستان ما', 'گیاهان بوستان', 'هنر تقطیر', 'تجربه چشیدن'] },
+        { title: 'کاوش', links: ['داستان ما', 'گیاهان بوستان', 'تجربه چشیدن'] },
         { title: 'مجموعه', links: ['عرق کاسنی', 'گلاب', 'عرق نعناع'] },
         { title: 'ارتباط', links: ['مجله باریز', 'فروشگاه‌ها', 'تماس با ما', 'اینستاگرام'] },
       ],

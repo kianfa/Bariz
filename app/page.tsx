@@ -2,7 +2,7 @@ import { SiteNav } from '@/components/site-nav'
 import { Hero } from '@/components/hero'
 import { Story } from '@/components/story'
 import { Botanicals } from '@/components/botanicals'
-import { Craft } from '@/components/craft'
+
 import { Experience } from '@/components/experience'
 import { Products } from '@/components/products'
 import { FinalScene } from '@/components/final-scene'
@@ -16,7 +16,7 @@ export default function Page() {
       <Hero />
       <Story />
       <Botanicals />
-      <Craft />
+
       <Experience />
       <Products />
       <FinalScene />

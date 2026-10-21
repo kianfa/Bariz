@@ -23,7 +23,7 @@ export function SiteNav() {
   const links = [
     { label: t.nav.links.story, href: '#story' },
     { label: t.nav.links.botanicals, href: '#botanicals' },
-    { label: t.nav.links.craft, href: '#craft' },
+
     { label: t.nav.links.experience, href: '#experience' },
     { label: t.nav.links.journal, href: '#products' },
   ]
