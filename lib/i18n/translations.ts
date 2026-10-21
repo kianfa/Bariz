@@ -351,7 +351,7 @@ export const translations: Record<Language, ComponentTranslations> = {
     },
     products: {
       tag: 'مجموعه باریز',
-      heading: 'مجموعه عرقیات باریز',
+      heading: 'مجموعه نوشیدنیهای باریز',
       description: 'عصاره اصیل گیاهان در هر قطره',
       ariaLabel: 'ویترین محصولات',
       prevProductAria: 'محصول قبلی',
@@ -359,7 +359,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       showProductAria: (name: string) => `نمایش ${name}`,
       items: [
         {
-          name: 'عرق بهارنارنج',
+          name: 'بهارنارنج',
           tag: 'عطر شکوفه‌ها',
           note: 'گل‌گون · درخشان',
           description: 'عصاره درخشان بهارنارنج، ارمغان عطر ملایم شکوفه‌ها در هر جرعه.',
@@ -367,7 +367,7 @@ export const translations: Record<Language, ComponentTranslations> = {
           alt: 'بطری عرق بهارنارنج باریز همراه با شکوفه‌های تازه نارنج',
         },
         {
-          name: 'عرق بیدمشک',
+          name: 'بیدمشک',
           tag: 'جان بیدمشک',
           note: 'گیاهی · لطیف',
           description: 'نوشیدنی معطر و آرام‌بخش بیدمشک، یادآور رایحه دل‌انگیز چمنزارهای بهاری.',
@@ -375,7 +375,7 @@ export const translations: Record<Language, ComponentTranslations> = {
           alt: 'بطری عرق بیدمشک باریز همراه با گل‌های بنفش بیدمشک',
         },
         {
-          name: 'عرق طارونه',
+          name: 'طارونه',
           tag: 'شکوه طارونه',
           note: 'معطر · فاخر',
           description: 'عصاره اصیل نخل طارونه با رایحه‌ای دلنشین و گوارا.',
@@ -383,7 +383,7 @@ export const translations: Record<Language, ComponentTranslations> = {
           alt: 'بطری عرق طارونه باریز همراه با شاخه‌های تازه طارونه',
         },
         {
-          name: 'عرق کاسنی',
+          name: 'کاسنی',
           tag: 'عصاره کاسنی',
           note: 'تلخ‌وشیرین · گوارا',
           description: 'عصاره سنتی کاسنی صحرایی، پاک‌کننده و طراوت‌بخش جان.',
@@ -391,7 +391,7 @@ export const translations: Record<Language, ComponentTranslations> = {
           alt: 'بطری عرق کاسنی باریز همراه با گل‌های بنفش کاسنی',
         },
         {
-          name: 'عرق نسترن',
+          name: 'نسترن',
           tag: 'قلب نسترن',
           note: 'لطیف · شکوفا',
           description: 'عصاره نسترن کوهی با لطافت گل‌برگ‌های رز وحشی.',
@@ -399,7 +399,7 @@ export const translations: Record<Language, ComponentTranslations> = {
           alt: 'بطری عرق نسترن باریز همراه با گل‌های نسترن وحشی',
         },
         {
-          name: 'عرق نعناع',
+          name: 'نعناع',
           tag: 'نفس نعناع',
           note: 'خنک · طراوت‌بخش',
           description: 'نوشیدنی خنک و پرنشاط با عطر تازه برگ‌های نعناع.',
