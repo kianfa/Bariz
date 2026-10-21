@@ -425,7 +425,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       ],
     },
     finalScene: {
-      heading: 'طبیعت را نزدیک‌تر حس کنید.',
+      heading: 'باریز طعمی از قلب طبیعت',
       imgAlt: 'باغ مصفای ایرانی با سروهای کهنسال و حوض فیروزه‌ای در غروب طلایی',
     },
     footer: {
