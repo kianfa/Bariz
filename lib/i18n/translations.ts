@@ -470,7 +470,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       imgAlt: 'باغ مصفای ایرانی با سروهای کهنسال و حوض فیروزه‌ای در غروب طلایی',
     },
     footer: {
-      brandStatement: 'باریز؛ عصاره طبیعت، با اصالت و زیبایی.',
+      brandStatement: 'باریز طعمی از قلب طبیعت',
       brandDescription: 'با تکیه بر گیاهان اصیل ایرانی، عصاره‌های طبیعی برای مراقبت از پوست و زیبایی شما.',
       quickAccess: {
         title: 'دسترسی سریع',
