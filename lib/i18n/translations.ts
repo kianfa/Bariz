@@ -344,7 +344,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       },
       title: 'باریز',
       subtitle: 'عصاره خالص طبیعت.',
-      tagline: 'عرقیات اصیل و سنتی گیاهی ایران',
+      tagline: 'نوشیدنی اصیل و سنتی گیاهی ایران',
       cta: 'کشف دنیای باریز',
     },
     story: {
