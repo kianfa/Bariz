@@ -309,7 +309,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       office: {
         title: 'Bariz Central Office',
         previewNotice: 'Office location will be displayed upon address registration',
-        address: 'Tehran, North Sohrevardi St., Khalil Hosseini St., Next to Tahamtan Alley, No. 27',
+        address: 'Bariz Central Office: Tehran, North Sohrevardi St., Khalil Hosseini St., Next to Tahamtan Alley, No. 27',
         routeAction: 'Directions',
         mapAction: 'View on Map',
       },
@@ -495,7 +495,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       office: {
         title: 'دفتر مرکزی باریز',
         previewNotice: 'موقعیت دفتر پس از ثبت آدرس نمایش داده می‌شود',
-        address: 'تهران، خیابان سهروردی شمالی، خیابان خلیل حسینی، جنب کوچه تهمتن، پلاک ۲۷',
+        address: 'دفتر مرکزی باریز: تهران، خیابان سهروردی شمالی، خیابان خلیل حسینی، جنب کوچه تهمتن، پلاک ۲۷',
         routeAction: 'مسیریابی',
         mapAction: 'مشاهده روی نقشه',
       },

@@ -1,6 +1,6 @@
 'use client'
 
-import { MapPin, Navigation } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/context'
 import { cn } from '@/lib/utils'
 
@@ -146,13 +146,12 @@ function AbstractMapCanvas() {
 }
 
 export function SiteFooter() {
-  const { t, language, isRtl } = useLanguage()
+  const { t, language } = useLanguage()
 
   // Verified coordinates and map destination in Tehran
   const lat = 35.727103
   const lng = 51.436052
   const mapAppUrl = 'https://maps.app.goo.gl/TgrXnDnCvsR3o4Mq6'
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
   const mapEmbedUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed&hl=${language === 'fa' ? 'fa' : 'en'}`
 
   const addressText = t.footer.office.address
@@ -245,15 +244,10 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* COLUMN 4 — HEAD OFFICE & LOCATION ACTIONS (In RTL: Far Left) */}
+          {/* COLUMN 4 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:ps-2">
-            <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
-              {t.footer.office.title}
-            </h3>
-            <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
-
-            {/* Embedded Google Map Preview Card displaying exact coordinates (35.727103, 51.436052) */}
-            <div className="group relative mt-1 block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-[#17100b] shadow-inner transition-all hover:border-gold/60">
+            {/* Embedded Google Map Card displaying exact coordinates (35.727103, 51.436052) */}
+            <div className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-[#17100b] shadow-inner transition-all hover:border-gold/60">
               <AbstractMapCanvas />
 
               <iframe
@@ -264,7 +258,7 @@ export function SiteFooter() {
                 className="absolute inset-0 size-full border-0 opacity-80 invert-[90%] hue-rotate-180 contrast-[110%] brightness-[85%] transition-opacity duration-300 group-hover:opacity-95"
               />
 
-              {/* Interactive badge & direct click destination */}
+              {/* Interactive badge & direct click destination to Google Maps */}
               <a
                 href={mapAppUrl}
                 target="_blank"
@@ -287,40 +281,10 @@ export function SiteFooter() {
               </a>
             </div>
 
-            {/* Exact Verified Address Display */}
+            {/* Exact Verified Address Display with 'دفتر مرکزی باریز:' prefix */}
             <div className="mt-4 flex items-start gap-2.5 text-xs font-light leading-relaxed text-ivory/90 sm:text-sm">
               <MapPin className="mt-0.5 size-4.5 shrink-0 text-gold" aria-hidden="true" />
               <span>{addressText}</span>
-            </div>
-
-            {/* Functional Actions: Directions & View on Map */}
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <a
-                href={directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#d5ad6b] px-5 py-2.5 text-xs font-medium text-[#140e0a] shadow-md transition-all duration-300 hover:bg-[#e0bb7b] hover:shadow-[0_4px_16px_rgba(213,173,107,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:text-sm"
-              >
-                <Navigation
-                  className={cn(
-                    'size-3.5 fill-[#140e0a] text-[#140e0a]',
-                    isRtl ? '-scale-x-100' : '',
-                  )}
-                  aria-hidden="true"
-                />
-                <span>{t.footer.office.routeAction}</span>
-              </a>
-
-              <div className="hidden h-4 w-px bg-gold/30 sm:block" aria-hidden="true" />
-
-              <a
-                href={mapAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-light text-ivory/85 underline underline-offset-4 decoration-gold/40 transition-colors hover:text-gold hover:decoration-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold sm:text-sm"
-              >
-                {t.footer.office.mapAction}
-              </a>
             </div>
           </div>
         </div>
