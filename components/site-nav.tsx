@@ -55,7 +55,7 @@ export function SiteNav() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="group relative flex items-center gap-3 text-[0.7rem] font-light uppercase tracking-luxe text-ivory/80 transition-colors hover:text-gold"
+                className="group relative flex items-center gap-2.5 text-[0.88rem] lg:text-[0.94rem] xl:text-[1rem] font-normal tracking-wide text-ivory/90 transition-colors hover:text-gold"
               >
                 <span className="text-gold/50" aria-hidden>
                   &#9670;
