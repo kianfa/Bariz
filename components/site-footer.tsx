@@ -192,10 +192,10 @@ export function SiteFooter() {
                 <img
                   src="/bariz-bottle-icon.png"
                   alt=""
-                  className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(217,170,100,0.2)] sm:h-12 md:h-13"
+                  className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(217,170,100,0.2)] sm:h-11 md:h-12"
                 />
               </div>
-              <span className="font-display text-4xl font-normal tracking-wide text-ivory transition-colors group-hover:text-gold sm:text-[2.75rem]">
+              <span className="font-display text-[2.75rem] sm:text-[3.35rem] md:text-[3.75rem] font-normal tracking-wide text-ivory leading-none transition-colors group-hover:text-gold">
                 Bar<span className="text-gold">i</span>z
               </span>
             </a>
