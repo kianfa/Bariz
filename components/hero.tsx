@@ -101,19 +101,19 @@ export function Hero() {
 
       {/* Desktop / tablet branding rail */}
       <aside
-        className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] rtl:left-auto rtl:right-[clamp(1.75rem,3vw,3rem)] top-[34%] z-10 hidden w-16 flex-col items-center md:flex"
+        className="absolute bottom-[6.5%] left-[clamp(1.75rem,3vw,3rem)] rtl:left-auto rtl:right-[clamp(1.75rem,3vw,3rem)] top-[28%] z-10 hidden w-24 flex-col items-center md:flex"
         style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
         aria-hidden="true"
       >
-        <span className="flex size-7 rotate-45 items-center justify-center border border-gold/55 text-gold/80">
-          <span className="-rotate-45 text-[0.7rem] leading-none">&#10022;</span>
+        <span className="flex size-8 rotate-45 items-center justify-center border border-gold/55 text-gold/80">
+          <span className="-rotate-45 text-[0.85rem] leading-none">&#10022;</span>
         </span>
 
-        <p className="mt-5 text-center font-display text-[0.68rem] font-medium uppercase leading-[1.95] tracking-[0.12em] text-gold/85">
-          <span className="block">{t.hero.brandRail.nature}</span>
-          <span className="block">{t.hero.brandRail.distilled}</span>
-          <span className="block">{t.hero.brandRail.time}</span>
-          <span className="block">{t.hero.brandRail.perfected}</span>
+        <p className="mt-5 text-center font-display text-[0.88rem] lg:text-[0.95rem] font-medium uppercase leading-[2.1] tracking-[0.06em] text-gold/90">
+          <span className="block whitespace-nowrap">{t.hero.brandRail.nature}</span>
+          <span className="block whitespace-nowrap">{t.hero.brandRail.distilled}</span>
+          <span className="block whitespace-nowrap">{t.hero.brandRail.time}</span>
+          <span className="block whitespace-nowrap">{t.hero.brandRail.perfected}</span>
         </p>
 
         <div className="relative mt-8 min-h-24 w-px flex-1 bg-gradient-to-b from-gold/45 via-gold/25 to-gold/10">
@@ -125,7 +125,7 @@ export function Hero() {
           <span className="absolute -left-[3px] bottom-8 size-[7px] rounded-full border border-gold/70 bg-background/40" />
         </div>
 
-        <span className="mt-3 font-display text-[0.66rem] font-medium uppercase tracking-[0.08em] text-gold/80">
+        <span className="mt-3 text-center font-display text-[0.8rem] lg:text-[0.88rem] font-medium uppercase tracking-[0.06em] text-gold/85 whitespace-nowrap">
           {t.hero.brandRail.scroll}
         </span>
       </aside>
@@ -191,7 +191,7 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:hidden"
         style={{ opacity: loaded ? fade : 0, visibility: loaded ? 'visible' : 'hidden' }}
       >
-        <span className="text-[0.65rem] font-light uppercase tracking-luxe text-ivory/70">
+        <span className="text-[0.75rem] font-light uppercase tracking-luxe text-ivory/80">
           {t.hero.brandRail.scroll}
         </span>
         <span className="h-14 w-px overflow-hidden bg-ivory/15">
