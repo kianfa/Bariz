@@ -106,7 +106,7 @@ function BotanicalBranchDecoration({ className }: { className?: string }) {
 
 /**
  * Stylized Abstract Map Background Pattern
- * Evoking a high-end architectural city grid without external API dependencies.
+ * Rendered behind the iframe as instant visual architecture.
  */
 function AbstractMapCanvas() {
   return (
@@ -118,7 +118,6 @@ function AbstractMapCanvas() {
       className="absolute inset-0 size-full select-none opacity-20"
       aria-hidden="true"
     >
-      {/* Background radial soft tint */}
       <defs>
         <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#d9aa64" stopOpacity="0.15" />
@@ -127,7 +126,7 @@ function AbstractMapCanvas() {
       </defs>
       <rect width="100%" height="100%" fill="url(#mapGlow)" />
 
-      {/* City blocks & intersecting streets */}
+      {/* City blocks & street grid */}
       <path
         d="M-20 40 L340 130 M-20 120 L340 30 M80 -20 L240 180 M220 -20 L90 180 M160 -20 L160 180"
         stroke="#d9aa64"
@@ -149,11 +148,14 @@ function AbstractMapCanvas() {
 export function SiteFooter() {
   const { t, language, isRtl } = useLanguage()
 
-  // Real verified office address in Tehran
+  // Verified coordinates and map destination in Tehran
+  const lat = 35.727103
+  const lng = 51.436052
+  const mapAppUrl = 'https://maps.app.goo.gl/TgrXnDnCvsR3o4Mq6'
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
+  const mapEmbedUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed&hl=${language === 'fa' ? 'fa' : 'en'}`
+
   const addressText = t.footer.office.address
-  const encodedAddress = encodeURIComponent('تهران، خیابان سهروردی شمالی، خیابان خلیل حسینی، جنب کوچه تهمتن، پلاک ۲۷')
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`
-  const mapSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`
 
   // Localized copyright year
   const currentYear = new Date().getFullYear()
@@ -250,16 +252,39 @@ export function SiteFooter() {
             </h3>
             <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
 
-            {/* Stylized Location Preview Card */}
-            <div className="relative overflow-hidden rounded-xl border border-gold/25 bg-[#17100b]/80 p-5 shadow-inner backdrop-blur-xs transition-colors hover:border-gold/40">
+            {/* Embedded Google Map Preview Card displaying exact coordinates (35.727103, 51.436052) */}
+            <div className="group relative mt-1 block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-[#17100b] shadow-inner transition-all hover:border-gold/60">
               <AbstractMapCanvas />
 
-              <div className="relative z-10 flex flex-col items-center justify-center py-2 text-center">
-                <MapPin className="mb-2 size-6 text-gold drop-shadow-[0_2px_8px_rgba(217,170,100,0.5)]" />
-                <p className="max-w-[240px] text-xs font-light leading-relaxed text-[#c5b5a2]">
-                  {t.footer.office.previewNotice}
-                </p>
-              </div>
+              <iframe
+                src={mapEmbedUrl}
+                title={language === 'fa' ? 'نقشه موقعیت دفتر مرکزی باریز' : 'Bariz Head Office Map'}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 size-full border-0 opacity-80 invert-[90%] hue-rotate-180 contrast-[110%] brightness-[85%] transition-opacity duration-300 group-hover:opacity-95"
+              />
+
+              {/* Interactive badge & direct click destination */}
+              <a
+                href={mapAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={language === 'fa' ? 'مشاهده روی نقشه گوگل' : 'Open in Google Maps'}
+                className="absolute inset-0 z-10 flex flex-col justify-between p-2.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                <div className="flex items-center justify-end">
+                  <span className="flex items-center gap-1 rounded-md border border-gold/35 bg-[#140e0a]/90 px-2 py-0.5 text-[0.65rem] font-medium text-gold shadow-sm backdrop-blur-xs">
+                    <MapPin className="size-3 text-gold shrink-0" aria-hidden="true" />
+                    <span>35.7271° N, 51.4361° E</span>
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <span className="rounded-md border border-gold/25 bg-[#140e0a]/85 px-2.5 py-1 text-[0.68rem] font-light text-ivory/90 backdrop-blur-xs transition-colors group-hover:border-gold/50 group-hover:text-gold">
+                    {t.footer.office.mapAction} &larr;
+                  </span>
+                </div>
+              </a>
             </div>
 
             {/* Exact Verified Address Display */}
@@ -289,7 +314,7 @@ export function SiteFooter() {
               <div className="hidden h-4 w-px bg-gold/30 sm:block" aria-hidden="true" />
 
               <a
-                href={mapSearchUrl}
+                href={mapAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs font-light text-ivory/85 underline underline-offset-4 decoration-gold/40 transition-colors hover:text-gold hover:decoration-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold sm:text-sm"
