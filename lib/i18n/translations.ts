@@ -110,7 +110,7 @@ export interface FooterTranslations {
   brandStatement: string
   brandDescription: string
   quickAccess: FooterColTranslation
-  customerService: FooterColTranslation
+  customerService?: FooterColTranslation
   office: FooterOfficeTranslation
   copyright: string
   privacyLink: string
