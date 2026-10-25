@@ -185,9 +185,16 @@ export function SiteFooter() {
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:pe-4">
             <a
               href="#top"
-              className="group inline-block w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d9aa64]/80"
+              className="group inline-flex items-center gap-3.5 w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d9aa64]/80"
               aria-label="Bariz"
             >
+              <div className="relative flex shrink-0 items-center justify-center">
+                <img
+                  src="/bariz-bottle-icon.png"
+                  alt=""
+                  className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 group-hover:brightness-110 drop-shadow-[0_2px_10px_rgba(217,170,100,0.2)] sm:h-12 md:h-13"
+                />
+              </div>
               <span className="font-display text-4xl font-normal tracking-wide text-ivory transition-colors group-hover:text-gold sm:text-[2.75rem]">
                 Bar<span className="text-gold">i</span>z
               </span>
