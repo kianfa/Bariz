@@ -179,8 +179,8 @@ export function SiteFooter() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1520px] px-6 pt-16 pb-8 sm:px-8 md:px-12 md:pt-20 md:pb-10 lg:px-16 lg:pt-24 lg:pb-12 xl:px-20">
-        {/* Main 3-column layout */}
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-10 xl:gap-14">
+        {/* Main 4-column layout */}
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 xl:gap-12">
           {/* COLUMN 1 — BRAND IDENTITY (In RTL: Far Right) */}
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:pe-4">
             <a
@@ -203,7 +203,7 @@ export function SiteFooter() {
           </div>
 
           {/* COLUMN 2 — QUICK ACCESS */}
-          <div className="flex flex-col text-start sm:col-span-1 lg:col-span-3 lg:ps-2">
+          <div className="flex flex-col text-start lg:col-span-2">
             <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
               {t.footer.quickAccess.title}
             </h3>
@@ -223,8 +223,29 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* COLUMN 3 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
-          <div className="flex flex-col text-start sm:col-span-1 lg:col-span-5 lg:ps-4">
+          {/* COLUMN 3 — CUSTOMER SERVICE */}
+          <div className="flex flex-col text-start lg:col-span-2">
+            <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
+              {t.footer.customerService.title}
+            </h3>
+            <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
+
+            <ul className="space-y-3">
+              {t.footer.customerService.links.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="inline-block text-xs font-light text-ivory/75 transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 sm:text-sm"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COLUMN 4 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
+          <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:ps-2">
             {/* Embedded Google Map Card displaying exact coordinates (35.727103, 51.436052) */}
             <div className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-[#17100b] shadow-inner transition-all hover:border-gold/60">
               <AbstractMapCanvas />
