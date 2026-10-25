@@ -88,16 +88,33 @@ export interface FinalSceneTranslations {
   imgAlt: string
 }
 
+export interface FooterLinkItem {
+  label: string
+  href: string
+}
+
 export interface FooterColTranslation {
   title: string
-  links: string[]
+  links: FooterLinkItem[]
+}
+
+export interface FooterOfficeTranslation {
+  title: string
+  previewNotice: string
+  address: string
+  routeAction: string
+  mapAction: string
 }
 
 export interface FooterTranslations {
-  brandTagline: string
-  cols: FooterColTranslation[]
+  brandStatement: string
+  brandDescription: string
+  quickAccess: FooterColTranslation
+  customerService: FooterColTranslation
+  office: FooterOfficeTranslation
   copyright: string
-  crafted: string
+  privacyLink: string
+  termsLink: string
 }
 
 export interface ComponentTranslations {
@@ -267,14 +284,38 @@ export const translations: Record<Language, ComponentTranslations> = {
       imgAlt: 'A lush Persian garden with cypress trees and a reflecting pool at golden hour',
     },
     footer: {
-      brandTagline: 'Persian botanical distilled waters. Nature, distilled. Time perfected.',
-      cols: [
-        { title: 'Explore', links: ['Our Story', 'Botanicals', 'Experience'] },
-        { title: 'Collection', links: ['Chicory Water', 'Rose Water', 'Mint Water'] },
-        { title: 'Connect', links: ['Journal', 'Stockists', 'Contact', 'Instagram'] },
-      ],
-      copyright: 'Bariz. All rights reserved.',
-      crafted: 'Crafted in Persia · Distilled by hand',
+      brandStatement: 'Bariz; The essence of nature, with authenticity and elegance.',
+      brandDescription: 'Rooted in authentic Persian botanicals, pure natural essences for your well-being and beauty.',
+      quickAccess: {
+        title: 'Quick Access',
+        links: [
+          { label: 'Home', href: '#top' },
+          { label: 'About Us', href: '#story' },
+          { label: 'Our Story', href: '#story' },
+          { label: 'The Experience', href: '#experience' },
+          { label: 'Contact Us', href: '#contact' },
+        ],
+      },
+      customerService: {
+        title: 'Customer Service',
+        links: [
+          { label: 'FAQ', href: '#faq' },
+          { label: 'Shopping Guide', href: '#guide' },
+          { label: 'Shipping Methods', href: '#shipping' },
+          { label: 'Terms & Conditions', href: '#terms' },
+          { label: 'Privacy Policy', href: '#privacy' },
+        ],
+      },
+      office: {
+        title: 'Bariz Central Office',
+        previewNotice: 'Office location will be displayed upon address registration',
+        address: 'Tehran, North Sohrevardi St., Khalil Hosseini St., Next to Tahamtan Alley, No. 27',
+        routeAction: 'Directions',
+        mapAction: 'View on Map',
+      },
+      copyright: 'All rights reserved for Bariz brand.',
+      privacyLink: 'Privacy Policy',
+      termsLink: 'Terms & Conditions',
     },
   },
   fa: {
@@ -429,14 +470,38 @@ export const translations: Record<Language, ComponentTranslations> = {
       imgAlt: 'باغ مصفای ایرانی با سروهای کهنسال و حوض فیروزه‌ای در غروب طلایی',
     },
     footer: {
-      brandTagline: 'عرقیات گیاهی و اصیل ایرانی. عصاره خالص طبیعت.',
-      cols: [
-        { title: 'کاوش', links: ['داستان ما', 'گیاهان بوستان', 'تجربه چشیدن'] },
-        { title: 'مجموعه', links: ['عرق کاسنی', 'گلاب', 'عرق نعناع'] },
-        { title: 'ارتباط', links: ['مجله باریز', 'فروشگاه‌ها', 'تماس با ما', 'اینستاگرام'] },
-      ],
-      copyright: 'باریز. تمامی حقوق محفوظ است.',
-      crafted: 'تهیه شده در ایران · تقطیر سنتی و دستی',
+      brandStatement: 'باریز؛ عصاره طبیعت، با اصالت و زیبایی.',
+      brandDescription: 'با تکیه بر گیاهان اصیل ایرانی، عصاره‌های طبیعی برای مراقبت از پوست و زیبایی شما.',
+      quickAccess: {
+        title: 'دسترسی سریع',
+        links: [
+          { label: 'صفحه اصلی', href: '#top' },
+          { label: 'درباره ما', href: '#story' },
+          { label: 'داستان باریز', href: '#story' },
+          { label: 'تجربه چشیدن', href: '#experience' },
+          { label: 'تماس با ما', href: '#contact' },
+        ],
+      },
+      customerService: {
+        title: 'خدمات مشتریان',
+        links: [
+          { label: 'سوالات متداول', href: '#faq' },
+          { label: 'راهنمای خرید', href: '#guide' },
+          { label: 'روش‌های ارسال', href: '#shipping' },
+          { label: 'قوانین و مقررات', href: '#terms' },
+          { label: 'حریم خصوصی', href: '#privacy' },
+        ],
+      },
+      office: {
+        title: 'دفتر مرکزی باریز',
+        previewNotice: 'موقعیت دفتر پس از ثبت آدرس نمایش داده می‌شود',
+        address: 'تهران، خیابان سهروردی شمالی، خیابان خلیل حسینی، جنب کوچه تهمتن، پلاک ۲۷',
+        routeAction: 'مسیریابی',
+        mapAction: 'مشاهده روی نقشه',
+      },
+      copyright: 'تمامی حقوق برای برند باریز محفوظ است.',
+      privacyLink: 'حریم خصوصی',
+      termsLink: 'قوانین و مقررات',
     },
   },
 }
