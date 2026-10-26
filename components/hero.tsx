@@ -73,9 +73,6 @@ export function Hero() {
           className="size-full object-cover object-[28%_center] md:object-center"
         />
 
-        {/* Subtle mobile right-side dark gradient to ensure text has maximum luxury contrast */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-background/70 via-background/25 to-transparent md:hidden" />
-
         {/* Video Background Implementation (Preserved for future use) */}
         {/*
         <video
@@ -134,13 +131,13 @@ export function Hero() {
       </aside>
 
       {/* Main copy */}
-      <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 rtl:md:-translate-x-12 md:translate-y-10 md:pl-[18vw] rtl:md:pl-8 rtl:md:pr-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] rtl:lg:-translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw] rtl:lg:pl-8 rtl:lg:pr-[18.5vw]">
+      <div className="relative z-10 flex h-full flex-col justify-center px-4 sm:px-8 md:translate-x-12 rtl:md:-translate-x-12 md:translate-y-10 md:pl-[18vw] rtl:md:pl-8 rtl:md:pr-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] rtl:lg:-translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw] rtl:lg:pl-8 rtl:lg:pr-[18.5vw]">
         <div
-          className="max-w-[42rem] max-md:max-w-[340px] max-md:rounded-2xl max-md:border max-md:border-gold/20 max-md:bg-background/40 max-md:backdrop-blur-md max-md:p-5 max-md:shadow-[0_12px_36px_rgba(0,0,0,0.5)]"
+          className="max-w-[42rem] max-md:ml-auto max-md:mr-0 max-md:max-w-[195px] sm:max-md:max-w-[230px] max-md:rounded-xl max-md:border max-md:border-gold/20 max-md:bg-background/15 max-md:backdrop-blur-[2px] max-md:p-3 sm:max-md:p-4.5"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
         >
           <h1
-            className={`font-display text-[clamp(3.2rem,16vw,4rem)] font-light leading-[0.9] tracking-[0.12em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out md:text-[clamp(5.85rem,9.75vw,10.725rem)] ${
+            className={`font-display text-[clamp(2.6rem,11vw,3.6rem)] font-light leading-[0.92] tracking-[0.08em] text-ivory text-shadow-cinema transition-all duration-[1600ms] ease-out md:text-[clamp(5.85rem,9.75vw,10.725rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -148,7 +145,7 @@ export function Hero() {
           </h1>
 
           <p
-            className={`mt-3 font-display text-[clamp(1.15rem,4.8vw,1.5rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out md:text-[clamp(1.56rem,2.21vw,2.275rem)] ${
+            className={`mt-2 font-display text-[clamp(0.95rem,3.8vw,1.25rem)] font-light uppercase tracking-wide-luxe text-gold transition-all delay-200 duration-[1600ms] ease-out md:mt-3 md:text-[clamp(1.56rem,2.21vw,2.275rem)] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -156,19 +153,19 @@ export function Hero() {
           </p>
 
           <div
-            className={`mt-7 flex w-full max-w-[24rem] items-center transition-all delay-500 duration-[1600ms] ease-out ${
+            className={`mt-4 flex w-full max-w-[14rem] items-center transition-all delay-500 duration-[1600ms] ease-out md:mt-7 md:max-w-[24rem] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
             <span className="h-px flex-1 bg-gradient-to-r from-gold/10 via-gold/45 to-gold/55" />
-            <span className="mx-4 text-[0.55rem] text-gold/65" aria-hidden>
+            <span className="mx-3 text-[0.5rem] text-gold/65 md:mx-4 md:text-[0.55rem]" aria-hidden>
               &#9670;
             </span>
             <span className="h-px flex-1 bg-gradient-to-r from-gold/55 via-gold/35 to-gold/10" />
           </div>
 
           <p
-            className={`mt-6 text-sm font-light uppercase tracking-wide-luxe text-ivory/80 transition-all delay-700 duration-[1600ms] ease-out sm:text-base md:text-[1.3rem] ${
+            className={`mt-3.5 text-xs font-light uppercase tracking-wide-luxe text-ivory/90 transition-all delay-700 duration-[1600ms] ease-out sm:text-base md:mt-6 md:text-[1.3rem] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
@@ -177,13 +174,13 @@ export function Hero() {
 
           <a
             href="#story"
-            className={`group mt-11 inline-flex items-center gap-4 text-xs font-light uppercase tracking-luxe text-gold md:text-[0.975rem] transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory ${
+            className={`group mt-6 inline-flex items-center gap-2.5 text-[0.75rem] font-light uppercase tracking-luxe text-gold transition-all delay-1000 duration-[1600ms] ease-out hover:text-ivory sm:text-xs md:mt-11 md:gap-4 md:text-[0.975rem] ${
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
             }`}
           >
-            {t.hero.cta}
-            <span className="flex size-10 items-center justify-center rounded-full border border-gold/50 transition-all group-hover:border-ivory group-hover:bg-gold/10 md:size-11">
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+            <span>{t.hero.cta}</span>
+            <span className="flex size-7 items-center justify-center rounded-full border border-gold/50 transition-all group-hover:border-ivory group-hover:bg-gold/10 sm:size-8 md:size-11">
+              <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5 md:size-4" />
             </span>
           </a>
         </div>

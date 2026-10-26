@@ -190,7 +190,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       },
       title: 'BARIZ',
       subtitle: 'Nature, Distilled.',
-      tagline: 'Persian Botanical Distilled Waters',
+      tagline: 'Botanical Distilled Waters',
       cta: 'Discover Our World',
     },
     story: {
@@ -418,7 +418,7 @@ export const translations: Record<Language, ComponentTranslations> = {
       },
       title: 'باریز',
       subtitle: 'عصاره خالص طبیعت.',
-      tagline: 'نوشیدنی اصیل و سنتی گیاهی ایران',
+      tagline: 'نوشیدنی اصیل و سنتی گیاهی',
       cta: 'کشف دنیای باریز',
     },
     story: {
