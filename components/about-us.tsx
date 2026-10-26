@@ -10,7 +10,7 @@ function BotanicalAccent({ className }: { className?: string }) {
       viewBox="0 0 240 360"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn('pointer-events-none select-none text-[#d9aa64]', className)}
+      className={cn('pointer-events-none select-none text-gold', className)}
       aria-hidden="true"
     >
       <path
@@ -84,12 +84,12 @@ export function AboutUs() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden bg-gradient-to-b from-background via-[#16100c] to-[#120d09] px-6 py-24 sm:px-10 sm:py-32 md:py-36 lg:py-44 text-ivory scroll-mt-20"
+      className="relative overflow-hidden bg-background px-6 py-24 sm:px-10 sm:py-32 md:py-36 lg:py-44 text-ivory scroll-mt-20"
       aria-label={t.aboutUs.heading}
     >
       {/* Ambient warm champagne gold glow in the background */}
       <div
-        className="pointer-events-none absolute -top-40 right-1/4 -z-0 size-[550px] rounded-full bg-[#d9aa64]/5 blur-[140px]"
+        className="pointer-events-none absolute -top-40 right-1/4 -z-0 size-[550px] rounded-full bg-gold/5 blur-[140px]"
         aria-hidden="true"
       />
 
@@ -151,7 +151,7 @@ export function AboutUs() {
           {/* Heritage Milestones Column (In RTL: Left side) */}
           <div className="flex flex-col text-start lg:col-span-5 xl:col-span-5 lg:sticky lg:top-28">
             <Reveal delay={200}>
-              <div className="relative rounded-2xl border border-gold/25 bg-[#18110b]/75 p-6 sm:p-8 md:p-9 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-md">
+              <div className="relative rounded-2xl border border-gold/25 bg-background/85 p-6 sm:p-8 md:p-9 shadow-[0_16px_50px_rgba(0,0,0,0.35)] backdrop-blur-md">
                 {/* Header of Milestones panel */}
                 <div className="flex items-center gap-2 border-b border-gold/20 pb-5">
                   <span className="text-xs text-gold/80" aria-hidden="true">
@@ -172,7 +172,7 @@ export function AboutUs() {
                       <h3 className="mt-1.5 text-base font-medium text-ivory sm:text-lg">
                         {item.label}
                       </h3>
-                      <p className="mt-1 text-xs font-light leading-relaxed text-[#bfae9b] sm:text-sm">
+                      <p className="mt-1 text-xs font-light leading-relaxed text-ivory/70 sm:text-sm">
                         {item.sublabel}
                       </p>
                     </div>

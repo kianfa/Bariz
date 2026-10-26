@@ -14,7 +14,7 @@ function BotanicalBranchDecoration({ className }: { className?: string }) {
       viewBox="0 0 240 360"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn('pointer-events-none select-none text-[#d9aa64]', className)}
+      className={cn('pointer-events-none select-none text-gold', className)}
       aria-hidden="true"
     >
       {/* Main graceful arching stem */}
@@ -120,8 +120,8 @@ function AbstractMapCanvas() {
     >
       <defs>
         <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#d9aa64" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#120d0a" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--gold)" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="var(--background)" stopOpacity="0" />
         </radialGradient>
       </defs>
       <rect width="100%" height="100%" fill="url(#mapGlow)" />
@@ -129,18 +129,18 @@ function AbstractMapCanvas() {
       {/* City blocks & street grid */}
       <path
         d="M-20 40 L340 130 M-20 120 L340 30 M80 -20 L240 180 M220 -20 L90 180 M160 -20 L160 180"
-        stroke="#d9aa64"
+        stroke="var(--gold)"
         strokeWidth="1.2"
         strokeDasharray="4 2"
       />
       <path
         d="M20 20 L90 20 L90 80 L20 80 Z M130 30 L210 30 L190 75 L130 65 Z M40 100 L110 100 L120 145 L50 145 Z M180 95 L270 95 L250 145 L170 140 Z"
-        stroke="#d9aa64"
+        stroke="var(--gold)"
         strokeWidth="0.8"
         strokeOpacity="0.6"
       />
-      <circle cx="160" cy="80" r="28" stroke="#d9aa64" strokeWidth="0.75" strokeOpacity="0.5" strokeDasharray="2 3" />
-      <circle cx="160" cy="80" r="14" stroke="#d9aa64" strokeWidth="0.9" strokeOpacity="0.7" />
+      <circle cx="160" cy="80" r="28" stroke="var(--gold)" strokeWidth="0.75" strokeOpacity="0.5" strokeDasharray="2 3" />
+      <circle cx="160" cy="80" r="14" stroke="var(--gold)" strokeWidth="0.9" strokeOpacity="0.7" />
     </svg>
   )
 }
@@ -188,7 +188,7 @@ export function SiteFooter() {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden border-t border-[#d9aa64]/20 bg-[#120d09] text-[#f7f4ed] scroll-mt-20"
+      className="relative overflow-hidden border-t border-gold/20 bg-background text-ivory scroll-mt-20"
       aria-label={language === 'fa' ? 'پاورقی وب‌سایت باریز' : 'Bariz Website Footer'}
     >
       {/* Delicate botanical line-art illustration on bottom-right corner */}
@@ -208,7 +208,7 @@ export function SiteFooter() {
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:pe-4">
             <a
               href="#top"
-              className="group inline-flex items-center gap-3.5 w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d9aa64]/80"
+              className="group inline-flex items-center gap-3.5 w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/80"
               aria-label="Bariz"
             >
               <div className="relative flex shrink-0 items-center justify-center">
@@ -225,7 +225,7 @@ export function SiteFooter() {
               {t.footer.brandStatement}
             </p>
 
-            <p className="mt-3 max-w-sm text-xs font-light leading-relaxed text-[#bfae9b] sm:text-sm">
+            <p className="mt-3 max-w-sm text-xs font-light leading-relaxed text-ivory/70 sm:text-sm">
               {t.footer.brandDescription}
             </p>
           </div>
@@ -275,7 +275,7 @@ export function SiteFooter() {
           {/* COLUMN 4 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:ps-2">
             {/* Embedded Google Map Card displaying exact coordinates (35.727103, 51.436052) */}
-            <div className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-[#17100b] shadow-inner transition-all hover:border-gold/60">
+            <div className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-background shadow-inner transition-all hover:border-gold/60">
               <AbstractMapCanvas />
 
               <iframe
@@ -295,14 +295,14 @@ export function SiteFooter() {
                 className="absolute inset-0 z-10 flex flex-col justify-between p-2.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
               >
                 <div className="flex items-center justify-end">
-                  <span className="flex items-center gap-1 rounded-md border border-gold/35 bg-[#140e0a]/90 px-2 py-0.5 text-[0.65rem] font-medium text-gold shadow-sm backdrop-blur-xs">
+                  <span className="flex items-center gap-1 rounded-md border border-gold/35 bg-background/90 px-2 py-0.5 text-[0.65rem] font-medium text-gold shadow-sm backdrop-blur-xs">
                     <MapPin className="size-3 text-gold shrink-0" aria-hidden="true" />
                     <span>35.7271° N, 51.4361° E</span>
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="rounded-md border border-gold/25 bg-[#140e0a]/85 px-2.5 py-1 text-[0.68rem] font-light text-ivory/90 backdrop-blur-xs transition-colors group-hover:border-gold/50 group-hover:text-gold">
+                  <span className="rounded-md border border-gold/25 bg-background/85 px-2.5 py-1 text-[0.68rem] font-light text-ivory/90 backdrop-blur-xs transition-colors group-hover:border-gold/50 group-hover:text-gold">
                     {t.footer.office.mapAction} &larr;
                   </span>
                 </div>

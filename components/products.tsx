@@ -93,10 +93,10 @@ function NavButton({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        'flex size-7.5 lg:size-[clamp(1.75rem,2.8vh,2.35rem)] items-center justify-center rounded-full border border-gold/40 bg-[rgba(12,14,12,0.55)] text-ivory/80 backdrop-blur-md transition-[color,border-color,opacity,background-color] duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70',
+        'flex size-7.5 lg:size-[clamp(1.75rem,2.8vh,2.35rem)] items-center justify-center rounded-full border border-gold/40 bg-background/55 text-ivory/80 backdrop-blur-md transition-[color,border-color,opacity,background-color] duration-300 motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70',
         disabled
           ? 'cursor-default opacity-25'
-          : 'hover:border-gold/65 hover:bg-[rgba(12,14,12,0.7)] hover:text-gold',
+          : 'hover:border-gold/65 hover:bg-background/80 hover:text-gold',
       )}
     >
       <svg
@@ -175,7 +175,7 @@ export function Products() {
   return (
     <section
       id="products"
-      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center overflow-hidden scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28 py-10 md:py-14 lg:py-12 xl:py-16 bg-[rgb(26,19,14)] text-ivory"
+      className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center overflow-hidden scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28 py-10 md:py-14 lg:py-12 xl:py-16 bg-background text-ivory"
     >
       {/* Background full-bleed photography canvas */}
       <div
@@ -208,16 +208,16 @@ export function Products() {
           className={cn(
             'absolute inset-y-0 z-10 w-[50%]',
             isRtl
-              ? 'right-0 bg-gradient-to-l from-[rgb(26,19,14)] via-[rgb(26,19,14)]/95 via-35% via-[rgb(26,19,14)]/65 via-65% via-[rgb(26,19,14)]/20 via-88% to-transparent'
-              : 'left-0 bg-gradient-to-r from-[rgb(26,19,14)] via-[rgb(26,19,14)]/95 via-35% via-[rgb(26,19,14)]/65 via-65% via-[rgb(26,19,14)]/20 via-88% to-transparent',
+              ? 'right-0 bg-gradient-to-l from-background via-background/95 via-35% via-background/65 via-65% via-background/20 via-88% to-transparent'
+              : 'left-0 bg-gradient-to-r from-background via-background/95 via-35% via-background/65 via-65% via-background/20 via-88% to-transparent',
           )}
         />
         <div
           className={cn(
             'absolute inset-y-0 z-10 w-[32%]',
             isRtl
-              ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,rgb(26,19,14)_0%,rgba(26,19,14,0.6)_50%,transparent_95%)]'
-              : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,rgb(26,19,14)_0%,rgba(26,19,14,0.6)_50%,transparent_95%)]',
+              ? 'right-0 bg-[radial-gradient(ellipse_120%_100%_at_100%_50%,var(--background)_0%,color-mix(in_srgb,var(--background)_60%,transparent)_50%,transparent_95%)]'
+              : 'left-0 bg-[radial-gradient(ellipse_120%_100%_at_0%_50%,var(--background)_0%,color-mix(in_srgb,var(--background)_60%,transparent)_50%,transparent_95%)]',
           )}
         />
         <div
@@ -230,8 +230,8 @@ export function Products() {
         />
 
         {/* Top & bottom subtle transitions */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background via-[rgb(26,19,14)]/70 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-background via-background/70 to-transparent z-20" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background via-background/70 to-transparent z-20" />
       </div>
 
       <div
