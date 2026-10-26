@@ -70,7 +70,7 @@ export function Hero() {
         <img
           src="/Bariz_hero2.webp"
           alt=""
-          className="size-full object-cover object-[28%_center] md:object-center"
+          className="size-full object-cover object-[23%_center] md:object-center"
         />
 
         {/* Video Background Implementation (Preserved for future use) */}
@@ -87,7 +87,7 @@ export function Hero() {
           onLoadedData={handleVideoReady}
           onCanPlay={handleVideoReady}
           onError={handleVideoError}
-          className={`size-full object-cover object-[28%_center] md:object-center ${
+          className={`size-full object-cover object-[23%_center] md:object-center ${
             videoReady ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -133,7 +133,7 @@ export function Hero() {
       {/* Main copy */}
       <div className="relative z-10 flex h-full flex-col justify-center px-4 sm:px-8 md:translate-x-12 rtl:md:-translate-x-12 md:translate-y-10 md:pl-[18vw] rtl:md:pl-8 rtl:md:pr-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] rtl:lg:-translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw] rtl:lg:pl-8 rtl:lg:pr-[18.5vw]">
         <div
-          className="max-w-[42rem] max-md:ml-auto max-md:mr-0 max-md:max-w-[195px] sm:max-md:max-w-[230px] max-md:rounded-xl max-md:border max-md:border-gold/20 max-md:bg-background/15 max-md:backdrop-blur-[2px] max-md:p-3 sm:max-md:p-4.5"
+          className="max-w-[42rem] max-md:ml-auto max-md:mr-0 max-md:max-w-[195px] sm:max-md:max-w-[230px] max-md:rounded-xl max-md:border max-md:border-gold/20 max-md:bg-background/25 max-md:backdrop-blur-[2.5px] max-md:p-3 sm:max-md:p-4.5"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
         >
           <h1
