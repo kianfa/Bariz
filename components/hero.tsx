@@ -70,8 +70,11 @@ export function Hero() {
         <img
           src="/Bariz_hero2.webp"
           alt=""
-          className="size-full object-cover object-[20%_center] md:object-center"
+          className="size-full object-cover object-[28%_center] md:object-center"
         />
+
+        {/* Subtle mobile right-side dark gradient to ensure text has maximum luxury contrast */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-l from-background/70 via-background/25 to-transparent md:hidden" />
 
         {/* Video Background Implementation (Preserved for future use) */}
         {/*
@@ -87,7 +90,7 @@ export function Hero() {
           onLoadedData={handleVideoReady}
           onCanPlay={handleVideoReady}
           onError={handleVideoError}
-          className={`size-full object-cover object-[20%_center] md:object-center ${
+          className={`size-full object-cover object-[28%_center] md:object-center ${
             videoReady ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -133,7 +136,7 @@ export function Hero() {
       {/* Main copy */}
       <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-10 md:translate-x-12 rtl:md:-translate-x-12 md:translate-y-10 md:pl-[18vw] rtl:md:pl-8 rtl:md:pr-[18vw] md:pr-8 lg:translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] rtl:lg:-translate-x-[clamp(-2.75rem,-3vw,-1.9rem)] lg:translate-y-12 lg:pl-[18.5vw] rtl:lg:pl-8 rtl:lg:pr-[18.5vw]">
         <div
-          className="max-w-[42rem]"
+          className="max-w-[42rem] max-md:max-w-[340px] max-md:rounded-2xl max-md:border max-md:border-gold/20 max-md:bg-background/40 max-md:backdrop-blur-md max-md:p-5 max-md:shadow-[0_12px_36px_rgba(0,0,0,0.5)]"
           style={{ opacity: fade, transform: `translateY(${offset * 0.12}px)` }}
         >
           <h1
