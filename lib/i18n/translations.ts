@@ -117,6 +117,22 @@ export interface FooterTranslations {
   termsLink: string
 }
 
+export interface AboutUsMilestone {
+  value: string
+  label: string
+  sublabel: string
+}
+
+export interface AboutUsTranslations {
+  eyebrow: string
+  heading: string
+  intro: string
+  paragraphs: [string, string, string]
+  closing: string
+  milestoneTitle: string
+  milestones: AboutUsMilestone[]
+}
+
 export interface ComponentTranslations {
   nav: NavTranslations
   hero: HeroTranslations
@@ -126,6 +142,7 @@ export interface ComponentTranslations {
   experience: ExperienceTranslations
   products: ProductsTranslations
   finalScene: FinalSceneTranslations
+  aboutUs: AboutUsTranslations
   footer: FooterTranslations
 }
 
@@ -283,6 +300,40 @@ export const translations: Record<Language, ComponentTranslations> = {
       heading: 'Bring Nature Closer.',
       imgAlt: 'A lush Persian garden with cypress trees and a reflecting pool at golden hour',
     },
+    aboutUs: {
+      eyebrow: 'The Bariz Story',
+      heading: 'Bariz; From the Heart of Experience, for Health',
+      intro: 'Behind every enduring brand lies years of experience, trust, and commitment; Bariz is the story of this journey.',
+      paragraphs: [
+        'The roots of this enterprise trace back to one of the earliest wholesale establishments in the city of Sirjan—a journey shaped by more than 30 years of family enterprise in wholesale commerce. Continuing on this path, for more than 25 years we have operated as the representative and distributor of over 20 reputable Iranian food brands across northern Kerman province, pursuing this voyage with unwavering commitment and trust; an invaluable experience that taught us the greatest asset of any enterprise is the people’s trust.',
+        'In the year 2020 (1399), grounded in this rich foundation and with a singular purpose, we founded Bariz—a brand born to create health-centered, natural, and premium products worthy of Iranian family tables. To realize this goal, the Bariz factory was established in Meymand, Fars Province—one of Iran’s renowned centers for botanical waters and herbal distillates—and today produces a distinct collection of herbal drinks inspired by nature in authentic, delicate flavors.',
+        'For us, Bariz is not merely a brand; it is the continuation of a path built across generations on honesty, quality, and reverence for consumer choice. This enduring conviction guides our vision to develop new botanical creations and build a healthier future.',
+      ],
+      closing: 'Bariz; Trust of Generations, a Taste for Today',
+      milestoneTitle: 'Heritage & Milestones',
+      milestones: [
+        {
+          value: '30+ Years',
+          label: 'Family Enterprise',
+          sublabel: 'Pioneering wholesale roots in Sirjan',
+        },
+        {
+          value: '25+ Years',
+          label: 'Distribution & Trust',
+          sublabel: 'Distributing 20+ leading Iranian food brands',
+        },
+        {
+          value: 'Est. 2020',
+          label: 'Founding of Bariz',
+          sublabel: 'Dedicated to natural, health-driven wellness',
+        },
+        {
+          value: 'Meymand, Fars',
+          label: 'Production Factory',
+          sublabel: 'Iran’s historic botanical distillation hub',
+        },
+      ],
+    },
     footer: {
       brandStatement: 'Bariz; The essence of nature, with authenticity and elegance.',
       brandDescription: 'Rooted in authentic Persian botanicals, pure natural essences for your well-being and beauty.',
@@ -290,7 +341,7 @@ export const translations: Record<Language, ComponentTranslations> = {
         title: 'Quick Access',
         links: [
           { label: 'Home', href: '#top' },
-          { label: 'About Us', href: '#story' },
+          { label: 'About Us', href: '#about' },
           { label: 'Our Story', href: '#story' },
           { label: 'The Experience', href: '#experience' },
           { label: 'The Collection', href: '#products' },
@@ -470,6 +521,40 @@ export const translations: Record<Language, ComponentTranslations> = {
       heading: 'باریز طعمی از قلب طبیعت',
       imgAlt: 'باغ مصفای ایرانی با سروهای کهنسال و حوض فیروزه‌ای در غروب طلایی',
     },
+    aboutUs: {
+      eyebrow: 'داستان باریز',
+      heading: 'باریز؛ از دل تجربه، برای سلامت',
+      intro: 'پشت هر برند ماندگار، سالها تجربه، اعتماد و تعهد نهفته است؛ باریز، روایت همین مسیر است.',
+      paragraphs: [
+        'ریشههای این مجموعه به یکی از نخستین عمدهفروشیهای شهر سیرجان بازمیگردد؛ مسیری که با بیش از ۳۰ سال فعالیت خانوادگی در حوزه بنکداری شکل گرفت. در ادامه این راه، بیش از ۲۵ سال است که بهعنوان نماینده و توزیعکننده بیش از ۲۰ برند معتبر صنایع غذایی ایران، در شمال استان کرمان فعالیت میکنیم و همچنان این مسیر را با همان تعهد و اعتماد ادامه میدهیم؛ تجربهای ارزشمند که به ما آموخت بزرگترین سرمایه هر کسبوکار، اعتماد مردم است.',
+        'در سال ۱۳۹۹، با تکیه بر همین تجربه و با یک هدف روشن، باریز را بنیان نهادیم؛ برندی که با هدف تولید محصولات سلامتمحور، طبیعی و باکیفیت متولد شد تا محصولاتی شایسته سفره خانوادههای ایرانی ارائه کند. برای تحقق این هدف، کارخانه باریز در شهر میمند استان فارس، یکی از قطبهای شناختهشده تولید عرقیات و فرآوردههای گیاهی ایران، تأسیس شد و امروز مجموعهای از نوشیدنیهای گیاهی را با الهام از طبیعت، در طعمهایی اصیل و متفاوت تولید میکند.',
+        'برای ما، باریز تنها یک برند نیست؛ ادامه راهی است که نسلها بر پایه صداقت، کیفیت و احترام به انتخاب مصرفکننده بنا شده است. این باور، مسیر ما را برای توسعه محصولات جدید و ساختن آیندهای سالمتر روشن میکند.',
+      ],
+      closing: 'باریز؛ اعتماد چند نسل، طعمی برای امروز',
+      milestoneTitle: 'میراث و نقاط عطف باریز',
+      milestones: [
+        {
+          value: '۳۰+ سال',
+          label: 'تجربه خانوادگی',
+          sublabel: 'از نخستین عمده‌فروشی‌های شهر سیرجان',
+        },
+        {
+          value: '۲۵+ سال',
+          label: 'فعالیت در توزیع',
+          sublabel: 'نمایندگی بیش از ۲۰ برند معتبر غذایی ایران',
+        },
+        {
+          value: 'سال ۱۳۹۹',
+          label: 'بنیان‌گذاری باریز',
+          sublabel: 'تولید محصولات سلامت‌محور، طبیعی و باکیفیت',
+        },
+        {
+          value: 'میمند فارس',
+          label: 'کارخانه باریز',
+          sublabel: 'قطب شناخته‌شده عرقیات و نوشیدنی‌های اصیل ایران',
+        },
+      ],
+    },
     footer: {
       brandStatement: 'باریز طعمی از قلب طبیعت',
       brandDescription: 'با تکیه بر گیاهان اصیل ایرانی، عصاره‌های طبیعی برای مراقبت از پوست و زیبایی شما.',
@@ -477,7 +562,7 @@ export const translations: Record<Language, ComponentTranslations> = {
         title: 'دسترسی سریع',
         links: [
           { label: 'صفحه اصلی', href: '#top' },
-          { label: 'درباره ما', href: '#story' },
+          { label: 'درباره ما', href: '#about' },
           { label: 'داستان باریز', href: '#story' },
           { label: 'تجربه چشیدن', href: '#experience' },
           { label: 'مجموعه نوشیدنی‌ها', href: '#products' },

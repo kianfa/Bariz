@@ -7,6 +7,7 @@ import { Botanicals } from '@/components/botanicals'
 import { Experience } from '@/components/experience'
 import { Products } from '@/components/products'
 import { FinalScene } from '@/components/final-scene'
+import { AboutUs } from '@/components/about-us'
 import { SiteFooter } from '@/components/site-footer'
 
 export default function Page() {
@@ -21,6 +22,7 @@ export default function Page() {
       <Experience />
       <Products />
       <FinalScene />
+      <AboutUs />
       <SiteFooter />
     </main>
   )
