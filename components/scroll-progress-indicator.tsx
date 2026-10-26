@@ -55,14 +55,18 @@ export function ScrollProgressIndicator() {
   const [progress, setProgress] = useState(0)
   const [pos, setPos] = useState<Position | null>(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [isInHero, setIsInHero] = useState(true)
   const [isIdle, setIsIdle] = useState(false)
   const [isInteracting, setIsInteracting] = useState(false)
-  const [isDragging, setIsDragging] = useState(false)
+  const [isDraggingWidget, setIsDraggingWidget] = useState(false)
+  const [isScrubbing, setIsScrubbing] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
 
   const idleTimerRef = useRef<NodeJS.Timeout | null>(null)
   const trackRef = useRef<HTMLDivElement | null>(null)
-  const pointerStateRef = useRef<{
+
+  // Medallion drag state (moves the widget position)
+  const medallionPointerRef = useRef<{
     pointerId: number
     startX: number
     startY: number
@@ -71,12 +75,19 @@ export function ScrollProgressIndicator() {
     hasMoved: boolean
   } | null>(null)
 
+  // Scrubber drag state (scrolls the page)
+  const scrubberPointerRef = useRef<{
+    pointerId: number
+  } | null>(null)
+
   const trackHeight = isMobile ? MOBILE_TRACK_HEIGHT : DESKTOP_TRACK_HEIGHT
-  const beadDiameter = isMobile ? 18 : BEAD_SIZE
+  const beadDiameter = isMobile ? 16 : BEAD_SIZE
   const travelDistance = Math.max(0, trackHeight - beadDiameter)
   const beadTop = progress * travelDistance
   const fillHeight = beadTop + beadDiameter / 2
   const widgetHeight = trackHeight + 118
+
+  const isNearRightEdge = pos ? pos.x > window.innerWidth / 2 : true
 
   const resetIdleTimer = useCallback(() => {
     setIsIdle(false)
@@ -126,7 +137,7 @@ export function ScrollProgressIndicator() {
     } catch {}
 
     // Default position: fixed near right edge on desktop, right side on mobile
-    const defaultX = window.innerWidth - WIDGET_WIDTH - (mobileCheck ? 14 : 26)
+    const defaultX = window.innerWidth - WIDGET_WIDTH - (mobileCheck ? 10 : 26)
     const defaultY = Math.max(
       SAFE_MARGIN_Y_TOP,
       Math.round((window.innerHeight - wHeight) / 2),
@@ -134,7 +145,7 @@ export function ScrollProgressIndicator() {
     setPos({ x: defaultX, y: defaultY })
   }, [])
 
-  // Document scroll progress listener & ResizeObserver
+  // Document scroll progress listener & Hero detection
   useEffect(() => {
     if (!mounted) return
 
@@ -146,6 +157,10 @@ export function ScrollProgressIndicator() {
         document.documentElement.scrollHeight || document.body.scrollHeight || 0
       const winHeight = window.innerHeight || 0
       const scrollable = docHeight - winHeight
+
+      // Check if user is currently inside the Hero section (top viewport)
+      const heroThreshold = winHeight * 0.72
+      setIsInHero(scrollTop < heroThreshold)
 
       const p = scrollable > 0 ? clamp(scrollTop / scrollable, 0, 1) : 0
       setProgress(p)
@@ -205,13 +220,14 @@ export function ScrollProgressIndicator() {
     }
   }, [mounted, resetIdleTimer])
 
-  // Pointer dragging handlers
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+  // 1. MEDALLION DRAG HANDLERS (Moves the entire widget across screen)
+  const handleMedallionPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return
     if ((e.target as HTMLElement).closest('[data-no-drag]')) return
 
+    e.stopPropagation()
     e.currentTarget.setPointerCapture(e.pointerId)
-    pointerStateRef.current = {
+    medallionPointerRef.current = {
       pointerId: e.pointerId,
       startX: e.clientX,
       startY: e.clientY,
@@ -220,10 +236,11 @@ export function ScrollProgressIndicator() {
       hasMoved: false,
     }
     setIsInteracting(true)
+    resetIdleTimer()
   }
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const state = pointerStateRef.current
+  const handleMedallionPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const state = medallionPointerRef.current
     if (!state || state.pointerId !== e.pointerId) return
 
     const dx = e.clientX - state.startX
@@ -231,7 +248,7 @@ export function ScrollProgressIndicator() {
 
     if (!state.hasMoved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) {
       state.hasMoved = true
-      setIsDragging(true)
+      setIsDraggingWidget(true)
     }
 
     if (state.hasMoved) {
@@ -250,8 +267,8 @@ export function ScrollProgressIndicator() {
     }
   }
 
-  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    const state = pointerStateRef.current
+  const handleMedallionPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const state = medallionPointerRef.current
     if (state && state.pointerId === e.pointerId) {
       try {
         e.currentTarget.releasePointerCapture(e.pointerId)
@@ -263,18 +280,75 @@ export function ScrollProgressIndicator() {
         } catch {}
       }
 
-      pointerStateRef.current = null
+      medallionPointerRef.current = null
       setTimeout(() => {
-        setIsDragging(false)
+        setIsDraggingWidget(false)
       }, 50)
       setIsInteracting(false)
       resetIdleTimer()
     }
   }
 
-  // Click on track to jump
+  // 2. SCRUBBER DRAG HANDLERS (Grabbing the bead fast-scrolls the document page)
+  const applyScrubToPosition = (clientY: number) => {
+    const trackEl = trackRef.current
+    if (!trackEl) return
+    const rect = trackEl.getBoundingClientRect()
+    const relativeY = clientY - rect.top
+    const newProgress = clamp(relativeY / rect.height, 0, 1)
+
+    const docHeight =
+      document.documentElement.scrollHeight || document.body.scrollHeight || 0
+    const winHeight = window.innerHeight || 0
+    const scrollable = docHeight - winHeight
+
+    if (scrollable > 0) {
+      window.scrollTo({
+        top: newProgress * scrollable,
+        behavior: 'auto',
+      })
+      setProgress(newProgress)
+    }
+  }
+
+  const handleScrubberPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+
+    e.stopPropagation()
+    e.currentTarget.setPointerCapture(e.pointerId)
+    scrubberPointerRef.current = {
+      pointerId: e.pointerId,
+    }
+    setIsScrubbing(true)
+    setIsInteracting(true)
+    resetIdleTimer()
+
+    applyScrubToPosition(e.clientY)
+  }
+
+  const handleScrubberPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const state = scrubberPointerRef.current
+    if (!state || state.pointerId !== e.pointerId) return
+    e.preventDefault()
+    applyScrubToPosition(e.clientY)
+  }
+
+  const handleScrubberPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    const state = scrubberPointerRef.current
+    if (state && state.pointerId === e.pointerId) {
+      try {
+        e.currentTarget.releasePointerCapture(e.pointerId)
+      } catch {}
+      scrubberPointerRef.current = null
+      setIsScrubbing(false)
+      setIsInteracting(false)
+      resetIdleTimer()
+    }
+  }
+
+  // Click on track to smoothly jump to that location
   const handleTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isDragging) return
+    if (isScrubbing || isDraggingWidget) return
     const rect = trackRef.current?.getBoundingClientRect()
     if (!rect) return
     const clickY = e.clientY - rect.top
@@ -293,12 +367,17 @@ export function ScrollProgressIndicator() {
     }
   }
 
-  // Scroll down one viewport upon clicking chevron
-  const handleScrollDown = (e: React.MouseEvent) => {
+  // Click on "تا انتها اسکرول کنید" scrolls smoothly all the way to bottom of page
+  const handleScrollToBottom = (e: React.MouseEvent) => {
     e.stopPropagation()
-    if (isDragging) return
-    window.scrollBy({
-      top: window.innerHeight * 0.75,
+    if (isDraggingWidget || isScrubbing) return
+    const docHeight =
+      document.documentElement.scrollHeight || document.body.scrollHeight || 0
+    const winHeight = window.innerHeight || 0
+    const maxScroll = Math.max(0, docHeight - winHeight)
+
+    window.scrollTo({
+      top: maxScroll,
       behavior: 'smooth',
     })
   }
@@ -327,14 +406,16 @@ export function ScrollProgressIndicator() {
       ? `${new Intl.NumberFormat('fa-IR').format(percentNumber)}٪`
       : `${percentNumber}%`
 
-  // Render minimized dock tab when user hides the widget
+  // Render minimized dock tab when user hides the widget (only outside hero)
   if (isHidden) {
+    if (isInHero) return null
+
     return (
       <button
         type="button"
         onClick={restoreWidget}
         className={cn(
-          'fixed z-40 flex items-center gap-1.5 rounded-full border border-gold/45 bg-background/95 px-2.5 py-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold',
+          'fixed z-40 flex items-center gap-1.5 rounded-full border border-gold/45 bg-background/95 px-2.5 py-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300 hover:border-gold hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold max-md:scale-[0.80] max-md:origin-center',
           isIdle
             ? 'opacity-40 hover:opacity-100'
             : 'opacity-90 hover:opacity-100',
@@ -365,10 +446,6 @@ export function ScrollProgressIndicator() {
         '{percent}',
         String(percentNumber),
       )}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
       onMouseEnter={() => {
         setIsInteracting(true)
         setIsIdle(false)
@@ -379,16 +456,18 @@ export function ScrollProgressIndicator() {
       }}
       className={cn(
         'fixed z-40 flex w-14 flex-col items-center select-none touch-none',
-        isDragging
-          ? 'cursor-grabbing opacity-100 scale-105'
-          : 'cursor-grab',
-        // Idle opacity transition
-        !isDragging &&
-          (isInteracting
-            ? 'opacity-100 scale-100 duration-150'
-            : isIdle
-              ? 'opacity-35 scale-[0.98] duration-500 ease-out hover:opacity-100 hover:scale-100'
-              : 'opacity-90 scale-100 duration-150'),
+        // 20% smaller on mobile as requested
+        'max-md:scale-[0.80] max-md:origin-center',
+        // Hidden when in the Hero section
+        isInHero
+          ? 'opacity-0 pointer-events-none translate-y-3'
+          : isDraggingWidget || isScrubbing
+            ? 'opacity-100 scale-100 max-md:scale-[0.80]'
+            : isInteracting
+              ? 'opacity-100 scale-100 max-md:scale-[0.80] duration-150'
+              : isIdle
+                ? 'opacity-35 scale-[0.98] max-md:scale-[0.78] duration-500 ease-out hover:opacity-100 hover:scale-100 max-md:hover:scale-[0.80]'
+                : 'opacity-90 scale-100 max-md:scale-[0.80] duration-150',
         'transition-[opacity,transform] motion-reduce:transition-none',
       )}
       style={{
@@ -402,8 +481,18 @@ export function ScrollProgressIndicator() {
         <span className="my-1.5 h-3.5 w-px bg-gradient-to-b from-transparent via-gold/50 to-gold/70" />
       </div>
 
-      {/* Top Circular Badge with "B" Monogram & Compass Crosshair Ticks */}
-      <div className="relative group/badge flex items-center justify-center">
+      {/* Top Circular Badge with "B" Monogram (Reposition handle) */}
+      <div
+        onPointerDown={handleMedallionPointerDown}
+        onPointerMove={handleMedallionPointerMove}
+        onPointerUp={handleMedallionPointerUp}
+        onPointerCancel={handleMedallionPointerUp}
+        className={cn(
+          'relative group/badge flex items-center justify-center cursor-grab active:cursor-grabbing',
+          isDraggingWidget && 'cursor-grabbing',
+        )}
+        title={language === 'fa' ? 'برای جابه‌جایی نشانگر بکشید' : 'Drag to reposition'}
+      >
         {/* Compass Crosshair Ticks */}
         <span className="pointer-events-none absolute -top-1 left-1/2 -translate-x-1/2 h-1 w-px bg-gold/70" aria-hidden="true" />
         <span className="pointer-events-none absolute -bottom-1 left-1/2 -translate-x-1/2 h-1 w-px bg-gold/70" aria-hidden="true" />
@@ -414,8 +503,8 @@ export function ScrollProgressIndicator() {
         <div
           className={cn(
             'flex size-11 sm:size-12 items-center justify-center rounded-full border border-gold/55 bg-background/95 backdrop-blur-md transition-all duration-200',
-            isDragging
-              ? 'border-gold shadow-[0_0_20px_rgba(216,153,78,0.55),0_4px_20px_rgba(0,0,0,0.65)]'
+            isDraggingWidget
+              ? 'border-gold shadow-[0_0_20px_rgba(216,153,78,0.55),0_4px_20px_rgba(0,0,0,0.65)] scale-105'
               : 'shadow-[0_4px_16px_rgba(0,0,0,0.6),0_0_10px_rgba(216,153,78,0.25)] hover:border-gold hover:shadow-[0_0_16px_rgba(216,153,78,0.45)]',
           )}
         >
@@ -436,7 +525,7 @@ export function ScrollProgressIndicator() {
         </button>
       </div>
 
-      {/* Main Vertical Progress Track */}
+      {/* Main Vertical Progress Track & Scrubber */}
       <div
         ref={trackRef}
         onClick={handleTrackClick}
@@ -463,22 +552,27 @@ export function ScrollProgressIndicator() {
           aria-hidden="true"
         />
 
-        {/* Moving Indicator: Concentric Celestial Bead / Compass Ring */}
+        {/* Moving Concentric Bead Scrubber (Interactive scroll scrub handle) */}
         <div
+          onPointerDown={handleScrubberPointerDown}
+          onPointerMove={handleScrubberPointerMove}
+          onPointerUp={handleScrubberPointerUp}
+          onPointerCancel={handleScrubberPointerUp}
           className={cn(
-            'absolute inset-x-0 z-20 flex items-center justify-center pointer-events-auto transition-[top] duration-75 ease-out motion-reduce:transition-none',
-            isDragging ? 'scale-110' : 'hover:scale-105',
+            'absolute inset-x-0 z-20 flex items-center justify-center pointer-events-auto cursor-ns-resize transition-[top] duration-75 ease-out motion-reduce:transition-none',
+            isScrubbing ? 'scale-115' : 'hover:scale-110',
           )}
           style={{
             top: `${beadTop}px`,
             height: `${beadDiameter}px`,
           }}
+          title={language === 'fa' ? 'برای اسکرول سریع بکشید' : 'Drag to scroll'}
         >
           {/* Concentric Double Circle */}
           <div
             className={cn(
               'relative flex items-center justify-center rounded-full border-[1.5px] border-gold bg-background/95 shadow-[0_0_12px_rgba(216,153,78,0.75),0_0_24px_rgba(216,153,78,0.4)] transition-all duration-200',
-              isDragging && 'border-gold shadow-[0_0_16px_rgba(216,153,78,0.9),0_0_32px_rgba(216,153,78,0.6)]',
+              isScrubbing && 'border-gold shadow-[0_0_16px_rgba(216,153,78,0.9),0_0_32px_rgba(216,153,78,0.6)]',
             )}
             style={{
               width: `${beadDiameter}px`,
@@ -489,17 +583,18 @@ export function ScrollProgressIndicator() {
             <span
               className="rounded-full bg-gold shadow-[0_0_6px_rgba(216,153,78,0.9)]"
               style={{
-                width: `${isMobile ? 5 : 6.5}px`,
-                height: `${isMobile ? 5 : 6.5}px`,
+                width: `${isMobile ? 4.5 : 6}px`,
+                height: `${isMobile ? 4.5 : 6}px`,
               }}
             />
           </div>
 
-          {/* Progress Percent Tag (shows on hover/drag) */}
+          {/* Progress Percent Tag: Placed dynamically on the inner side so it never clips off-screen */}
           <span
             className={cn(
-              'pointer-events-none absolute -start-11 top-1/2 -translate-y-1/2 rounded-full border border-gold/40 bg-background/95 px-2 py-0.5 text-[0.62rem] font-light text-gold shadow-[0_2px_10px_rgba(0,0,0,0.5)] backdrop-blur-xs transition-opacity duration-200',
-              isInteracting || isDragging ? 'opacity-100' : 'opacity-0',
+              'pointer-events-none absolute top-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-gold/40 bg-background/95 px-2 py-0.5 text-[0.62rem] font-light text-gold shadow-[0_2px_10px_rgba(0,0,0,0.5)] backdrop-blur-xs transition-opacity duration-200',
+              isNearRightEdge ? 'right-full mr-2.5' : 'left-full ml-2.5',
+              isInteracting || isScrubbing || isDraggingWidget ? 'opacity-100' : 'opacity-0',
             )}
             aria-hidden="true"
           >
@@ -510,14 +605,15 @@ export function ScrollProgressIndicator() {
 
       {/* Bottom Editorial Callout ("تا انتها اسکرول کنید" & Chevron) */}
       <div
-        className="mt-2.5 flex flex-col items-center text-center select-none cursor-pointer"
-        onClick={handleScrollDown}
+        className="mt-2.5 flex flex-col items-center text-center select-none cursor-pointer group/bottom"
+        onClick={handleScrollToBottom}
         data-no-drag="true"
+        title={language === 'fa' ? 'اسکرول به انتهای صفحه' : 'Scroll to bottom'}
       >
-        <span className="font-display text-[0.68rem] sm:text-[0.72rem] font-light leading-tight tracking-wide text-ivory/80 hover:text-gold transition-colors">
+        <span className="font-display text-[0.68rem] sm:text-[0.72rem] font-light leading-tight tracking-wide text-ivory/80 group-hover/bottom:text-gold transition-colors">
           {language === 'fa' ? 'تا انتها' : 'Scroll to'}
         </span>
-        <span className="font-display text-[0.68rem] sm:text-[0.72rem] font-light leading-tight tracking-wide text-ivory/80 hover:text-gold transition-colors mt-0.5">
+        <span className="font-display text-[0.68rem] sm:text-[0.72rem] font-light leading-tight tracking-wide text-ivory/80 group-hover/bottom:text-gold transition-colors mt-0.5">
           {language === 'fa' ? 'اسکرول کنید' : 'the end'}
         </span>
 
@@ -529,7 +625,7 @@ export function ScrollProgressIndicator() {
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="mt-1.5 size-3.5 text-gold/80 transition-transform duration-300 hover:translate-y-0.5"
+          className="mt-1.5 size-3.5 text-gold/80 transition-transform duration-300 group-hover/bottom:translate-y-1 group-hover/bottom:text-gold animate-bounce"
           aria-hidden="true"
         >
           <path d="M6 9l6 6 6-6" />
