@@ -316,7 +316,7 @@ export const colorPalettes: ColorPalette[] = [
   },
 ]
 
-export const DEFAULT_COLOR_PALETTE_ID = 'botanical-ivory'
+export const DEFAULT_COLOR_PALETTE_ID = 'amber-ritual'
 
 export function getColorPaletteById(id: string): ColorPalette {
   return colorPalettes.find((p) => p.id === id) || colorPalettes[0]

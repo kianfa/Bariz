@@ -67,6 +67,8 @@ export function SiteNav() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+          {/* Controls preserved for future use if needed, hidden from UI as requested */}
+          {/*
           <ColorPaletteSelector />
           <PersianFontSelector />
 
@@ -77,6 +79,7 @@ export function SiteNav() {
           >
             {language === 'en' ? 'EN' : 'FA'}
           </button>
+          */}
 
           <button
             onClick={() => setOpen((v) => !v)}

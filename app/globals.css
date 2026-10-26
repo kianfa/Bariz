@@ -780,7 +780,7 @@ html[data-palette="noir-botanica"] {
   --font-peyda: 'Peyda', sans-serif;
   --font-dana: 'Dana', sans-serif;
   --font-mikhak: 'Mikhak', sans-serif;
-  --font-persian-current: 'Estedad', sans-serif;
+  --font-persian-current: 'Vazirmatn', sans-serif;
 }
 
 /* Specific Font Preview Classes for Menu & Testing */
@@ -807,19 +807,19 @@ html[lang='fa'],
 .lang-fa body,
 html[dir='rtl'] body,
 html[lang='fa'] body {
-  font-family: var(--font-persian-current, 'Estedad'), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-persian-current, 'Vazirmatn'), var(--font-sans), system-ui, sans-serif;
 }
 
 html[dir='rtl'] .font-display,
 html[lang='fa'] .font-display,
 .lang-fa .font-display {
-  font-family: var(--font-persian-current, 'Estedad'), var(--font-serif), Georgia, serif;
+  font-family: var(--font-persian-current, 'Vazirmatn'), var(--font-serif), Georgia, serif;
 }
 
 html[dir='rtl'] .font-sans,
 html[lang='fa'] .font-sans,
 .lang-fa .font-sans {
-  font-family: var(--font-persian-current, 'Estedad'), var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-persian-current, 'Vazirmatn'), var(--font-sans), system-ui, sans-serif;
 }
 
 html[dir='rtl'] .tracking-luxe,

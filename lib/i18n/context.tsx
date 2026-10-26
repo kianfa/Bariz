@@ -33,7 +33,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en')
+  const [language, setLanguageState] = useState<Language>('fa')
   const [persianFont, setPersianFontState] = useState<PersianFont>(() =>
     getPersianFontById(DEFAULT_PERSIAN_FONT_ID),
   )
@@ -51,7 +51,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       }
 
       const savedFontId = localStorage.getItem('bariz_persian_font')
-      if (savedFontId) {
+      if (savedFontId && savedFontId !== 'estedad') {
         const found = getPersianFontById(savedFontId)
         setPersianFontState(found)
       }
@@ -59,7 +59,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       const savedPaletteId =
         localStorage.getItem('bariz-color-palette') ||
         localStorage.getItem('bariz_color_palette')
-      if (savedPaletteId) {
+      if (savedPaletteId && savedPaletteId !== 'botanical-ivory') {
         const found = getColorPaletteById(savedPaletteId)
         setColorPaletteState(found)
       }
@@ -91,7 +91,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (!mounted) return
     document.documentElement.style.setProperty(
       '--font-persian-current',
-      `'${persianFont.family}', var(--font-estedad), sans-serif`,
+      `'${persianFont.family}', var(--font-vazirmatn), sans-serif`,
     )
     document.documentElement.setAttribute('data-persian-font', persianFont.id)
 

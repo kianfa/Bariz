@@ -50,7 +50,7 @@ export const persianFonts: PersianFont[] = [
   },
 ]
 
-export const DEFAULT_PERSIAN_FONT_ID = 'estedad'
+export const DEFAULT_PERSIAN_FONT_ID = 'vazirmatn'
 
 export function getPersianFontById(id: string): PersianFont {
   return (
