@@ -23,9 +23,9 @@ export function SiteNav() {
   const links = [
     { label: t.nav.links.story, href: '#story' },
     { label: t.nav.links.botanicals, href: '#botanicals' },
-
     { label: t.nav.links.experience, href: '#experience' },
     { label: t.nav.links.journal, href: '#products' },
+    { label: t.nav.links.about, href: '#about' },
   ]
 
   return (
@@ -50,7 +50,7 @@ export function SiteNav() {
           />
         </a>
 
-        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex xl:gap-9">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex xl:gap-8 whitespace-nowrap">
           {links.map((link) => (
             <li key={link.href}>
               <a

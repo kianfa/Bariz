@@ -8,6 +8,7 @@ export interface NavTranslations {
     craft: string
     experience: string
     journal: string
+    about: string
   }
   langBtnAria: string
   menuOpenAria: string
@@ -158,6 +159,7 @@ export const translations: Record<Language, ComponentTranslations> = {
         craft: 'Craft',
         experience: 'Experience',
         journal: 'Journal',
+        about: 'Bariz Story',
       },
       langBtnAria: 'Switch to Persian',
       menuOpenAria: 'Open menu',
@@ -341,7 +343,7 @@ export const translations: Record<Language, ComponentTranslations> = {
         title: 'Quick Access',
         links: [
           { label: 'Home', href: '#top' },
-          { label: 'About Us', href: '#about' },
+          { label: 'Bariz Story', href: '#about' },
           { label: 'Our Story', href: '#story' },
           { label: 'The Experience', href: '#experience' },
           { label: 'The Collection', href: '#products' },
@@ -379,6 +381,7 @@ export const translations: Record<Language, ComponentTranslations> = {
         craft: 'هنر تقطیر',
         experience: 'تجربه چشیدن',
         journal: 'مجموعه محصولات',
+        about: 'داستان باریز',
       },
       langBtnAria: 'تغییر به انگلیسی',
       menuOpenAria: 'باز کردن منو',
@@ -562,8 +565,8 @@ export const translations: Record<Language, ComponentTranslations> = {
         title: 'دسترسی سریع',
         links: [
           { label: 'صفحه اصلی', href: '#top' },
-          { label: 'درباره ما', href: '#about' },
-          { label: 'داستان باریز', href: '#story' },
+          { label: 'داستان باریز', href: '#about' },
+          { label: 'داستان ما', href: '#story' },
           { label: 'تجربه چشیدن', href: '#experience' },
           { label: 'مجموعه نوشیدنی‌ها', href: '#products' },
           { label: 'تماس با ما', href: '#contact' },
