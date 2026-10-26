@@ -70,7 +70,7 @@ export function Hero() {
         <img
           src="/Bariz_hero2.webp"
           alt=""
-          className="size-full object-cover object-[70%_center] md:object-center"
+          className="size-full object-cover object-[20%_center] md:object-center"
         />
 
         {/* Video Background Implementation (Preserved for future use) */}
@@ -87,7 +87,7 @@ export function Hero() {
           onLoadedData={handleVideoReady}
           onCanPlay={handleVideoReady}
           onError={handleVideoError}
-          className={`size-full object-cover object-[70%_center] md:object-center ${
+          className={`size-full object-cover object-[20%_center] md:object-center ${
             videoReady ? 'opacity-100' : 'opacity-0'
           }`}
         >
