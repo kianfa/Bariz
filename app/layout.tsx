@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Jost, Vazirmatn } from 'next/font/google'
 
 import { LanguageProvider } from '@/lib/i18n/context'
+import { ScrollProgressIndicator } from '@/components/scroll-progress-indicator'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({
@@ -54,6 +55,7 @@ export default function RootLayout({
       <body className="bg-background antialiased" suppressHydrationWarning>
         <LanguageProvider>
           {children}
+          <ScrollProgressIndicator />
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </LanguageProvider>
       </body>

@@ -134,6 +134,14 @@ export interface AboutUsTranslations {
   milestones: AboutUsMilestone[]
 }
 
+
+export interface ScrollIndicatorTranslations {
+  label: string
+  progressTitle: string
+  hideButton: string
+  showButton: string
+}
+
 export interface ComponentTranslations {
   nav: NavTranslations
   hero: HeroTranslations
@@ -164,6 +172,12 @@ export const translations: Record<Language, ComponentTranslations> = {
       langBtnAria: 'Switch to Persian',
       menuOpenAria: 'Open menu',
       menuCloseAria: 'Close menu',
+    },
+    scrollIndicator: {
+      label: 'Page scroll progress',
+      progressTitle: 'Reading progress: {percent}%',
+      hideButton: 'Hide scroll indicator',
+      showButton: 'Show scroll progress',
     },
     hero: {
       sectionAria: 'Bariz, Nature, distilled',
@@ -386,6 +400,12 @@ export const translations: Record<Language, ComponentTranslations> = {
       langBtnAria: 'تغییر به انگلیسی',
       menuOpenAria: 'باز کردن منو',
       menuCloseAria: 'بستن منو',
+    },
+    scrollIndicator: {
+      label: 'پیشرفت اسکرول صفحه',
+      progressTitle: 'پیشرفت مطالعه: {percent}٪',
+      hideButton: 'مخفی کردن نشانگر',
+      showButton: 'نمایش نشانگر اسکرول',
     },
     hero: {
       sectionAria: 'باریز، عصاره خالص طبیعت',
