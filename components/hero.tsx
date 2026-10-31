@@ -198,6 +198,8 @@ export function Hero() {
           <span className={`block h-4 w-px bg-gold ${loaded ? 'animate-scroll-hint' : ''}`} />
         </span>
       </div>
+      {/* Cinematic bottom transition to next section */}
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-28 sm:h-40 md:h-52 bg-gradient-to-t from-background via-background/70 to-transparent z-[4] backdrop-blur-[1.5px] [mask-image:linear-gradient(to_top,black_20%,transparent)]" />
     </section>
   )
 }

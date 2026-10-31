@@ -280,6 +280,12 @@ export function ScrollSequence() {
         className="sticky top-0 h-[100svh] w-full overflow-hidden bg-background"
       >
         <canvas ref={canvasRef} className="block size-full bg-background" />
+
+        {/* Top atmospheric fade from Hero */}
+        <div className="pointer-events-none absolute top-0 inset-x-0 h-28 sm:h-40 md:h-52 bg-gradient-to-b from-background via-background/70 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_bottom,black_20%,transparent)]" />
+
+        {/* Bottom atmospheric fade into Story */}
+        <div className="pointer-events-none absolute bottom-0 inset-x-0 h-28 sm:h-40 md:h-52 bg-gradient-to-t from-background via-background/70 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_top,black_20%,transparent)]" />
       </div>
     </section>
   )
