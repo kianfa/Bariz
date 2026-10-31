@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
-const FRAME_COUNT = 96
+const FRAME_COUNT = 70
 const PRELOAD_BATCH_SIZE = 6
 
 function frameSrc(index: number) {
@@ -47,7 +47,7 @@ export function ScrollSequence() {
 
       const canvasWidth = canvas.width
       const canvasHeight = canvas.height
-      const scale = Math.min(
+      const scale = Math.max(
         canvasWidth / image.naturalWidth,
         canvasHeight / image.naturalHeight,
       )
