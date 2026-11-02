@@ -340,14 +340,6 @@ export function Products() {
                         {/* Soft luxury gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
                         <div className="absolute inset-0 bg-black/10" />
-
-                        {/* Top Index Badge */}
-                        <div className="absolute top-3.5 start-3.5 z-10 flex items-center gap-1.5 rounded-full border border-gold/30 bg-background/85 px-2.5 py-0.5 backdrop-blur-md shadow-sm">
-                          <span className="size-1.5 rounded-full bg-gold animate-pulse" />
-                          <span className="font-sans text-[0.68rem] font-medium tracking-widest text-gold">
-                            {formatIndex(i)} <span className="text-ivory/50">/ {formatIndex(total - 1)}</span>
-                          </span>
-                        </div>
                       </div>
 
                       {/* Product Details Panel (Directly under the photo) */}

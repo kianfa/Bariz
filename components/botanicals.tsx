@@ -117,13 +117,6 @@ export function Botanicals() {
                       'md:rounded-none md:border-none md:bg-transparent md:shadow-none'
                     )}
                   >
-                    {/* Luxury Botanical Number Tag (Mobile Only) */}
-                    <div className="absolute top-4 start-4 z-10 flex items-center gap-1.5 rounded-full border border-gold/30 bg-background/80 px-2.5 py-0.5 backdrop-blur-md md:hidden shadow-sm">
-                      <span className="size-1.5 rounded-full bg-gold animate-pulse" />
-                      <span className="font-sans text-[0.68rem] font-medium tracking-widest text-gold">
-                        {`0${i + 1} / 03`}
-                      </span>
-                    </div>
 
                     <div className="relative aspect-[3/4] overflow-hidden">
                       <img
