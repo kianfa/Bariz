@@ -23,17 +23,12 @@ export function Experience() {
 
       <div className="relative z-10 max-w-2xl text-center">
         <Reveal>
-          <p className="text-xs font-light uppercase tracking-luxe text-gold">
-            {t.experience.tag}
-          </p>
-        </Reveal>
-        <Reveal delay={140}>
-          <h2 className="mt-6 font-display text-[clamp(2.2rem,6vw,5rem)] font-light leading-[1.05] text-balance text-ivory text-shadow-cinema">
+          <h2 className="font-display text-[clamp(2.2rem,6vw,5rem)] font-light leading-[1.05] text-balance text-ivory text-shadow-cinema">
             {t.experience.heading}
           </h2>
         </Reveal>
-        <Reveal delay={260}>
-          <p className="mx-auto mt-8 max-w-md text-base font-light leading-relaxed text-ivory/75">
+        <Reveal delay={140}>
+          <p className="mx-auto mt-6 sm:mt-8 max-w-md text-base font-light leading-relaxed text-ivory/75">
             {t.experience.paragraph}
           </p>
         </Reveal>
