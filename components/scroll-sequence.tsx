@@ -36,6 +36,7 @@ export function ScrollSequence() {
     let rafId = 0
     let preloadStarted = false
     let disposed = false
+    let idleTimer: number | null = null
     let intersectionObserver: IntersectionObserver | null = null
 
     // Keep the existing reduced-motion behavior, but allow the same scrub
@@ -151,7 +152,18 @@ export function ScrollSequence() {
     }
 
     const ensureTargetFrames = (target: number) => {
-      const nearby = [target, target - 1, target + 1, target - 2, target + 2]
+      // Proactively buffer a window around current target frame
+      const nearby = [
+        target,
+        target + 1,
+        target + 2,
+        target + 3,
+        target + 4,
+        target + 5,
+        target - 1,
+        target - 2,
+        target - 3,
+      ]
 
       for (const index of nearby) {
         if (index < 0 || index >= FRAME_COUNT) continue
@@ -199,27 +211,60 @@ export function ScrollSequence() {
       rafId = window.requestAnimationFrame(updateFromScroll)
     }
 
-    const preloadRemainingFrames = async () => {
+    const scheduleIdlePreload = () => {
+      if (disposed || !canScrub()) return
+
+      let currentIndex = 7
+      const trickleNext = () => {
+        if (disposed || currentIndex >= FRAME_COUNT) return
+
+        while (currentIndex < FRAME_COUNT && images[currentIndex]?.complete) {
+          currentIndex++
+        }
+
+        if (currentIndex < FRAME_COUNT) {
+          void loadFrame(currentIndex)
+            .then(() => {
+              currentIndex++
+              if (!disposed) {
+                if ('requestIdleCallback' in window) {
+                  window.requestIdleCallback(() => trickleNext(), { timeout: 1500 })
+                } else {
+                  idleTimer = window.setTimeout(trickleNext, 120)
+                }
+              }
+            })
+            .catch(() => {
+              currentIndex++
+              if (!disposed) {
+                idleTimer = window.setTimeout(trickleNext, 200)
+              }
+            })
+        }
+      }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => trickleNext(), { timeout: 2000 })
+      } else {
+        idleTimer = window.setTimeout(trickleNext, 300)
+      }
+    }
+
+    const preloadEntryBuffer = async () => {
       if (preloadStarted || !canScrub()) return
       preloadStarted = true
 
-      for (let start = 1; start < FRAME_COUNT && !disposed; start += PRELOAD_BATCH_SIZE) {
-        const batch = Array.from(
-          { length: Math.min(PRELOAD_BATCH_SIZE, FRAME_COUNT - start) },
-          (_, offset) => start + offset,
-        )
+      // Load initial entrance window (0 to 6)
+      const initialBatch = [0, 1, 2, 3, 4, 5, 6]
+      await Promise.allSettled(initialBatch.map((index) => loadFrame(index)))
 
-        await Promise.allSettled(batch.map((index) => loadFrame(index)))
-
-        if (!disposed) {
-          await new Promise<void>((resolve) => window.setTimeout(resolve, 24))
-        }
-      }
+      // Trickle-load remaining frames only when user/CPU is idle
+      scheduleIdlePreload()
     }
 
     const handleMediaChange = () => {
       if (canScrub()) {
-        void preloadRemainingFrames()
+        void preloadEntryBuffer()
       } else {
         currentFrame = 0
       }
@@ -257,16 +302,16 @@ export function ScrollSequence() {
       intersectionObserver = new IntersectionObserver(
         (entries) => {
           if (entries.some((entry) => entry.isIntersecting)) {
-            void preloadRemainingFrames()
+            void preloadEntryBuffer()
             intersectionObserver?.disconnect()
             intersectionObserver = null
           }
         },
-        { rootMargin: '250% 0px' },
+        { rootMargin: '40% 0px' },
       )
       intersectionObserver.observe(section)
     } else {
-      void preloadRemainingFrames()
+      void preloadEntryBuffer()
     }
 
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
@@ -278,6 +323,7 @@ export function ScrollSequence() {
 
     return () => {
       disposed = true
+      if (idleTimer) window.clearTimeout(idleTimer)
       if (rafId) window.cancelAnimationFrame(rafId)
       intersectionObserver?.disconnect()
       window.removeEventListener('scroll', scheduleUpdate)

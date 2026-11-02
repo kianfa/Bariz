@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { MapPin } from 'lucide-react'
 import { useLanguage } from '@/lib/i18n/context'
 import { cn } from '@/lib/utils'
@@ -170,6 +171,28 @@ function BarizLogo({ className }: { className?: string }) {
 
 export function SiteFooter() {
   const { t, language } = useLanguage()
+  const mapContainerRef = useRef<HTMLDivElement>(null)
+  const [mapInView, setMapInView] = useState(false)
+
+  useEffect(() => {
+    const el = mapContainerRef.current
+    if (!el) return
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            setMapInView(true)
+            observer.disconnect()
+          }
+        },
+        { rootMargin: '300px 0px' },
+      )
+      observer.observe(el)
+      return () => observer.disconnect()
+    } else {
+      setMapInView(true)
+    }
+  }, [])
 
   // Verified coordinates and map destination in Tehran
   const lat = 35.727103
@@ -278,16 +301,21 @@ export function SiteFooter() {
           {/* COLUMN 4 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
           <div className="flex flex-col text-start sm:col-span-2 lg:col-span-4 lg:ps-2">
             {/* Embedded Google Map Card displaying exact coordinates (35.727103, 51.436052) */}
-            <div className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-background shadow-inner transition-all hover:border-gold/60">
+            <div
+              ref={mapContainerRef}
+              className="group relative block aspect-[16/9] w-full overflow-hidden rounded-xl border border-gold/30 bg-background shadow-inner transition-all hover:border-gold/60"
+            >
               <AbstractMapCanvas />
 
-              <iframe
-                src={mapEmbedUrl}
-                title={language === 'fa' ? 'نقشه موقعیت دفتر مرکزی باریز' : 'Bariz Head Office Map'}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="absolute inset-0 size-full border-0 opacity-80 invert-[90%] hue-rotate-180 contrast-[110%] brightness-[85%] transition-opacity duration-300 group-hover:opacity-95"
-              />
+              {mapInView && (
+                <iframe
+                  src={mapEmbedUrl}
+                  title={language === 'fa' ? 'نقشه موقعیت دفتر مرکزی باریز' : 'Bariz Head Office Map'}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 size-full border-0 opacity-80 invert-[90%] hue-rotate-180 contrast-[110%] brightness-[85%] transition-opacity duration-300 group-hover:opacity-95"
+                />
+              )}
 
               {/* Interactive badge & direct click destination to Google Maps */}
               <a
