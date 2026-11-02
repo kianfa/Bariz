@@ -9,6 +9,14 @@ export interface PersianFont {
 
 export const persianFonts: PersianFont[] = [
   {
+    id: 'iranian-sans',
+    name: 'A Iranian Sans',
+    label: 'ایرانیان سنس',
+    family: 'A Iranian Sans',
+    preview: '«عطر طبیعت، در هر قطره»',
+    description: 'کلاسیک، ساده، روان و خوانا',
+  },
+  {
     id: 'estedad',
     name: 'Estedad',
     label: 'استعداد',
@@ -50,7 +58,7 @@ export const persianFonts: PersianFont[] = [
   },
 ]
 
-export const DEFAULT_PERSIAN_FONT_ID = 'vazirmatn'
+export const DEFAULT_PERSIAN_FONT_ID = 'iranian-sans'
 
 export function getPersianFontById(id: string): PersianFont {
   return (

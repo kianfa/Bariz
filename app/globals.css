@@ -595,6 +595,15 @@ html[data-palette="noir-botanica"] {
 
 /* ===== Persian Web Fonts ===== */
 @font-face {
+  font-family: 'A Iranian Sans';
+  src: url('/fonts/iranian-sans/IranianSans.woff2') format('woff2'),
+       url('/fonts/iranian-sans/IranianSans.woff') format('woff'),
+       url('/fonts/iranian-sans/IranianSans.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: 'Estedad';
   src: url('/fonts/estedad/Estedad-Light.woff2') format('woff2');
   font-weight: 300;
@@ -780,10 +789,14 @@ html[data-palette="noir-botanica"] {
   --font-peyda: 'Peyda', sans-serif;
   --font-dana: 'Dana', sans-serif;
   --font-mikhak: 'Mikhak', sans-serif;
-  --font-persian-current: 'Vazirmatn', sans-serif;
+  --font-iranian-sans: 'A Iranian Sans', sans-serif;
+  --font-persian-current: 'A Iranian Sans', sans-serif;
 }
 
 /* Specific Font Preview Classes for Menu & Testing */
+.font-preview-iranian-sans {
+  font-family: 'A Iranian Sans', sans-serif !important;
+}
 .font-preview-estedad {
   font-family: 'Estedad', sans-serif !important;
 }
