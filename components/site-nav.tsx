@@ -14,10 +14,21 @@ export function SiteNav() {
   const { language, toggleLanguage, t } = useLanguage()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
+    let raf = 0
+    const onScroll = () => {
+      if (raf) return
+      raf = window.requestAnimationFrame(() => {
+        raf = 0
+        const isScrolled = window.scrollY > 40
+        setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev))
+      })
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   const links = [
@@ -46,6 +57,9 @@ export function SiteNav() {
           <img
             src="/bariz-logo.svg"
             alt=""
+            width={92}
+            height={34}
+            decoding="async"
             className="block h-auto w-full"
           />
         </a>

@@ -12,6 +12,8 @@ export function FinalScene() {
         <img
           src="/final-nature-pic.webp"
           alt={t.finalScene.imgAlt}
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover"
         />
         <div className="absolute inset-0 bg-background/50" />

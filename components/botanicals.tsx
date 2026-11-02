@@ -18,29 +18,35 @@ export function Botanicals() {
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
 
-  // Real-time scroll listener to update active index smoothly as user swipes
+  const scrollRaf = useRef(0)
+
+  // Real-time scroll listener to update active index smoothly as user swipes (RAF throttled)
   const handleScroll = useCallback(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-    const cards = cardRefs.current
-    const containerRect = container.getBoundingClientRect()
-    const containerCenter = containerRect.left + containerRect.width / 2
+    if (scrollRaf.current) return
+    scrollRaf.current = window.requestAnimationFrame(() => {
+      scrollRaf.current = 0
+      const container = scrollContainerRef.current
+      if (!container) return
+      const cards = cardRefs.current
+      const containerRect = container.getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
 
-    let closestIdx = 0
-    let minDistance = Infinity
+      let closestIdx = 0
+      let minDistance = Infinity
 
-    cards.forEach((card, idx) => {
-      if (!card) return
-      const cardRect = card.getBoundingClientRect()
-      const cardCenter = cardRect.left + cardRect.width / 2
-      const distance = Math.abs(cardCenter - containerCenter)
-      if (distance < minDistance) {
-        minDistance = distance
-        closestIdx = idx
-      }
+      cards.forEach((card, idx) => {
+        if (!card) return
+        const cardRect = card.getBoundingClientRect()
+        const cardCenter = cardRect.left + cardRect.width / 2
+        const distance = Math.abs(cardCenter - containerCenter)
+        if (distance < minDistance) {
+          minDistance = distance
+          closestIdx = idx
+        }
+      })
+
+      setActiveIndex(closestIdx)
     })
-
-    setActiveIndex(closestIdx)
   }, [])
 
   const scrollToCard = useCallback((index: number) => {
@@ -124,6 +130,7 @@ export function Botanicals() {
                         alt={item.alt}
                         className="size-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                       />
                       {/* Atmospheric luxury dual gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/35 to-transparent" />
