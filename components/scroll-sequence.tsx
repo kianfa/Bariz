@@ -58,6 +58,25 @@ export function ScrollSequence() {
 
       context.clearRect(0, 0, canvasWidth, canvasHeight)
       context.drawImage(image, x, y, width, height)
+
+      // Atmospheric top fade on canvas buffer
+      const topFadeHeight = Math.min(180, Math.round(canvasHeight * 0.16))
+      const topGrad = context.createLinearGradient(0, 0, 0, topFadeHeight)
+      topGrad.addColorStop(0, '#151210')
+      topGrad.addColorStop(0.35, 'rgba(21, 18, 16, 0.7)')
+      topGrad.addColorStop(1, 'rgba(21, 18, 16, 0)')
+      context.fillStyle = topGrad
+      context.fillRect(0, 0, canvasWidth, topFadeHeight)
+
+      // Atmospheric bottom fade on canvas buffer (brought lower to seal bottom seam)
+      const bottomFadeHeight = Math.min(140, Math.round(canvasHeight * 0.12))
+      const bottomGrad = context.createLinearGradient(0, canvasHeight - bottomFadeHeight, 0, canvasHeight)
+      bottomGrad.addColorStop(0, 'rgba(21, 18, 16, 0)')
+      bottomGrad.addColorStop(0.55, 'rgba(21, 18, 16, 0.75)')
+      bottomGrad.addColorStop(0.85, '#151210')
+      bottomGrad.addColorStop(1, '#151210')
+      context.fillStyle = bottomGrad
+      context.fillRect(0, canvasHeight - bottomFadeHeight, canvasWidth, bottomFadeHeight)
     }
 
     const findNearestLoadedFrame = (target: number) => {
@@ -282,10 +301,10 @@ export function ScrollSequence() {
         <canvas ref={canvasRef} className="block size-full bg-background" />
 
         {/* Top atmospheric fade from Hero */}
-        <div className="pointer-events-none absolute top-0 inset-x-0 h-28 sm:h-40 md:h-52 bg-gradient-to-b from-background via-background/70 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_bottom,black_20%,transparent)]" />
+        <div className="pointer-events-none absolute -top-1 inset-x-0 h-24 sm:h-32 md:h-40 bg-gradient-to-b from-background from-10% via-background/70 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_bottom,black_20%,transparent)]" />
 
-        {/* Bottom atmospheric fade into Story */}
-        <div className="pointer-events-none absolute bottom-0 inset-x-0 h-28 sm:h-40 md:h-52 bg-gradient-to-t from-background via-background/70 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_top,black_20%,transparent)]" />
+        {/* Bottom atmospheric fade into Story (shifted lower, compact, and overlapping boundary) */}
+        <div className="pointer-events-none absolute -bottom-2 inset-x-0 h-20 sm:h-28 md:h-36 bg-gradient-to-t from-background from-25% via-background/75 to-transparent z-10 backdrop-blur-[1.5px] [mask-image:linear-gradient(to_top,black_30%,transparent)]" />
       </div>
     </section>
   )
