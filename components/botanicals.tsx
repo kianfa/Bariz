@@ -209,11 +209,6 @@ export function Botanicals() {
                   {isRtl ? <ChevronLeft className="size-4" /> : <ChevronRight className="size-4" />}
                 </button>
               </div>
-
-              {/* Subtle luxury swipe cue */}
-              <p className="text-[0.72rem] font-light tracking-wide text-gold/60">
-                {isRtl ? 'ورق بزنید یا از کلیدها استفاده کنید' : 'Swipe or tap arrows to explore'}
-              </p>
             </div>
           </div>
         </Reveal>
