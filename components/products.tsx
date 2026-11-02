@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { useLanguage } from '@/lib/i18n/context'
 import { cn } from '@/lib/utils'
@@ -38,10 +38,6 @@ function ProductImage({
 }) {
   const isDev = process.env.NODE_ENV === 'development'
 
-  // Candidates for development:
-  // 1. Same path with .png extension (e.g. /webp/aragh-baharnarenj.png)
-  // 2. /png/ directory with .png extension (e.g. /png/aragh-baharnarenj.png)
-  // 3. Fallback to original webp source
   const pngSameDir = src.replace(/\.webp$/i, '.png')
   const pngAltDir = src.replace(/^\/webp\//i, '/png/').replace(/\.webp$/i, '.png')
 
@@ -124,9 +120,13 @@ export function Products() {
   const [progress, setProgress] = useState(0)
   const { isRtl, t } = useLanguage()
 
+  const mobileScrollRef = useRef<HTMLDivElement>(null)
+  const mobileCardRefs = useRef<(HTMLDivElement | null)[]>([])
+
   const collectionItems = t.products.items
   const total = collectionItems.length
 
+  // Auto-advance slideshow timer for desktop
   useEffect(() => {
     if (isPaused) return
 
@@ -137,6 +137,7 @@ export function Products() {
     return () => window.clearTimeout(timer)
   }, [activeIndex, isPaused, timerReset, collectionItems.length])
 
+  // Desktop progress bar animation
   useEffect(() => {
     if (isPaused) return
 
@@ -169,6 +170,44 @@ export function Products() {
     if (activeIndex < collectionItems.length - 1) selectProduct(activeIndex + 1)
   }
 
+  // Smooth mobile card scroll listener
+  const handleMobileScroll = useCallback(() => {
+    const container = mobileScrollRef.current
+    if (!container) return
+    const cards = mobileCardRefs.current
+    const containerRect = container.getBoundingClientRect()
+    const containerCenter = containerRect.left + containerRect.width / 2
+
+    let closestIdx = 0
+    let minDistance = Infinity
+
+    cards.forEach((card, idx) => {
+      if (!card) return
+      const cardRect = card.getBoundingClientRect()
+      const cardCenter = cardRect.left + cardRect.width / 2
+      const distance = Math.abs(cardCenter - containerCenter)
+      if (distance < minDistance) {
+        minDistance = distance
+        closestIdx = idx
+      }
+    })
+
+    setActiveIndex(closestIdx)
+  }, [])
+
+  const scrollToMobileCard = useCallback((index: number) => {
+    const card = mobileCardRefs.current[index]
+    if (card) {
+      card.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest',
+      })
+      setActiveIndex(index)
+      setTimerReset((prev) => prev + 1)
+    }
+  }, [])
+
   const isFirst = activeIndex === 0
   const isLast = activeIndex === collectionItems.length - 1
 
@@ -177,7 +216,7 @@ export function Products() {
       id="products"
       className="relative w-full min-h-screen min-h-[100svh] flex flex-col justify-center overflow-hidden scroll-mt-20 md:scroll-mt-24 lg:scroll-mt-28 py-10 md:py-14 lg:py-12 xl:py-16 bg-background text-ivory"
     >
-      {/* Background full-bleed photography canvas */}
+      {/* Background full-bleed photography canvas (Desktop Only) */}
       <div
         className={cn(
           'pointer-events-none absolute inset-y-0 z-0 hidden overflow-hidden lg:block',
@@ -203,7 +242,7 @@ export function Products() {
           />
         ))}
 
-        {/* Coordinated warm brownish transition overlay */}
+        {/* Coordinated warm transition overlay */}
         <div
           className={cn(
             'absolute inset-y-0 z-10 w-[50%]',
@@ -247,9 +286,173 @@ export function Products() {
           }
         }}
       >
+        {/* ========================================================
+            MOBILE PRESENTATION (< lg)
+            1. Title above images
+            2. Smooth horizontal swipeable product cards
+            3. Product name, tag & description cleanly below each photo
+            ======================================================== */}
+        <div className="lg:hidden flex flex-col py-2">
+          {/* Section Header (Mobile: strictly placed ABOVE images) */}
+          <Reveal className="mb-5 text-start">
+            <p className="text-xs font-medium uppercase tracking-luxe text-gold/90">
+              {t.products.tag}
+            </p>
+            <h2 className="mt-1 font-display text-[clamp(1.75rem,5.5vw,2.4rem)] font-light leading-[1.15] text-ivory">
+              {t.products.heading}
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm font-light leading-relaxed text-gold/85">
+              {t.products.description}
+            </p>
+            <div className="mt-3 h-[1.5px] w-14 bg-gradient-to-r from-gold/80 via-gold/40 to-transparent rtl:bg-gradient-to-l" />
+          </Reveal>
+
+          {/* Horizontal Swipe Carousel */}
+          <Reveal delay={100}>
+            <div className="relative">
+              <div
+                ref={mobileScrollRef}
+                onScroll={handleMobileScroll}
+                onTouchStart={() => setIsPaused(true)}
+                className={cn(
+                  'flex overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar scroll-px-4 sm:scroll-px-6',
+                  'gap-4 sm:gap-5 px-4 sm:px-6 -mx-4 sm:-mx-6 pb-2 pt-1'
+                )}
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                {collectionItems.map((item, i) => (
+                  <div
+                    key={item.name}
+                    ref={(el) => {
+                      mobileCardRefs.current[i] = el
+                    }}
+                    className="w-[84vw] sm:w-[68vw] max-w-[360px] flex-shrink-0 snap-start"
+                  >
+                    <div className="group relative overflow-hidden rounded-2xl border border-gold/25 bg-background/60 shadow-[0_12px_36px_rgba(0,0,0,0.55)] backdrop-blur-md transition-all duration-300">
+                      {/* Product Photo */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-black/40">
+                        <ProductImage
+                          src={PRODUCT_IMAGES[i]}
+                          alt={item.alt}
+                          draggable={false}
+                          className="size-full object-cover object-[center_42%] transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                        />
+                        {/* Soft luxury gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent" />
+                        <div className="absolute inset-0 bg-black/10" />
+
+                        {/* Top Index Badge */}
+                        <div className="absolute top-3.5 start-3.5 z-10 flex items-center gap-1.5 rounded-full border border-gold/30 bg-background/85 px-2.5 py-0.5 backdrop-blur-md shadow-sm">
+                          <span className="size-1.5 rounded-full bg-gold animate-pulse" />
+                          <span className="font-sans text-[0.68rem] font-medium tracking-widest text-gold">
+                            {formatIndex(i)} <span className="text-ivory/50">/ {formatIndex(total - 1)}</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Product Details Panel (Directly under the photo) */}
+                      <div className="p-4 sm:p-5 text-start">
+                        {/* Botanical Category Tag & Note */}
+                        <p className="font-display text-[0.7rem] uppercase italic tracking-wide-luxe text-gold/90">
+                          {item.tag} {item.note ? `· ${item.note}` : ''}
+                        </p>
+
+                        {/* Product Title */}
+                        <h3 className="mt-1 font-display text-2xl font-light text-ivory tracking-wide">
+                          {item.name}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="mt-2 text-xs sm:text-sm font-light leading-relaxed text-ivory/75 line-clamp-2">
+                          {item.description}
+                        </p>
+
+                        {/* Attributes Chips */}
+                        {item.attributes && item.attributes.length > 0 && (
+                          <div className="mt-3.5 flex flex-wrap gap-1.5 pt-2 border-t border-white/[0.08]">
+                            {item.attributes.map((attr, attrIdx) => (
+                              <span
+                                key={attrIdx}
+                                className="inline-flex items-center rounded-full border border-gold/25 bg-gold/5 px-2.5 py-0.5 text-[0.65rem] font-medium tracking-wide text-gold/90"
+                              >
+                                {attr}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Trailing spacer for clean mobile end padding */}
+                <div className="w-1 flex-shrink-0" aria-hidden="true" />
+              </div>
+
+              {/* Mobile Carousel Navigation Controls */}
+              <div className="mt-5 flex items-center justify-between px-1">
+                {/* Step Buttons */}
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (activeIndex > 0) scrollToMobileCard(activeIndex - 1)
+                    }}
+                    disabled={activeIndex === 0}
+                    aria-label={t.products.prevProductAria}
+                    className={cn(
+                      'flex size-8.5 items-center justify-center rounded-full border border-gold/35 bg-background/85 text-gold transition-all backdrop-blur-md active:scale-95',
+                      activeIndex === 0
+                        ? 'opacity-25 cursor-not-allowed border-border/30 text-muted-foreground'
+                        : 'hover:border-gold hover:bg-gold/15'
+                    )}
+                  >
+                    {isRtl ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (activeIndex < total - 1) scrollToMobileCard(activeIndex + 1)
+                    }}
+                    disabled={activeIndex === total - 1}
+                    aria-label={t.products.nextProductAria}
+                    className={cn(
+                      'flex size-8.5 items-center justify-center rounded-full border border-gold/35 bg-background/85 text-gold transition-all backdrop-blur-md active:scale-95',
+                      activeIndex === total - 1
+                        ? 'opacity-25 cursor-not-allowed border-border/30 text-muted-foreground'
+                        : 'hover:border-gold hover:bg-gold/15'
+                    )}
+                  >
+                    {isRtl ? <ChevronLeft className="size-4" /> : <ChevronRight className="size-4" />}
+                  </button>
+                </div>
+
+                {/* Progress bar + Index Counter */}
+                <div className="flex items-center gap-3">
+                  <div className="h-1 w-20 overflow-hidden rounded-full bg-white/15">
+                    <div
+                      className="h-full bg-gold rounded-full transition-all duration-300"
+                      style={{ width: `${((activeIndex + 1) / total) * 100}%` }}
+                    />
+                  </div>
+                  <span className="font-mono text-xs font-light tracking-wider text-gold">
+                    {formatIndex(activeIndex)}{' '}
+                    <span className="text-ivory/40">/ {formatIndex(total - 1)}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* ========================================================
+            DESKTOP PRESENTATION (lg:grid)
+            Unchanged pixel-perfect editorial layout with side list
+            ======================================================== */}
         <div
           className={cn(
-            'relative z-10 grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
+            'relative z-10 hidden lg:grid items-stretch gap-6 lg:gap-10 lg:min-h-[78vh] xl:min-h-[82vh] lg:py-4',
             isRtl ? 'lg:grid-cols-[4fr_1fr]' : 'lg:grid-cols-[1fr_4fr]',
           )}
         >
@@ -298,7 +501,7 @@ export function Products() {
                         aria-hidden="true"
                       />
 
-                      {/* 1. Product Number (01, 02...) - Far Right in RTL (Increased by ~20%) */}
+                      {/* 1. Product Number (01, 02...) - Far Right in RTL */}
                       <span
                         className={cn(
                           'font-serif text-2xl lg:text-3xl xl:text-4xl font-light tracking-wider transition-all duration-300 shrink-0 w-10 lg:w-11 text-start',
@@ -364,26 +567,9 @@ export function Products() {
             </ul>
           </Reveal>
 
-          {/* Right - mobile photo view & desktop controls positioning */}
+          {/* Left Panel in RTL - desktop controls positioning */}
           <Reveal delay={120} className="order-1 flex min-h-0 h-full flex-col justify-end lg:order-2">
-            {/* Mobile-only image card */}
-            <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl lg:hidden">
-              {collectionItems.map((item, index) => (
-                <ProductImage
-                  key={PRODUCT_IMAGES[index]}
-                  src={PRODUCT_IMAGES[index]}
-                  alt={index === activeIndex ? item.alt : ''}
-                  draggable={false}
-                  className={cn(
-                    'absolute inset-0 size-full object-cover object-[center_42%] transition-[opacity,transform] duration-[700ms] ease-out motion-reduce:transition-none',
-                    activeIndex === index ? 'scale-100 opacity-100' : 'scale-[1.04] opacity-0',
-                  )}
-                />
-              ))}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background/70 to-transparent" />
-            </div>
-
-            {/* Navigation & progress controls matching reference bottom left placement */}
+            {/* Desktop Navigation & progress controls */}
             <div className="mt-3 flex items-center justify-end gap-3 sm:mt-4 lg:mt-0 lg:pb-2 lg:pr-3 xl:pb-4 xl:pr-4 rtl:lg:pr-0 rtl:lg:pl-3 rtl:xl:pr-0 rtl:xl:pl-4">
               <NavButton
                 direction="prev"
@@ -417,4 +603,3 @@ export function Products() {
     </section>
   )
 }
-
