@@ -230,46 +230,49 @@ export function SiteFooter() {
             </p>
           </div>
 
-          {/* COLUMN 2 — QUICK ACCESS */}
-          <div className="flex flex-col text-start lg:col-span-2">
-            <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
-              {t.footer.quickAccess.title}
-            </h3>
-            <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
+          {/* COLUMN 2 & 3 CONTAINER — QUICK ACCESS & CUSTOMER SERVICE SIDE BY SIDE ON MOBILE */}
+          <div className="grid grid-cols-2 gap-6 sm:col-span-2 sm:gap-8 lg:col-span-4 lg:gap-8 xl:gap-12">
+            {/* COLUMN 2 — QUICK ACCESS */}
+            <div className="flex flex-col text-start">
+              <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
+                {t.footer.quickAccess.title}
+              </h3>
+              <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
 
-            <ul className="space-y-3">
-              {t.footer.quickAccess.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="inline-block text-xs font-light text-ivory/75 transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 sm:text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <ul className="space-y-3">
+                {t.footer.quickAccess.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="inline-block text-xs font-light text-ivory/75 transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 sm:text-sm"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* COLUMN 3 — CUSTOMER SERVICE */}
-          <div className="flex flex-col text-start lg:col-span-2">
-            <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
-              {t.footer.customerService.title}
-            </h3>
-            <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
+            {/* COLUMN 3 — CUSTOMER SERVICE */}
+            <div className="flex flex-col text-start">
+              <h3 className="font-display text-base font-medium tracking-wide text-gold sm:text-[1.1rem]">
+                {t.footer.customerService.title}
+              </h3>
+              <div className="mt-2.5 mb-5 h-[1.5px] w-12 bg-gradient-to-r from-gold/80 to-gold/20 rtl:bg-gradient-to-l" />
 
-            <ul className="space-y-3">
-              {t.footer.customerService.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="inline-block text-xs font-light text-ivory/75 transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 sm:text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+              <ul className="space-y-3">
+                {t.footer.customerService.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="inline-block text-xs font-light text-ivory/75 transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 sm:text-sm"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           {/* COLUMN 4 — HEAD OFFICE MAP & ADDRESS (In RTL: Far Left) */}
