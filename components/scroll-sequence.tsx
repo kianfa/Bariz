@@ -36,8 +36,6 @@ export function ScrollSequence() {
     let rafId = 0
     let preloadStarted = false
     let disposed = false
-    let idleTimer: number | null = null
-    let intersectionObserver: IntersectionObserver | null = null
 
     // Keep the existing reduced-motion behavior, but allow the same scrub
     // experience on both desktop and mobile.
@@ -211,60 +209,37 @@ export function ScrollSequence() {
       rafId = window.requestAnimationFrame(updateFromScroll)
     }
 
-    const scheduleIdlePreload = () => {
-      if (disposed || !canScrub()) return
-
-      let currentIndex = 7
-      const trickleNext = () => {
-        if (disposed || currentIndex >= FRAME_COUNT) return
-
-        while (currentIndex < FRAME_COUNT && images[currentIndex]?.complete) {
-          currentIndex++
-        }
-
-        if (currentIndex < FRAME_COUNT) {
-          void loadFrame(currentIndex)
-            .then(() => {
-              currentIndex++
-              if (!disposed) {
-                if ('requestIdleCallback' in window) {
-                  window.requestIdleCallback(() => trickleNext(), { timeout: 1500 })
-                } else {
-                  idleTimer = window.setTimeout(trickleNext, 120)
-                }
-              }
-            })
-            .catch(() => {
-              currentIndex++
-              if (!disposed) {
-                idleTimer = window.setTimeout(trickleNext, 200)
-              }
-            })
-        }
-      }
-
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(() => trickleNext(), { timeout: 2000 })
-      } else {
-        idleTimer = window.setTimeout(trickleNext, 300)
-      }
-    }
-
-    const preloadEntryBuffer = async () => {
+    const startPreload = () => {
       if (preloadStarted || !canScrub()) return
       preloadStarted = true
 
-      // Load initial entrance window (0 to 6)
-      const initialBatch = [0, 1, 2, 3, 4, 5, 6]
-      await Promise.allSettled(initialBatch.map((index) => loadFrame(index)))
+      // Eagerly preload all frames in parallel batches right from page mount
+      // so frames are ready even on slow/throttled network connections.
+      const BATCH_SIZE = 4
+      let nextIndex = 1
 
-      // Trickle-load remaining frames only when user/CPU is idle
-      scheduleIdlePreload()
+      const loadNextBatch = async () => {
+        if (disposed || nextIndex >= FRAME_COUNT) return
+
+        const currentBatch: number[] = []
+        for (let i = 0; i < BATCH_SIZE && nextIndex < FRAME_COUNT; i++) {
+          currentBatch.push(nextIndex)
+          nextIndex++
+        }
+
+        await Promise.allSettled(currentBatch.map((index) => loadFrame(index)))
+
+        if (!disposed && nextIndex < FRAME_COUNT) {
+          window.setTimeout(loadNextBatch, 16)
+        }
+      }
+
+      void loadNextBatch()
     }
 
     const handleMediaChange = () => {
       if (canScrub()) {
-        void preloadEntryBuffer()
+        startPreload()
       } else {
         currentFrame = 0
       }
@@ -298,21 +273,8 @@ export function ScrollSequence() {
       })
       .catch(() => undefined)
 
-    if ('IntersectionObserver' in window) {
-      intersectionObserver = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            void preloadEntryBuffer()
-            intersectionObserver?.disconnect()
-            intersectionObserver = null
-          }
-        },
-        { rootMargin: '40% 0px' },
-      )
-      intersectionObserver.observe(section)
-    } else {
-      void preloadEntryBuffer()
-    }
+    // Start downloading the sequence immediately when the website opens
+    startPreload()
 
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
     window.addEventListener('resize', handleResize)
@@ -323,9 +285,7 @@ export function ScrollSequence() {
 
     return () => {
       disposed = true
-      if (idleTimer) window.clearTimeout(idleTimer)
       if (rafId) window.cancelAnimationFrame(rafId)
-      intersectionObserver?.disconnect()
       window.removeEventListener('scroll', scheduleUpdate)
       window.removeEventListener('resize', handleResize)
       window.removeEventListener('orientationchange', handleOrientationChange)
