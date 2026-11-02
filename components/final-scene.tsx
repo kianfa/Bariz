@@ -20,17 +20,9 @@ export function FinalScene() {
 
       <div className="relative z-10 text-center">
         <Reveal>
-          <span className="text-gold/70" aria-hidden>
-            &#10022;
-          </span>
-        </Reveal>
-        <Reveal delay={140}>
-          <h2 className="mt-8 font-display text-[clamp(2.6rem,8vw,7rem)] font-light leading-[1] text-balance text-ivory text-shadow-cinema">
+          <h2 className="font-display text-[clamp(2.6rem,8vw,7rem)] font-light leading-[1] text-balance text-ivory text-shadow-cinema">
             {t.finalScene.heading}
           </h2>
-        </Reveal>
-        <Reveal delay={300}>
-          <span className="mx-auto mt-10 block h-px w-28 gold-line" />
         </Reveal>
       </div>
     </section>
