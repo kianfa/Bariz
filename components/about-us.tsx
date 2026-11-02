@@ -185,14 +185,8 @@ export function AboutUs() {
 
         {/* Closing Brand Statement with special visual emphasis */}
         <Reveal delay={450}>
-          <div className="mx-auto mt-16 max-w-4xl border-t border-gold/20 pt-10 text-center sm:mt-24 sm:pt-14">
-            <span
-              className="inline-block text-sm text-gold/70"
-              aria-hidden="true"
-            >
-              &#10022;
-            </span>
-            <p className="mt-4 font-display text-xl font-normal leading-relaxed tracking-wide text-gold text-balance sm:text-2xl md:text-3xl lg:text-[2.2rem]">
+          <div className="mx-auto mt-16 max-w-4xl border-t border-gold/20 pt-8 text-center sm:mt-24 sm:pt-12">
+            <p className="font-display text-xl font-normal leading-relaxed tracking-wide text-gold text-balance sm:text-2xl md:text-3xl lg:text-[2.2rem]">
               «{t.aboutUs.closing.replace(/^[«"“]|["”»]$/g, '')}»
             </p>
           </div>
