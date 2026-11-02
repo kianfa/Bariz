@@ -4,9 +4,9 @@ import { Reveal } from '@/components/reveal'
 import { useLanguage } from '@/lib/i18n/context'
 
 const BOTANICAL_IMAGES = [
-  '/botanical-rose.png',
-  '/botanical-mint.png',
-  '/botanical-chicory.png',
+  '/botanical-rose.webp',
+  '/botanical-mint.webp',
+  '/botanical-chicory.webp',
 ]
 
 export function Botanicals() {
