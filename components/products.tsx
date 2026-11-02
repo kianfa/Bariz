@@ -379,9 +379,9 @@ export function Products() {
               </div>
 
               {/* Mobile Carousel Navigation Controls */}
-              <div className="mt-5 flex items-center justify-between px-1">
-                {/* Step Buttons */}
+              <div className="mt-6 flex flex-col items-center gap-2.5">
                 <div className="flex items-center gap-3">
+                  {/* Backward Button */}
                   <button
                     type="button"
                     onClick={() => {
@@ -390,7 +390,7 @@ export function Products() {
                     disabled={activeIndex === 0}
                     aria-label={t.products.prevProductAria}
                     className={cn(
-                      'flex size-8.5 items-center justify-center rounded-full border border-gold/35 bg-background/85 text-gold transition-all backdrop-blur-md active:scale-95',
+                      'flex size-8.5 items-center justify-center rounded-full border border-gold/30 bg-background/80 text-gold transition-all backdrop-blur-md active:scale-95 shadow-sm',
                       activeIndex === 0
                         ? 'opacity-25 cursor-not-allowed border-border/30 text-muted-foreground'
                         : 'hover:border-gold hover:bg-gold/15'
@@ -399,6 +399,25 @@ export function Products() {
                     {isRtl ? <ChevronRight className="size-4" /> : <ChevronLeft className="size-4" />}
                   </button>
 
+                  {/* Interactive Product Progress Dots */}
+                  <div className="flex items-center gap-1.5 px-3 py-2 rounded-full border border-gold/25 bg-background/70 backdrop-blur-md shadow-inner">
+                    {collectionItems.map((item, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => scrollToMobileCard(idx)}
+                        aria-label={t.products.showProductAria(item.name)}
+                        className={cn(
+                          'h-1.5 rounded-full transition-all duration-300',
+                          activeIndex === idx
+                            ? 'w-5 bg-gold shadow-[0_0_8px_rgba(212,175,55,0.55)]'
+                            : 'w-1.5 bg-gold/25 hover:bg-gold/50'
+                        )}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Forward Button */}
                   <button
                     type="button"
                     onClick={() => {
@@ -407,7 +426,7 @@ export function Products() {
                     disabled={activeIndex === total - 1}
                     aria-label={t.products.nextProductAria}
                     className={cn(
-                      'flex size-8.5 items-center justify-center rounded-full border border-gold/35 bg-background/85 text-gold transition-all backdrop-blur-md active:scale-95',
+                      'flex size-8.5 items-center justify-center rounded-full border border-gold/30 bg-background/80 text-gold transition-all backdrop-blur-md active:scale-95 shadow-sm',
                       activeIndex === total - 1
                         ? 'opacity-25 cursor-not-allowed border-border/30 text-muted-foreground'
                         : 'hover:border-gold hover:bg-gold/15'
@@ -417,18 +436,11 @@ export function Products() {
                   </button>
                 </div>
 
-                {/* Progress bar + Index Counter */}
-                <div className="flex items-center gap-3">
-                  <div className="h-1 w-20 overflow-hidden rounded-full bg-white/15">
-                    <div
-                      className="h-full bg-gold rounded-full transition-all duration-300"
-                      style={{ width: `${((activeIndex + 1) / total) * 100}%` }}
-                    />
-                  </div>
-                  <span className="font-mono text-xs font-light tracking-wider text-gold">
-                    {formatIndex(activeIndex)}{' '}
-                    <span className="text-ivory/40">/ {formatIndex(total - 1)}</span>
-                  </span>
+                {/* Elegant LTR Counter */}
+                <div dir="ltr" className="flex items-center gap-1.5 font-serif text-xs tracking-wider">
+                  <span className="font-medium text-gold">{formatIndex(activeIndex)}</span>
+                  <span className="text-ivory/30">/</span>
+                  <span className="text-ivory/50">{formatIndex(total - 1)}</span>
                 </div>
               </div>
             </div>
