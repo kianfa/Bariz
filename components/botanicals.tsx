@@ -117,10 +117,9 @@ export function Botanicals() {
                   <figure
                     className={cn(
                       'group relative overflow-hidden transition-all duration-500',
-                      // Mobile luxury card styling: refined border, rounded corners, ambient shadow
+                      // Luxury card styling across all screen sizes: refined golden border, rounded corners, ambient shadow
                       'rounded-2xl border border-gold/25 bg-background/50 shadow-[0_12px_36px_rgba(0,0,0,0.55)]',
-                      // Desktop reset to original clean luxury look
-                      'md:rounded-none md:border-none md:bg-transparent md:shadow-none'
+                      'hover:border-gold/50 hover:shadow-[0_16px_44px_rgba(0,0,0,0.65)] md:hover:-translate-y-1'
                     )}
                   >
 
