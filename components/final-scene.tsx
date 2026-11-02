@@ -10,7 +10,7 @@ export function FinalScene() {
     <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-32">
       <div className="absolute inset-0">
         <img
-          src="/final-nature.png"
+          src="/final-nature-pic.webp"
           alt={t.finalScene.imgAlt}
           className="size-full object-cover"
         />
