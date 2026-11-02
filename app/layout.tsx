@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark lang-fa ${cormorant.variable} ${jost.variable} ${vazirmatn.variable}`} data-palette="amber-ritual" data-persian-font="iranian-sans">
+    <html lang="fa" dir="rtl" suppressHydrationWarning className={`dark lang-fa ${cormorant.variable} ${jost.variable} ${vazirmatn.variable}`} data-palette="amber-ritual" data-persian-font="b-yekan">
       <body className="bg-background antialiased" suppressHydrationWarning>
         <LanguageProvider>
           {children}

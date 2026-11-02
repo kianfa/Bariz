@@ -9,6 +9,14 @@ export interface PersianFont {
 
 export const persianFonts: PersianFont[] = [
   {
+    id: 'b-yekan',
+    name: 'B Yekan',
+    label: 'بی‌یکان',
+    family: 'B Yekan',
+    preview: '«عطر طبیعت، در هر قطره»',
+    description: 'کلاسیک و مدرن، منظم، هندسی و خوانا',
+  },
+  {
     id: 'iranian-sans',
     name: 'A Iranian Sans',
     label: 'ایرانیان سنس',
@@ -58,7 +66,7 @@ export const persianFonts: PersianFont[] = [
   },
 ]
 
-export const DEFAULT_PERSIAN_FONT_ID = 'iranian-sans'
+export const DEFAULT_PERSIAN_FONT_ID = 'b-yekan'
 
 export function getPersianFontById(id: string): PersianFont {
   return (

@@ -595,6 +595,24 @@ html[data-palette="noir-botanica"] {
 
 /* ===== Persian Web Fonts ===== */
 @font-face {
+  font-family: 'B Yekan';
+  src: url('/fonts/b-yekan/BYekan.woff2') format('woff2'),
+       url('/fonts/b-yekan/BYekan.woff') format('woff'),
+       url('/fonts/b-yekan/BYekan.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'B Yekan';
+  src: url('/fonts/b-yekan/BYekan-Bold.woff2') format('woff2'),
+       url('/fonts/b-yekan/BYekan-Bold.woff') format('woff'),
+       url('/fonts/b-yekan/BYekan-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: 'A Iranian Sans';
   src: url('/fonts/iranian-sans/IranianSans.woff2') format('woff2'),
        url('/fonts/iranian-sans/IranianSans.woff') format('woff'),
@@ -789,11 +807,15 @@ html[data-palette="noir-botanica"] {
   --font-peyda: 'Peyda', sans-serif;
   --font-dana: 'Dana', sans-serif;
   --font-mikhak: 'Mikhak', sans-serif;
+  --font-b-yekan: 'B Yekan', sans-serif;
   --font-iranian-sans: 'A Iranian Sans', sans-serif;
-  --font-persian-current: 'A Iranian Sans', sans-serif;
+  --font-persian-current: 'B Yekan', sans-serif;
 }
 
 /* Specific Font Preview Classes for Menu & Testing */
+.font-preview-b-yekan {
+  font-family: 'B Yekan', sans-serif !important;
+}
 .font-preview-iranian-sans {
   font-family: 'A Iranian Sans', sans-serif !important;
 }

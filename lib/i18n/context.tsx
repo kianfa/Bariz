@@ -51,7 +51,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       }
 
       const savedFontId = localStorage.getItem('bariz_persian_font')
-      if (savedFontId && savedFontId !== 'estedad' && savedFontId !== 'vazirmatn') {
+      if (savedFontId && savedFontId !== 'estedad' && savedFontId !== 'vazirmatn' && savedFontId !== 'iranian-sans') {
         const found = getPersianFontById(savedFontId)
         setPersianFontState(found)
       }
