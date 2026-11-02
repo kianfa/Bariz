@@ -13,8 +13,10 @@ export function Experience() {
     >
       <div className="absolute inset-0">
         <img
-          src="/experience-glass.png"
+          src="/experience-glass.webp"
           alt={t.experience.imgAlt}
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-background/55" />

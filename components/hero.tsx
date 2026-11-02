@@ -1,24 +1,16 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 
 import { useLanguage } from '@/lib/i18n/context'
 
 export function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null)
   const [offset, setOffset] = useState(0)
-  const [videoReady, setVideoReady] = useState(false)
-  const [videoFailed, setVideoFailed] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const { t } = useLanguage()
 
   useEffect(() => {
-    const video = videoRef.current
-    if (video && video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
-      setVideoReady(true)
-    }
-
     let raf = 0
     const onScroll = () => {
       cancelAnimationFrame(raf)
@@ -32,26 +24,8 @@ export function Hero() {
   }, [])
 
   useEffect(() => {
-    // Enable loaded state for image display animations
     setLoaded(true)
   }, [])
-
-  useEffect(() => {
-    if (!videoReady && !videoFailed) return
-
-    // Let the ready video frame paint first, then start the original Hero animation.
-    const raf = requestAnimationFrame(() => setLoaded(true))
-    return () => cancelAnimationFrame(raf)
-  }, [videoReady, videoFailed])
-
-  const handleVideoReady = () => {
-    setVideoFailed(false)
-    setVideoReady(true)
-  }
-
-  const handleVideoError = () => {
-    setVideoFailed(true)
-  }
 
   const fade = Math.max(0, 1 - offset / 620)
 
@@ -70,33 +44,10 @@ export function Hero() {
         <img
           src="/Bariz_hero2.webp"
           alt=""
+          fetchPriority="high"
+          decoding="sync"
           className="size-full object-cover object-[24%_center] md:object-center"
         />
-
-        {/* Video Background Implementation (Preserved for future use) */}
-        {/*
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          tabIndex={-1}
-          onLoadedData={handleVideoReady}
-          onCanPlay={handleVideoReady}
-          onError={handleVideoError}
-          className={`size-full object-cover object-[24%_center] md:object-center ${
-            videoReady ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <source src="/bariz-hero-hevc.mp4" type='video/mp4; codecs="hvc1"' />
-          <source src="/bariz-hero-av1.webm" type='video/webm; codecs="av01"' />
-          <source src="/bariz-hero-vp9.webm" type='video/webm; codecs="vp9"' />
-          <source src="/bariz-hero-h264.mp4" type='video/mp4; codecs="avc1"' />
-        </video>
-        */}
       </div>
 
       {/* Desktop / tablet branding rail */}

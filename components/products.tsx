@@ -36,35 +36,15 @@ function ProductImage({
   draggable?: boolean
   'aria-hidden'?: boolean | 'true' | 'false'
 }) {
-  const isDev = process.env.NODE_ENV === 'development'
-
-  const pngSameDir = src.replace(/\.webp$/i, '.png')
-  const pngAltDir = src.replace(/^\/webp\//i, '/png/').replace(/\.webp$/i, '.png')
-
-  const sources = isDev
-    ? Array.from(new Set([pngSameDir, pngAltDir, src]))
-    : [src]
-
-  const [sourceIndex, setSourceIndex] = useState(0)
-
-  useEffect(() => {
-    setSourceIndex(0)
-  }, [src])
-
-  const currentSrc = sources[sourceIndex] || src
-
   return (
     <img
-      src={currentSrc}
+      src={src}
       alt={alt}
       draggable={draggable}
       aria-hidden={ariaHidden}
+      loading="lazy"
+      decoding="async"
       className={className}
-      onError={() => {
-        if (sourceIndex < sources.length - 1) {
-          setSourceIndex((prev) => prev + 1)
-        }
-      }}
     />
   )
 }
