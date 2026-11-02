@@ -295,10 +295,7 @@ export function Products() {
         <div className="lg:hidden flex flex-col py-2">
           {/* Section Header (Mobile: strictly placed ABOVE images) */}
           <Reveal className="mb-5 text-start">
-            <p className="text-xs font-medium uppercase tracking-luxe text-gold/90">
-              {t.products.tag}
-            </p>
-            <h2 className="mt-1 font-display text-[clamp(1.75rem,5.5vw,2.4rem)] font-light leading-[1.15] text-ivory">
+            <h2 className="font-display text-[clamp(1.75rem,5.5vw,2.4rem)] font-light leading-[1.15] text-ivory">
               {t.products.heading}
             </h2>
             <p className="mt-2 text-xs sm:text-sm font-light leading-relaxed text-gold/85">
@@ -451,10 +448,7 @@ export function Products() {
           {/* Editorial navigation block (Right Panel in RTL) */}
           <Reveal className="order-2 flex w-full flex-col justify-between lg:order-1 relative z-30 text-start me-auto max-w-[22rem] xl:max-w-[25rem] h-full">
             <div className="w-full text-start me-auto">
-              <p className="text-xs lg:text-xs xl:text-sm font-medium uppercase tracking-luxe text-gold/90 text-start">
-                {t.products.tag}
-              </p>
-              <h2 className="mt-1.5 lg:mt-2 font-display text-[clamp(1.5rem,2.3vw,3.2rem)] font-light leading-[1.05] text-ivory text-start whitespace-nowrap">
+              <h2 className="font-display text-[clamp(1.5rem,2.3vw,3.2rem)] font-light leading-[1.05] text-ivory text-start whitespace-nowrap">
                 {t.products.heading}
               </h2>
               <p className="mt-2 lg:mt-2.5 w-full text-xs sm:text-sm lg:text-[0.92rem] xl:text-[0.98rem] font-light leading-relaxed text-gold/90 text-start tracking-wide">
